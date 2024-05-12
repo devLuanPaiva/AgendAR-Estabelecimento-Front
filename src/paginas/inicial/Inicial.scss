@@ -1,0 +1,521 @@
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    box-sizing: border-box;
+
+    h1 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+
+        .sublinarTitulo {
+            display: inline-block;
+            position: relative;
+
+            .mudarCor {
+                color: #1E63A0;
+            }
+        }
+
+        .sublinarTitulo::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 37px;
+            width: 100%;
+            height: 3px;
+            background-color: #1E63A0;
+        }
+    }
+
+    .nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        box-sizing: border-box;
+
+        .linksNavegacao {
+            text-decoration: none;
+            cursor: pointer;
+            padding: 5px 8px;
+            border-radius: 3px;
+            color: #000;
+        }
+
+        .linksNavegacao:hover {
+            background-color: #012840;
+            color: #fff;
+        }
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px 40px;
+
+    article {
+        width: 100%;
+        min-height: 40%;
+        display: flex;
+        justify-content: space-between;
+
+        .apresentacao {
+            width: 50%;
+            height: 400px;
+
+            h2 {
+                font-size: 3rem;
+                margin-bottom: 30px;
+            }
+
+            h2::first-letter {
+                text-transform: uppercase;
+            }
+
+            .linkCadastrar {
+                font-size: 1.3rem;
+                text-decoration: none;
+                cursor: pointer;
+                padding: 7px 10px;
+                border-radius: 4px;
+                background-color: #012840;
+                color: #fff;
+                text-transform: capitalize;
+            }
+
+            .linkCadastrar:hover {
+                background-color: #012840d5;
+            }
+        }
+
+        .logomarca {
+            width: 40%;
+            height: 400px;
+            background-image: url('../../imagens/apresentacao.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+    }
+
+    .linha {
+        margin: 20px 0px;
+        width: 100%;
+        background-color: #000;
+        height: 3px;
+    }
+
+    .secaoFrase,
+    .secaoServicos {
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+
+        h2 {
+            font-size: 1.5rem;
+
+        }
+    }
+
+    .secaoServicos {
+        h2 {
+            text-transform: capitalize;
+        }
+
+        article {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+
+            .funcionalidade {
+                width: 250px;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+                h3 {
+                    font-size: 1.2rem;
+                }
+
+                p {
+                    font-size: 1rem;
+                    text-align: justify;
+                }
+
+            }
+        }
+
+        .funcionalidade:nth-child(odd) {
+            background-color: #012840;
+            color: #fff;
+        }
+
+        .funcionalidade:nth-child(even) {
+            background-color: #fff;
+            color: #1E63A0;
+        }
+    }
+
+    .secaoFrase {
+        h2 {
+            .mudarCor {
+                color: #1E63A0;
+            }
+        }
+
+        article {
+            margin: 0 auto;
+            width: 90%;
+            height: 80px;
+            background-color: #1E63A0;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h3 {
+                color: #fff;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1650px) {
+    main {
+        article {
+            .apresentacao {
+                h2 {
+                    font-size: 2.8rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    main {
+        article {
+            .apresentacao {
+                h2 {
+                    font-size: 2.5rem;
+                }
+            }
+
+            .logomarca {
+                background-position: right top;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1225px) {
+    main {
+        article {
+            .apresentacao {
+                h2 {
+                    font-size: 2.2rem;
+                }
+            }
+
+            .logomarca {
+                background-size: cover;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    main {
+        article {
+
+            .logomarca {
+                width: 50%;
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 965px) {
+    main {
+        article {
+            .apresentacao {
+                h2 {
+                    font-size: 2rem;
+                    margin-bottom: 5px;
+                }
+
+                .linkCadastrar {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    main {
+        article {
+            .apresentacao {
+                height: 280px;
+                width: 55%;
+
+                h2 {
+                    font-size: 1.6rem;
+                }
+
+                .linkCadastrar {
+                    font-size: 1rem;
+                }
+            }
+
+            .logomarca {
+                height: 280px;
+                width: 45%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 670px) {
+    main {
+        article {
+            .apresentacao {
+
+                h2 {
+                    font-size: 1.4rem;
+                }
+
+                .linkCadastrar {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 618px) {
+    main {
+        article {
+            .apresentacao {
+                width: 50%;
+            }
+
+            .logomarca {
+                width: 50%;
+            }
+        }
+
+        .secaoFrase,
+        .secaoServicos {
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        .secaoServicos {
+            article {
+                .funcionalidade {
+                    border-radius: 5px;
+                    width: 100%;
+
+                    h3 {
+                        font-size: 1.1rem;
+                    }
+
+                    p {
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+
+        .secaoFrase {
+            article {
+                width: 100%;
+                border-radius: 5px;
+
+                h3 {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        article {
+            .apresentacao {
+                height: 220px;
+
+                h2 {
+                    font-size: 1.2rem;
+                }
+
+                .linkCadastrar {
+                    font-size: .8rem;
+                }
+            }
+
+            .logomarca {
+                height: 220px;
+                background-size: contain;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    header {
+        h1 {
+            font-size: 1rem;
+
+            .sublinarTitulo::after {
+                top: 20px;
+            }
+        }
+
+        .nav {
+            gap: 10px;
+
+            .linksNavegacao {
+                font-size: .8rem;
+            }
+        }
+    }
+
+    main {
+        article {
+            .apresentacao {
+                height: 200px;
+
+                h2 {
+                    font-size: 1rem;
+                }
+
+                .linkCadastrar {
+                    font-size: .7rem;
+                }
+            }
+
+            .logomarca {
+                height: 200px;
+                background-size: cover;
+            }
+        }
+
+        .secaoFrase,
+        .secaoServicos {
+            h2 {
+                font-size: 1rem;
+            }
+        }
+
+        .secaoServicos {
+            article {
+                .funcionalidade {
+                    h3 {
+                        font-size: .9rem;
+                    }
+
+                    p {
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+        }
+
+        .secaoFrase {
+            article {
+                h3 {
+                    font-size: .9rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 420px) {
+    header {
+        h1 {
+            font-size: .9rem;
+
+            .sublinarTitulo::after {
+                top: 18px;
+            }
+        }
+
+        .nav {
+            gap: 5px;
+
+            .linksNavegacao {
+                padding: 3px 6px;
+                border-radius: 2px;
+                font-size: .7rem;
+            }
+        }
+    }
+
+    main {
+        article {
+            .apresentacao {
+                height: 190px;
+
+                h2 {
+                    font-size: .8rem;
+                }
+
+                .linkCadastrar {
+                    font-size: .6rem;
+                }
+            }
+
+            .logomarca {
+                height: 190px;
+                background-size: cover;
+            }
+        }
+
+        .secaoFrase,
+        .secaoServicos {
+            h2 {
+                font-size: .9rem;
+            }
+        }
+
+        .secaoServicos {
+            article {
+                .funcionalidade {
+                    h3 {
+                        font-size: .7rem;
+                    }
+
+                    p {
+                        font-size: 0.6rem;
+                    }
+                }
+            }
+        }
+
+        .secaoFrase {
+            article {
+                h3 {
+                    font-size: .7rem;
+                }
+            }
+        }
+    }
+}
