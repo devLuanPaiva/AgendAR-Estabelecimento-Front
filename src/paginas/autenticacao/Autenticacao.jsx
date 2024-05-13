@@ -1,20 +1,33 @@
 import axios from 'axios'
+import logo from '../../imagens/logo.png'
+import './Autenticacao.scss'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../servicos/AuthContext'
+import Titulo from '../../componentes/titulos/Titulo'
+import { useNavigate } from 'react-router-dom'
 
 const Autenticacao = () => {
     const [usuario, setUsuario] = useState('')
-    const {updateTokens} = useContext(AuthContext)
+    const { updateTokens } = useContext(AuthContext)
     const [senha, setSenha] = useState('')
+    const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://localhost:8000/token/', {
+            const response = await axios.post('http://127.0.0.1:8000/token/', {
                 username: usuario,
                 password: senha,
             });
             const { access, refresh } = response.data;
-            updateTokens(access, refresh)
+            
+            const estabelecimento = await axios.get('http://127.0.0.1:8000/user-info/', {
+                headers: {
+                    Authorization: `Bearer ${access}`,
+                },
+            });
+            updateTokens(access, refresh, estabelecimento.data)
+
+            navigate('/painel')
         }
         catch (error) {
             console.error('Erro ao se autenticar:', error);
@@ -22,9 +35,12 @@ const Autenticacao = () => {
         }
     }
     return (
-        <>
-            <aside></aside>
-            <main>
+        <main id='mainAutenticacao'>
+            <section className="secaoLogo">
+                <img src={logo} alt="logomarca AgendAR" />
+            </section>
+            <section className="secaoFormulario">
+                <Titulo cor="#fff" titulo="Autenticação" />
                 <form onSubmit={handleSubmit}>
                     <label>
                         Usuário<input type="text" placeholder='Usuário' value={usuario} onChange={(e) => setUsuario(e.target.value)} />
@@ -34,8 +50,9 @@ const Autenticacao = () => {
                     </label>
                     <button type='submit'>Acessar</button>
                 </form>
-            </main>
-        </>
+            </section>
+
+        </main>
     )
 }
 

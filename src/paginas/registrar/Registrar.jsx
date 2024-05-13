@@ -3,6 +3,7 @@ import logo from '../../imagens/logo.png'
 import './Registrar.scss'
 import axios from 'axios';
 import SelecionarEstado from '../../componentes/selecionarEstado/SelecionarEstado';
+import Titulo from '../../componentes/titulos/Titulo';
 
 const Registrar = () => {
     const [nomeEmpresa, setNomeEmpresa] = useState('');
@@ -59,7 +60,7 @@ const Registrar = () => {
                 <img src={logo} alt="logomarca AgendAR" />
             </section>
             <section className="secaoFormulario">
-                <h1>Reg<span className="sublinharTitulo">istrar</span></h1>
+                <Titulo cor="#fff" titulo="Registrar" />
                 <form onSubmit={handleSubmit}>
                     <label>
                         Nome da empresa:<input

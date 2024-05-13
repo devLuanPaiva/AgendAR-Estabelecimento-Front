@@ -1,0 +1,20 @@
+#tituloPrincipal {
+    height: 15%;
+    width: 95%;
+    display: flex;
+    align-items:baseline;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    font-display: swap;
+    button{
+        background-color: transparent;
+        border: none;
+        .icone{
+            cursor: pointer;
+            font-size: 2.4rem;
+            
+        }
+    }
+}

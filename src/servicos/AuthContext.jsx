@@ -3,20 +3,26 @@ import { createContext, useState } from "react";
 export const AuthContext = createContext();
 
 function AuthContextProvider(props) {
+    
     const [authTokens, setAuthTokens] = useState({
-        access: localStorage.getItem('access_token') || null,
-        refresh: localStorage.getItem('refresh_token') || null,
+        access: sessionStorage.getItem('access_token') || null,
+        refresh: sessionStorage.getItem('refresh_token') || null,
+        estabelecimento: JSON.parse(sessionStorage.getItem('estabelecimento')) || null,
     });
 
-    const updateTokens = (access, refresh) => {
-        localStorage.setItem('access_token', access);
-        localStorage.setItem('refresh_token', refresh);
-        setAuthTokens({ access, refresh });
+    const updateTokens = (access, refresh, estabelecimento) => {
+        sessionStorage.setItem('access_token', access);
+        sessionStorage.setItem('refresh_token', refresh);
+        sessionStorage.setItem('estabelecimento', JSON.stringify(estabelecimento)); 
+        setAuthTokens({ access, refresh, estabelecimento });
+        
     };
     const logout = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
-        setAuthTokens({ access: null, refresh: null });
+        sessionStorage.removeItem('access_token');
+        sessionStorage.removeItem('refresh_token');
+        sessionStorage.removeItem('estabelecimento');
+        setAuthTokens({ access: null, refresh: null, estabelecimento: null });
+
     };
     return (
         <AuthContext.Provider value={{ authTokens, updateTokens, logout }}>
