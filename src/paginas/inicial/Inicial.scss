@@ -70,8 +70,8 @@ main {
             height: 400px;
 
             h2 {
-                font-size: 3rem;
-                margin-bottom: 30px;
+                font-size: 2.9rem;
+                margin-bottom: 25px;
             }
 
             h2::first-letter {
@@ -204,6 +204,18 @@ main {
     }
 }
 
+@media screen and (max-width: 1560px) {
+    main {
+        article {
+            .apresentacao {
+                h2 {
+                    font-size: 2.6rem;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 1360px) {
     main {
         article {
@@ -248,7 +260,7 @@ main {
     }
 }
 
-@media screen and (max-width: 965px) {
+@media screen and (max-width: 985px) {
     main {
         article {
             .apresentacao {
@@ -289,7 +301,7 @@ main {
     }
 }
 
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 685px) {
     main {
         article {
             .apresentacao {
@@ -306,7 +318,7 @@ main {
     }
 }
 
-@media screen and (max-width: 618px) {
+@media screen and (max-width: 657px) {
     main {
         article {
             .apresentacao {
@@ -378,7 +390,7 @@ main {
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 583px) {
     header {
         h1 {
             font-size: 1rem;
@@ -448,7 +460,7 @@ main {
     }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 440px) {
     header {
         h1 {
             font-size: .9rem;
@@ -517,5 +529,109 @@ main {
                 }
             }
         }
+    }
+}
+
+@media screen and (max-width: 390px) {
+    header {
+        padding: 15px 10px;
+        h1 {
+            font-weight: 700;
+        }
+
+        .nav {
+            gap: 2px;
+
+            .linksNavegacao {
+                padding: 2px 4px;
+                border-radius: 2px;
+                font-size: .6rem;
+            }
+        }
+    }
+
+    main {
+        padding: 15px 10px;
+        article {
+            .apresentacao {
+                height: 150px;
+
+                h2 {
+                    font-size: .7rem;
+                    font-weight: 400;
+                }
+
+                .linkCadastrar {
+                    font-size: .6rem;
+                    font-weight: 400;
+                }
+            }
+
+            .logomarca {
+                height: 150px;
+                background-size: contain;
+            }
+
+        }
+
+        .secaoFrase,
+        .secaoServicos {
+            h2 {
+                font-weight: 400;
+            }
+        }
+
+        .secaoServicos {
+            article {
+                .funcionalidade {
+                    h3 {
+                        font-weight: 400;
+                    }
+
+                    p {
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+
+        .secaoFrase {
+            article {
+                h3 {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 310px) {
+
+
+    main {
+        article {
+            .apresentacao {
+                height: 140px;
+
+                h2 {
+                    font-size: .6rem;
+                    font-weight: 400;
+                }
+
+                .linkCadastrar {
+                    font-size: .4rem;
+                    font-weight: 400;
+                    padding: 3px 6px;
+                    border-radius: 2px;
+                }
+            }
+
+            .logomarca {
+                height: 140px;
+            }
+
+        }
+
+
     }
 }

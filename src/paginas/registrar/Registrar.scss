@@ -68,22 +68,151 @@
             justify-content: space-around;
             min-height: 80%;
             box-sizing: border-box;
-            label{
+
+            label {
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
                 width: 80%;
-                .selecionarEstadosEMunicipios{
+                font-weight: 700;
+
+                .selecionarEstadosEMunicipios {
                     width: 100%;
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
-                    select{
+
+                    select {
                         width: 45%;
+                        height: 35px;
+                        text-indent: 5px;
+                        border-radius: 5px;
                     }
+                }
+
+                input {
+                    height: 35px;
+                    text-indent: 5px;
+                    border-radius: 5px;
+                }
+            }
+            .botao {
+                width: 80%;
+                display: flex;
+                justify-content: flex-end;
+
+                button {
+                    background-color: #f1f1f1;
+                    color: #4192D9;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    padding: 10px 12px;
+                    border-radius: 5px;
+                    border: 1px solid #f1f1f1;
+                    box-sizing: border-box;
+                }
+
+                button:hover {
+                    background-color: #4192D9;
+                    color: #f1f1f1;
+                    border: 1px solid #4192D9;
+                    cursor: pointer;
                 }
             }
         }
     }
 
+}
+
+@media screen and (max-width: 1060px) {
+    #mainRegistrar {
+        .secaoLogo {
+            width: 45%;
+        }
+
+        .secaoFormulario {
+            width: 55%;
+        }
+    }
+}
+
+@media screen and (max-width: 910px) {
+    #mainRegistrar {
+        .secaoLogo {
+            display: none;
+        }
+
+        .secaoFormulario {
+            width: 100%;
+            border-radius: 0px;
+        }
+    }
+}
+@media screen and (max-width: 590px) {
+    #mainRegistrar {
+
+        .secaoFormulario {
+            h1{
+                font-size: 2rem;
+                button{
+                    .icone{
+                        font-size: 1.9rem;
+                    }
+                }
+            }
+            form{
+                .botao{
+                    button{
+                        font-size: .9rem;
+                        font-weight: 600;
+                        padding: 8px 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 480px) {
+    #mainRegistrar{
+        .secaoFormulario{
+            form{
+                label{
+                    .selecionarEstadosEMunicipios{
+                        flex-direction: column;
+                        gap: 10px;
+                        select{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 350px) {
+    #mainRegistrar {
+
+        .secaoFormulario {
+            h1{
+                font-size: 1.8rem;
+                button{
+                    .icone{
+                        font-size: 1.7rem;
+                    }
+                }
+            }
+            form{
+                label{
+                    font-weight: 400;
+                }
+                .botao{
+                    button{
+                        font-size: .8rem;
+                        font-weight: 600;
+                        padding: 7px 9px;
+                    }
+                }
+            }
+        }
+    }
 }

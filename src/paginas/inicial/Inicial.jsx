@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import './Inicial.scss'
+import { AuthContext } from "../../servicos/AuthContext";
 const Inicial = () => {
+    const { logout } = useContext(AuthContext)
+    useEffect(() => {logout()},[logout])
+
     return (
         <>
             <header >
@@ -11,7 +15,9 @@ const Inicial = () => {
                     <Link to={'/autenticacao/'} className="linksNavegacao">
                         Acessar
                     </Link>
-                    <Link to={'#servicos'} className="linksNavegacao">Nossos Serviços</Link>
+                    <Link to={'/'} className="linksNavegacao" onClick={() => document.querySelector('.secaoServicos').scrollIntoView({ behavior: 'smooth' })}>
+                        Nossos Serviços
+                    </Link>
                 </nav>
             </header>
             <main>

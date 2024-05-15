@@ -137,7 +137,9 @@ const Registrar = () => {
                             onChange={(e) => setSenha(e.target.value)}
                         />
                     </label>
-                    <button type="submit">Registrar</button>
+                    <div className="botao">
+                        <button type='submit'>Registrar</button>
+                    </div>
                 </form>
             </section>
 

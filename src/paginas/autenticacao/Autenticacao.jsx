@@ -19,7 +19,7 @@ const Autenticacao = () => {
                 password: senha,
             });
             const { access, refresh } = response.data;
-            
+
             const estabelecimento = await axios.get('http://127.0.0.1:8000/user-info/', {
                 headers: {
                     Authorization: `Bearer ${access}`,
@@ -48,7 +48,9 @@ const Autenticacao = () => {
                     <label>
                         Senha<input type="password" placeholder='Senha' value={senha} onChange={(e) => setSenha(e.target.value)} />
                     </label>
-                    <button type='submit'>Acessar</button>
+                    <div className="botao">
+                        <button type='submit'>Acessar</button>
+                    </div>
                 </form>
             </section>
 
