@@ -1,0 +1,23 @@
+.expandMain, .collapseMain{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 0px;
+    left: 0%;
+    max-width: 100%;
+    gap: 0px;
+}
+
+.expandMain{
+    .mapa{
+        width: 400px;
+        height: 300px;
+    }
+}
+@media screen and (max-width: 650px){
+    .expandMain{
+        left: 0%;
+        max-width: 100%;
+        padding: 0px;
+    }
+}

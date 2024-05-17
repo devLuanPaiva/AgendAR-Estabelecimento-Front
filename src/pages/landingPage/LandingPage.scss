@@ -1,0 +1,636 @@
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 40px;
+    box-sizing: border-box;
+
+    h1 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-style: normal;
+
+        .titleUnderline {
+            display: inline-block;
+            position: relative;
+
+            .changeColor {
+                color: #1E63A0;
+            }
+        }
+
+        .titleUnderline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 37px;
+            width: 100%;
+            height: 3px;
+            background-color: #1E63A0;
+        }
+    }
+
+    .nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        box-sizing: border-box;
+
+        .navigationLinks {
+            text-decoration: none;
+            cursor: pointer;
+            padding: 5px 8px;
+            border-radius: 3px;
+            color: #000;
+        }
+
+        .navigationLinks:hover {
+            background-color: #012840;
+            color: #fff;
+        }
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px 40px;
+
+    article {
+        width: 100%;
+        min-height: 40%;
+        display: flex;
+        justify-content: space-between;
+
+        .presentation {
+            width: 50%;
+            height: 400px;
+
+            h2 {
+                font-size: 2.9rem;
+                margin-bottom: 25px;
+            }
+
+            h2::first-letter {
+                text-transform: uppercase;
+            }
+
+            .registerLink {
+                font-size: 1.3rem;
+                text-decoration: none;
+                cursor: pointer;
+                padding: 7px 10px;
+                border-radius: 4px;
+                background-color: #012840;
+                color: #fff;
+                text-transform: capitalize;
+            }
+
+            .registerLink:hover {
+                background-color: #012840d5;
+            }
+        }
+
+        .logo {
+            width: 40%;
+            height: 400px;
+            background-image: url('../../imagens/apresentacao.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+    }
+
+    .line {
+        margin: 20px 0px;
+        width: 100%;
+        background-color: #000;
+        height: 3px;
+    }
+
+    .phraseSection,
+    .servicesSection {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+
+        h2 {
+            font-size: 1.5rem;
+
+        }
+    }
+
+    .servicesSection {
+        h2 {
+            text-transform: capitalize;
+        }
+
+        article {
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+
+            .feature {
+                width: 250px;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+                h3 {
+                    font-size: 1.2rem;
+                }
+
+                p {
+                    font-size: 1rem;
+                    text-align: justify;
+                }
+
+            }
+        }
+
+        .feature:nth-child(odd) {
+            background-color: #012840;
+            color: #fff;
+        }
+
+        .feature:nth-child(even) {
+            background-color: #fff;
+            color: #1E63A0;
+        }
+    }
+
+    .phraseSection {
+        h2 {
+            .changeColor {
+                color: #1E63A0;
+            }
+        }
+
+        article {
+            margin: 0 auto;
+            width: 90%;
+            height: 80px;
+            background-color: #1E63A0;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            h3 {
+                color: #fff;
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1650px) {
+    main {
+        article {
+            .presentation {
+                h2 {
+                    font-size: 2.8rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1560px) {
+    main {
+        article {
+            .presentation {
+                h2 {
+                    font-size: 2.6rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    main {
+        article {
+            .presentation {
+                h2 {
+                    font-size: 2.5rem;
+                }
+            }
+
+            .logo {
+                background-position: right top;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1225px) {
+    main {
+        article {
+            .presentation {
+                h2 {
+                    font-size: 2.2rem;
+                }
+            }
+
+            .logo {
+                background-size: cover;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    main {
+        article {
+
+            .logo {
+                width: 50%;
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 985px) {
+    main {
+        article {
+            .presentation {
+                h2 {
+                    font-size: 2rem;
+                    margin-bottom: 5px;
+                }
+
+                .registerLink {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    main {
+        article {
+            .presentation {
+                height: 280px;
+                width: 55%;
+
+                h2 {
+                    font-size: 1.6rem;
+                }
+
+                .registerLink {
+                    font-size: 1rem;
+                }
+            }
+
+            .logo {
+                height: 280px;
+                width: 45%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 685px) {
+    main {
+        article {
+            .presentation {
+
+                h2 {
+                    font-size: 1.4rem;
+                }
+
+                .registerLink {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 657px) {
+    main {
+        article {
+            .presentation {
+                width: 50%;
+            }
+
+            .logo {
+                width: 50%;
+            }
+        }
+
+        .phraseSection,
+        .servicesSection {
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        .servicesSection {
+            article {
+                .feature {
+                    border-radius: 5px;
+                    width: 100%;
+
+                    h3 {
+                        font-size: 1.1rem;
+                    }
+
+                    p {
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
+
+        .phraseSection {
+            article {
+                width: 100%;
+                border-radius: 5px;
+
+                h3 {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    main {
+        article {
+            .presentation {
+                height: 220px;
+
+                h2 {
+                    font-size: 1.2rem;
+                }
+
+                .registerLink {
+                    font-size: .8rem;
+                }
+            }
+
+            .logo {
+                height: 220px;
+                background-size: contain;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 583px) {
+    header {
+        h1 {
+            font-size: 1rem;
+
+            .titleUnderline::after {
+                top: 20px;
+            }
+        }
+
+        .nav {
+            gap: 10px;
+
+            .navigationLinks {
+                font-size: .8rem;
+            }
+        }
+    }
+
+    main {
+        article {
+            .presentation {
+                height: 200px;
+
+                h2 {
+                    font-size: 1rem;
+                }
+
+                .registerLink {
+                    font-size: .7rem;
+                }
+            }
+
+            .logo {
+                height: 200px;
+                background-size: cover;
+            }
+        }
+
+        .phraseSection,
+        .servicesSection {
+            h2 {
+                font-size: 1rem;
+            }
+        }
+
+        .servicesSection {
+            article {
+                .feature {
+                    h3 {
+                        font-size: .9rem;
+                    }
+
+                    p {
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+        }
+
+        .phraseSection {
+            article {
+                h3 {
+                    font-size: .9rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 440px) {
+    header {
+        h1 {
+            font-size: .9rem;
+
+            .titleUnderline::after {
+                top: 18px;
+            }
+        }
+
+        .nav {
+            gap: 5px;
+
+            .navigationLinks {
+                padding: 3px 6px;
+                border-radius: 2px;
+                font-size: .7rem;
+            }
+        }
+    }
+
+    main {
+        article {
+            .presentation {
+                height: 190px;
+
+                h2 {
+                    font-size: .8rem;
+                }
+
+                .registerLink {
+                    font-size: .6rem;
+                }
+            }
+
+            .logo {
+                height: 190px;
+                background-size: cover;
+            }
+        }
+
+        .phraseSection,
+        .servicesSection {
+            h2 {
+                font-size: .9rem;
+            }
+        }
+
+        .servicesSection {
+            article {
+                .feature {
+                    h3 {
+                        font-size: .7rem;
+                    }
+
+                    p {
+                        font-size: 0.6rem;
+                    }
+                }
+            }
+        }
+
+        .phraseSection {
+            article {
+                h3 {
+                    font-size: .7rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 390px) {
+    header {
+        padding: 15px 10px;
+        h1 {
+            font-weight: 700;
+        }
+
+        .nav {
+            gap: 2px;
+
+            .navigationLinks {
+                padding: 2px 4px;
+                border-radius: 2px;
+                font-size: .6rem;
+            }
+        }
+    }
+
+    main {
+        padding: 15px 10px;
+        article {
+            .presentation {
+                height: 150px;
+
+                h2 {
+                    font-size: .7rem;
+                    font-weight: 400;
+                }
+
+                .registerLink {
+                    font-size: .6rem;
+                    font-weight: 400;
+                }
+            }
+
+            .logo {
+                height: 150px;
+                background-size: contain;
+            }
+
+        }
+
+        .phraseSection,
+        .servicesSection {
+            h2 {
+                font-weight: 400;
+            }
+        }
+
+        .servicesSection {
+            article {
+                .feature {
+                    h3 {
+                        font-weight: 400;
+                    }
+
+                    p {
+                        font-weight: 300;
+                    }
+                }
+            }
+        }
+
+        .phraseSection {
+            article {
+                h3 {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 310px) {
+
+
+    main {
+        article {
+            .presentation {
+                height: 140px;
+
+                h2 {
+                    font-size: .6rem;
+                    font-weight: 400;
+                }
+
+                .registerLink {
+                    font-size: .4rem;
+                    font-weight: 400;
+                    padding: 3px 6px;
+                    border-radius: 2px;
+                }
+            }
+
+            .logo {
+                height: 140px;
+            }
+
+        }
+
+
+    }
+}

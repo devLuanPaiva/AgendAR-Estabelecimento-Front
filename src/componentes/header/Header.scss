@@ -1,0 +1,31 @@
+.expandirHeader, .recolherHeader{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 0px;
+    gap: 0px;
+    #tituloPrincipal{
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+    p{
+        margin-top: 0px;
+        margin-left: 53px;
+    }
+}
+.expandirHeader{
+    left: 8%;
+    max-width: 92%;
+}
+.recolherHeader{
+    left: 18%;
+    max-width: 82%;
+}
+@media screen and (max-width: 650px){
+    .expandirHeader{
+        padding: 0px;
+        left: 0%;
+        min-width: 100%;
+    }
+}
