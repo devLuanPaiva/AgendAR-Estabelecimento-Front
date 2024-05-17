@@ -15,7 +15,7 @@ const MapsAPI = () => {
     const [position, setPosition] = useState(null);
 
     useEffect(() => {
-        const address = `José Paulino do Rêgo, 45, Pau dos Ferros - RN, 59900-000`;
+        const address = `${rua}, ${numeroEndereco} - ${bairro}, ${cidade} - ${estado}, ${cep}`;
         const getCoordinatesFromAddress = async (address) => {
             try {
                 const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=AIzaSyB_77CX7GW1gdmCdzXYWB8uUJnWN6blRRE`);
@@ -41,7 +41,7 @@ const MapsAPI = () => {
     }, [bairro, cep, cidade, estado, numeroEndereco, rua]);
 
     return (
-        <article className='mapa'>
+        <article className='maps'>
             {
                 isLoaded ? (
                     <GoogleMap

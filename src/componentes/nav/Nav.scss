@@ -1,0 +1,51 @@
+.expandNavigation, .collapseNavigation{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 0px;
+    gap: 10px;
+    padding-left: 73px;
+    box-sizing: border-box;
+    .linksNavigation{
+        text-decoration: none;
+        padding: 8px 10px;
+        border-radius: 4px;
+        font-weight: 500;
+        color: #000;
+        cursor: pointer;
+    }
+    .linksNavigation:hover{
+        background-color: #2F699C;
+        color: #fff;
+    }
+    .activeLink {
+        background-color: #2F699C;
+        color: #fff;
+    }
+    .line{
+        flex-grow: 1;
+        height: 2px;
+        align-self: center;
+        border-radius: 2px;
+        margin-left: 10px;
+        max-width: 80%;
+        background-color: #2F699C;
+    }
+
+}
+.expandNavigation{
+    left: 8%;
+    max-width: 92%;
+}
+.collapseNavigation{
+    left: 18%;
+    max-width: 82%;
+}
+
+@media screen and (max-width: 650px){
+    .expandNavigation{
+        left: 0%;
+        max-width: 100%;
+        padding: 0px 25px;
+    }
+}

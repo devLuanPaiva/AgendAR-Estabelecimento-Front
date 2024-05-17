@@ -1,0 +1,130 @@
+.expandMain,
+.collapseMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    position: relative;
+    top: 0px;
+    gap: 0px;
+    box-sizing: border-box;
+
+    .currentAddress,
+    .currentLocation,
+    .selectLocation {
+        height: 230px;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 2px 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+
+        h2 {
+            color: #045180;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+    }
+
+    .currentAddress {
+        ul {
+            margin-top: 0px;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 15px;
+            gap: 4px;
+            box-sizing: border-box;
+
+            li {
+                list-style: none;
+            }
+        }
+    }
+
+    .currentLocation {
+        width: 40%;
+
+        .maps {
+            width: 100%;
+            height: 80%;
+        }
+    }
+
+    .selectLocation {
+        width: 80%;
+        height: 450px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .maps {
+            width: 100%;
+            height: 85%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            button {
+                background-color: #2F699C;
+                width: 150px;
+                color: #fff;
+                padding: 8px 10px;
+                border: 1px solid #2F699C;
+                border-radius: 4px;
+                font-weight: 500;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+
+.expandMain {
+    left: 8%;
+    max-width: 92%;
+}
+
+.collapseMain {
+    left: 18%;
+    max-width: 82%;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .expandMain,
+    .collapseMain {
+        padding-left: 73px;
+        gap: 10px;
+
+        .currentLocation {
+            width: 50%;
+        }
+        .selectLocation{
+            width: 90%;
+        }
+    }
+    
+}
+
+@media screen and (max-width: 650px) {
+    .expandMain {
+        left: 0%;
+        max-width: 100%;
+        padding: 20px 25px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        .currentAddress,
+        .selectLocation,
+        .currentLocation {
+            width: 100%;
+        }
+
+        .currentLocation {
+            height: 250px;
+        }
+    }
+}
