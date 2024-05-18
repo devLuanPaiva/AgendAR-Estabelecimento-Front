@@ -67,14 +67,19 @@
             gap: 15px;
 
             button {
-                background-color: #2F699C;
+                background-color: #000000;
                 width: 150px;
                 color: #fff;
                 padding: 8px 10px;
-                border: 1px solid #2F699C;
+                border: 1px solid #000000;
                 border-radius: 4px;
                 font-weight: 500;
                 cursor: pointer;
+            }
+            button:hover{
+                background-color: #000000e5;
+                border: 1px solid #000000e5;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             }
         }
     }

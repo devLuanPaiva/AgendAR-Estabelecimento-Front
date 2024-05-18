@@ -12,6 +12,7 @@ import Settings from "./pages/settings/Settings";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Location from "./pages/location/Location";
 import EditLocation from "./pages/location/EditLocation";
+import RegisterServices from "./pages/services/RegisterServices";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path='/localizacao/' element={<Location />} />
               <Route path='/localizacao/modificar/' element={<EditLocation />} />
               <Route path='/servicos/' element={<Services />} />
+              <Route path='/servicos/cadastrar/' element={<RegisterServices />} />
               <Route path='/agendamentos/' element={<Appointments />} />
             </Route>
           </Routes>
