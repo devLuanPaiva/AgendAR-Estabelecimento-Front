@@ -4,8 +4,8 @@ import Header from '../../componentes/header/Header';
 import Nav from '../../componentes/nav/Nav';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
-import api from '../../services/api';
 import { AuthContext } from '../../services/AuthContext';
+import useAxios from '../../services/useAxios';
 
 const RegisterServices = () => {
     const [nameService, setNameService] = useState('')
@@ -15,6 +15,7 @@ const RegisterServices = () => {
     const { expandedSidebar } = useSidebarContext()
     const { authTokens } = useContext(AuthContext)
     const { id } = authTokens.estabelecimento.estabelecimento
+    const api = useAxios()
     const navLinks = [
         { text: 'Atual', href: '/servicos/' },
         { text: 'Cadastrar', href: '/servicos/cadastrar/' },
@@ -28,7 +29,6 @@ const RegisterServices = () => {
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const response = await api.post('servicos/', {
                 nome: nameService,
@@ -71,8 +71,8 @@ const RegisterServices = () => {
                             <div className="characterCount">{descriptionCount}/200 caracteres</div>
                         </div>
                     </label>
+                <section className="buttonFormServices" ><button type="submit">Cadastrar Serviço</button></section>
                 </form>
-                <section className="buttonFormServices"><button type="submit">Cadastrar Serviço</button></section>
             </main>
             <Sidebar />
         </React.Fragment>

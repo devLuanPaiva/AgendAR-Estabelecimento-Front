@@ -2,12 +2,12 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../services/AuthContext';
 import axios from 'axios';
-import api from '../../services/api';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 import './Location.scss'
 import Header from '../../componentes/header/Header';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
 import Nav from '../../componentes/nav/Nav';
+import useAxios from '../../services/useAxios';
 
 const EditLocation = () => {
     const { isLoaded } = useJsApiLoader({
@@ -20,6 +20,7 @@ const EditLocation = () => {
     const [center, setCenter] = useState(null);
     const [position, setPosition] = useState(null);
     const { expandedSidebar } = useSidebarContext()
+    const api = useAxios()
 
     useEffect(() => {
         const address = `${rua}, ${numeroEndereco} - ${bairro}, ${cidade} - ${estado}, ${cep}`;

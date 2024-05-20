@@ -13,6 +13,8 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Location from "./pages/location/Location";
 import EditLocation from "./pages/location/EditLocation";
 import RegisterServices from "./pages/services/RegisterServices";
+import RegisterShedules from "./pages/schedules/RegisterShedules";
+import ScheduleEdit from "./pages/schedules/ScheduleEdit";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
               <Route path='/painel/' element={<Dashboard />} />
               <Route path='/configuracoes/' element={<Settings />} />
               <Route path='/horarios/' element={<Schedules />} />
+              <Route path='/horarios/cadastrar/' element={<RegisterShedules />} />
+              <Route path='/horarios/editar/:idSchedule' element={<ScheduleEdit />} />
               <Route path='/localizacao/' element={<Location />} />
               <Route path='/localizacao/modificar/' element={<EditLocation />} />
               <Route path='/servicos/' element={<Services />} />
