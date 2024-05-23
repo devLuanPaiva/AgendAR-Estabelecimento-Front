@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
 .expandMainSchedules,
 .collapseMainSchedules {
     display: flex;
@@ -15,8 +17,13 @@
         text-align: justify;
     }
 
+    p {
+        width: 100%;
+        text-align: center;
+    }
+
     .formSchedules,
-    .sectionSchedules {
+    .ulSchedules {
         margin: 0 auto;
         width: 90%;
         display: flex;
@@ -24,56 +31,89 @@
 
     }
 
-    .sectionSchedules {
+    .ulSchedules {
         flex-direction: row;
         flex-wrap: wrap;
+        align-items: flex-start;
         justify-content: space-around;
         gap: 20px;
-        box-sizing: border-box;
 
-        .scheduleOfDay {
+        .liScheduleOfDay {
             background-color: #fff;
-            width: 240px;
-            border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 0px 10px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
             box-sizing: border-box;
+            height: 200px;
 
-            h3 {
-                margin-top: 0px;
-                border-radius: 8px 8px 0px 0px;
-                width: 100%;
-                text-align: center;
-                background-color: #045180;
-                color: #fff;
+            .captionSchedule {
+                margin-bottom: 10px;
+                color: #1E63A0;
             }
+            
 
-            p {
-                margin: 10px auto;
-                text-indent: 5px;
-                box-sizing: border-box;
-                text-wrap: wrap;
+            section {
                 display: flex;
-
-                abbr {
-                    text-decoration: none;
-                    font-weight: bolder;
-                }
-
-                .buttonsSchedule {
+                flex-direction: column;
+                justify-content: space-between;
+                width: 100%;
+                row-gap: 10px;
+                box-sizing: border-box;
+                .articleSchedules {
+                    height: 20px;
                     display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    padding: 0px 5px;
+                    box-sizing: border-box;
 
-                    button {
-                        background-color: transparent;
-                        border: none;
-                        align-items: center;
+                    p {
+                        text-indent: 5px;
+                        box-sizing: border-box;
+                        text-wrap: wrap;
+                        display: flex;
+                        font-family: "Roboto Mono", monospace;
+                        font-weight: 400;
+                        font-style: normal;
 
-                        .icon {
-                            cursor: pointer;
+                        abbr {
+                            text-decoration: none;
+                            font-weight: bolder;
                         }
 
                     }
+
+                    .buttonsSchedule {
+                        display: flex;
+                        justify-content: flex-end;
+                        column-gap: 10px;
+                        box-sizing: border-box;
+        
+                        button {
+                            background-color: #045180;
+                            border: none;
+                            border-radius: 4px;
+                            color: #fff;
+                            padding: 8px;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            transition: background-color 0.3s;
+        
+                            &:hover {
+                                background-color: #033D62;
+                            }
+        
+                        }
+                    }
                 }
             }
+
         }
     }
 

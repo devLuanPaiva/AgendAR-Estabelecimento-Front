@@ -78,65 +78,79 @@ const Schedules = () => {
             return null;
         }
     };
+    const formatTime = (time) => {
+        return time ? time.slice(0, 5) : 'Fechado'
+    }
     return (
         <React.Fragment>
             <Header textTitle='Horários' textPhrase='Gerencie seus horários comerciais para que seus clientes possam agendar serviços.' />
             <Nav links={navLinks} />
             <main className={`${!expandedSidebar ? 'expandMainSchedules' : 'collapseMainSchedules'}`}>
                 <h2>Horários cadastrados:</h2>
-                <section className="sectionSchedules">
-                    {sortedDays.length > 0 ?
+                {sortedDays.length > 0 ?
+                    <ul className="ulSchedules">
+                        {sortedDays.map((day, index) => (
+                            <li key={index} className='liScheduleOfDay'>
+                                <h3 className='captionSchedule'>{day === 'TERCA' ? 'TERÇA' : day === 'SABADO' ? 'SÁBADO' : day}</h3>
+                                <section>
+                                    <article className='articleSchedules'>
+                                        <p>
+                                            <abbr title="Manhã">M</abbr>: {
+                                                groupedSchedules[day].MANHA.inicio !== "Fechado" ?
+                                                    `${formatTime(groupedSchedules[day].MANHA.inicio)} às ${formatTime(groupedSchedules[day].MANHA.fim)}` : 'Fechado'}
+                                        </p>
+                                        {groupedSchedules[day].MANHA.inicio !== "Fechado" ?
+                                            <div className="buttonsSchedule">
+                                                <button onClick={() => editSchedule(groupedSchedules[day].MANHA)}>
+                                                    <MdEdit className='icon' />
+                                                </button>
+                                                <button onClick={() => deleteSchedule(groupedSchedules[day].MANHA)}>
+                                                    <FaTrash className='icon' />
+                                                </button>
+                                            </div>
+                                            : ''}
+                                    </article>
+                                    <article className='articleSchedules'>
+                                        <p>
+                                            <abbr title="Tarde">T</abbr>: {
+                                                groupedSchedules[day].TARDE.inicio !== "Fechado" ?
+                                                    `${formatTime(groupedSchedules[day].TARDE.inicio)} às ${formatTime(groupedSchedules[day].TARDE.fim)}` : 'Fechado'}
+                                        </p>
+                                        {groupedSchedules[day].TARDE.inicio !== "Fechado" ?
+                                            <div className="buttonsSchedule">
+                                                <button onClick={() => editSchedule(groupedSchedules[day].TARDE)}>
+                                                    <MdEdit className='icon' />
+                                                </button>
+                                                <button onClick={() => deleteSchedule(groupedSchedules[day].TARDE)}>
+                                                    <FaTrash className='icon' />
+                                                </button>
+                                            </div>
+                                            : ''}
+                                    </article>
+                                    <article className='articleSchedules'>
+                                        <p>
+                                            <abbr title="Noite">N</abbr>: {
+                                                groupedSchedules[day].NOITE.inicio !== "Fechado" ?
+                                                    `${formatTime(groupedSchedules[day].NOITE.inicio)} às ${formatTime(groupedSchedules[day].NOITE.fim)}` : 'Fechado'}
+                                        </p>
+                                        {groupedSchedules[day].NOITE.inicio !== "Fechado" ?
+                                            <div className="buttonsSchedule">
+                                                <button onClick={() => editSchedule(groupedSchedules[day].NOITE)}>
+                                                    <MdEdit className='icon' />
+                                                </button>
+                                                <button onClick={() => deleteSchedule(groupedSchedules[day].NOITE)}>
+                                                    <FaTrash className='icon' />
+                                                </button>
+                                            </div>
+                                            : ''}
+                                    </article>
+                                </section>
 
-                        sortedDays.map((day, index) => (
-                            <div key={index} className='scheduleOfDay'>
-                                <h3>{day === 'TERCA' ? 'TERÇA' : day === 'SABADO' ? 'SÁBADO' : day}</h3>
-                                <p><abbr title="Manhã">M</abbr>: {
-                                    groupedSchedules[day].MANHA.inicio !== "Fechado" ?
-                                        `${groupedSchedules[day].MANHA.inicio} às ${groupedSchedules[day].MANHA.fim}` : 'Fechado'}
-
-                                    {groupedSchedules[day].MANHA.inicio !== "Fechado" ?
-                                        <div className="buttonsSchedule">
-                                            <button onClick={() => editSchedule(groupedSchedules[day].MANHA)}>
-                                                <MdEdit className='icon'/>
-                                            </button>
-                                            <button onClick={() => deleteSchedule(groupedSchedules[day].MANHA)}>
-                                                <FaTrash className='icon'/>
-                                            </button>
-                                        </div>
-                                        : ''}
-                                </p>
-                                <p><abbr title="Tarde">T</abbr>: {
-                                    groupedSchedules[day].TARDE.inicio !== "Fechado" ?
-                                        `${groupedSchedules[day].TARDE.inicio} às ${groupedSchedules[day].TARDE.fim}` : 'Fechado'}
-                                    {groupedSchedules[day].TARDE.inicio !== "Fechado" ? <div className="buttonsSchedule">
-                                        <button onClick={() => editSchedule(groupedSchedules[day].TARDE)}>
-                                            <MdEdit className='icon'/>
-                                        </button>
-                                        <button onClick={() => deleteSchedule(groupedSchedules[day].TARDE)}>
-                                            <FaTrash className='icon'/>
-                                        </button>
-                                    </div>
-                                        : ''}
-                                </p>
-                                <p><abbr title="Noite">N</abbr>: {
-                                    groupedSchedules[day].NOITE.inicio !== "Fechado" ?
-                                        `${groupedSchedules[day].NOITE.inicio} às ${groupedSchedules[day].NOITE.fim}` : 'Fechado'}
-                                    {groupedSchedules[day].NOITE.inicio !== "Fechado" ? <div className="buttonsSchedule">
-                                        <button onClick={() => editSchedule(groupedSchedules[day].NOITE)}>
-                                            <MdEdit className='icon'/>
-                                        </button>
-                                        <button onClick={() => deleteSchedule(groupedSchedules[day].NOITE)}>
-                                            <FaTrash className='icon'/>
-                                        </button>
-                                    </div>
-                                        : ''}
-                                </p>
-
-                            </div>
-                        ))
-                        : <p>Não existe horários cadastrados.</p>
-                    }
-                </section>
+                            </li>
+                        ))}
+                    </ul>
+                    : <p>Não existe horários cadastrados.</p>
+                }
 
             </main>
             <Sidebar />

@@ -88,7 +88,9 @@ const RegisterShedules = () => {
                         required
                         onChange={e => setEndTime(e.target.value)} />
                     </label>
-                    <section className="buttonFormSchedules" ><button type="submit">Cadastrar Horário</button></section>
+                    <section className="buttonFormSchedules" >
+                        <button type="submit">Cadastrar Horário</button>
+                    </section>
                 </form>
 
             </main>

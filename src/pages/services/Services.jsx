@@ -37,7 +37,7 @@ const Services = () => {
       console.error('Erro ao obter lista de serviços:', error);
       return null;
     }
-  }, [id])
+  }, [id, api])
   useEffect(() => {
     fetchServices()
   }, [fetchServices])
@@ -53,9 +53,9 @@ const Services = () => {
       <main className={`${!expandedSidebar ? 'expandMainServices' : 'collapseMainServices'}`}>
 
         <h2>Serviços cadastrados:</h2>
-        <ul className='listServices'>
-          {listServices.length > 0 ?
-            listServices.map((servico, index) => (
+        {listServices.length > 0 ?
+          <ul className='listServices'>
+            {listServices.map((servico, index) => (
               <li key={index}>
                 <h3>{servico.nome}</h3>
                 <div className="valueAndTrash">
@@ -63,10 +63,10 @@ const Services = () => {
                   <button onClick={() => deleteService(servico.id)}><FaTrash className='icon' /></button>
                 </div>
               </li>
-            ))
-            : <p>Não existe serviços cadastrados.</p>
-          }
-        </ul>
+            ))}
+          </ul>
+          : <p>Não existe serviços cadastrados.</p>
+        }
       </main>
       <Sidebar />
     </React.Fragment>

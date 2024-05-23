@@ -15,6 +15,8 @@ import EditLocation from "./pages/location/EditLocation";
 import RegisterServices from "./pages/services/RegisterServices";
 import RegisterShedules from "./pages/schedules/RegisterShedules";
 import ScheduleEdit from "./pages/schedules/ScheduleEdit";
+import WeeklyAppointments from "./pages/appointments/WeeklyAppointments";
+import RegisterAppointment from "./pages/appointments/RegisterAppointment";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
               <Route path='/servicos/' element={<Services />} />
               <Route path='/servicos/cadastrar/' element={<RegisterServices />} />
               <Route path='/agendamentos/' element={<Appointments />} />
+              <Route path='/agendamentos/semanais/' element={<WeeklyAppointments />} />
+              <Route path='/agendamentos/cadastrar/' element={<RegisterAppointment />} />
             </Route>
           </Routes>
         </SidebarProvider>

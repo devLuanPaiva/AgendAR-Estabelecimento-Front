@@ -3,7 +3,6 @@ import { AuthContext } from '../../services/AuthContext'
 import './Dashboard.scss'
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
 import Header from '../../componentes/header/Header';
-import MapsAPI from '../../componentes/maps/MapsAPI';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 
 const Dashboard = () => {
@@ -15,7 +14,6 @@ const Dashboard = () => {
             <Header textTitle={`Bem vindo, ${nome}`} textPhrase={'Veja abaixo algumas informações sobre o seu estabelecimento.'} />
             <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
                 <section className="appointmentQuantity"></section>
-                <MapsAPI />
             </main>
             <Sidebar />
         </React.Fragment>

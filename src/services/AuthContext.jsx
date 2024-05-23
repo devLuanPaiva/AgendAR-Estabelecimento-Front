@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
         const tokens = getAuthTokens();
         if (tokens && tokens.refresh) {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/token/refresh/', {
+                const response = await axios.post('http://127.0.0.1:8000/token/refresh/', {
                     refresh: tokens.refresh,
                 });
                 const newTokens = response.data;
