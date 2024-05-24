@@ -41,7 +41,7 @@ const MapsAPI = () => {
     }, [bairro, cep, cidade, estado, numeroEndereco, rua]);
 
     return (
-        <article className='maps'>
+        <figure className='maps'>
             {
                 isLoaded ? (
                     <GoogleMap
@@ -53,7 +53,7 @@ const MapsAPI = () => {
                     </GoogleMap>
                 ) : <></>
             }
-        </article>
+        </figure>
     );
 };
 

@@ -15,7 +15,7 @@ const EditLocation = () => {
         googleMapsApiKey: "AIzaSyCrhUxvsSN7RvO2zc4DhYJfF7GHr33BG6g"
     });
     const { authTokens, updateTokens } = useContext(AuthContext);
-    const { id, bairro, cep, cidade, numeroEndereco, estado, rua } = authTokens.estabelecimento.estabelecimento;
+    const { id, bairro, cep, cidade, estado, rua } = authTokens.estabelecimento.estabelecimento;
     const { access, refresh } = authTokens
     const [center, setCenter] = useState(null);
     const [position, setPosition] = useState(null);
@@ -23,7 +23,7 @@ const EditLocation = () => {
     const api = useAxios()
 
     useEffect(() => {
-        const address = `${rua}, ${numeroEndereco} - ${bairro}, ${cidade} - ${estado}, ${cep}`;
+        const address = `${rua} - ${bairro}, ${cidade} - ${estado}, ${cep}`;
         const getCoordinatesFromAddress = async (address) => {
             try {
                 const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=AIzaSyB_77CX7GW1gdmCdzXYWB8uUJnWN6blRRE`);
@@ -46,7 +46,7 @@ const EditLocation = () => {
                 setPosition(coords);
             }
         });
-    }, [bairro, cep, cidade, estado, numeroEndereco, rua]);
+    }, [bairro, cep, cidade, estado, rua]);
 
     const handleMapClick = (event) => {
         const newCoords = {

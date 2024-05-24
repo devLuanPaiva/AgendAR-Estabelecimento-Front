@@ -14,6 +14,7 @@ const RegisterAppointment = () => {
     const [selectedService, setSelectedService] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [selectedDay, setSelectedDay] = useState('');
+    const [selectedSchedule, setSelectedSchedule] = useState(null); 
 
     const { expandedSidebar } = useSidebarContext();
     const { authTokens } = useContext(AuthContext);
@@ -31,11 +32,11 @@ const RegisterAppointment = () => {
     const mapDayOfWeek = (dayOfWeek) => {
         const mapping = {
             'segunda-feira': 'SEGUNDA',
-            'terça-feira': 'TERÇA',
+            'terça-feira': 'TERCA',
             'quarta-feira': 'QUARTA',
             'quinta-feira': 'QUINTA',
             'sexta-feira': 'SEXTA',
-            'sábado': 'SÁBADO',
+            'sábado': 'SABADO',
             'domingo': 'DOMINGO',
         };
         return mapping[dayOfWeek.toLowerCase()];
@@ -53,7 +54,10 @@ const RegisterAppointment = () => {
                 const endTime = new Date(`1970-01-01T${schedule.horario_fim}`);
 
                 while (startTime < endTime) {
-                    timeOptions.push(startTime.toTimeString().substring(0, 5));
+                    timeOptions.push({
+                        time: startTime.toTimeString().substring(0, 5),
+                        schedule: schedule.id
+                    });
                     startTime = new Date(startTime.getTime() + 30 * 60000);
                 }
 
@@ -62,12 +66,16 @@ const RegisterAppointment = () => {
 
         const bookedTimes = listAppointments
             .filter(appointment => appointment.dia_selecionado === day)
-            .map(appointment => {
-                const [hours, minutes] = appointment.horario_selecionado.split(':');
-                return `${hours}:${minutes}`;
-            });
+            .map(appointment => appointment.horario_selecionado);
 
-        return times.filter(time => !bookedTimes.includes(time));
+        return times.filter(timeOption => !bookedTimes.includes(timeOption.time)).sort((a, b) => a.time.localeCompare(b.time));
+    };
+
+    const handleTimeChange = (e) => {
+        const selectedOption = e.target.value;
+        const selectedOptionData = getAvailableTimes(selectedDay).find(option => option.time === selectedOption);
+        setSelectedTime(selectedOption);
+        setSelectedSchedule(selectedOptionData ? selectedOptionData.schedule : null);
     };
 
     const handleSubmit = async (e) => {
@@ -80,6 +88,7 @@ const RegisterAppointment = () => {
                 contato: contactClient,
                 horario_selecionado: selectedTime,
                 dia_selecionado: selectedDay,
+                horario: selectedSchedule 
             });
             if (response.status === 201) {
                 setContactClient('');
@@ -87,6 +96,7 @@ const RegisterAppointment = () => {
                 setSelectedDay('');
                 setSelectedService('');
                 setSelectedTime('');
+                setSelectedSchedule(null);
             }
         } catch (error) {
             console.error('Erro ao cadastrar agendamento:', error);
@@ -145,20 +155,21 @@ const RegisterAppointment = () => {
                                 onChange={(e) => {
                                     setSelectedDay(e.target.value);
                                     setSelectedTime('');
+                                    setSelectedSchedule(null);
                                 }}
                                 min={new Date().toISOString().split('T')[0]}
                             />
                         </label>
                         <label>
                             Horário<select
-                                onChange={(e) => setSelectedTime(e.target.value)}
+                                onChange={handleTimeChange}
                                 value={selectedTime}
                                 required
                             >
                                 <option value=''>Selecione um horário</option>
-                                {selectedDay && getAvailableTimes(selectedDay).map((time, index) => (
-                                    <option key={index} value={time}>
-                                        {time}
+                                {selectedDay && getAvailableTimes(selectedDay).map((option, index) => (
+                                    <option key={index} value={option.time}>
+                                        {option.time}
                                     </option>
                                 ))}
                             </select>

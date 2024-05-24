@@ -8,7 +8,7 @@ import { AuthContext } from '../../services/AuthContext'
 import './Location.scss'
 const Location = () => {
     const { authTokens } = useContext(AuthContext);
-    const { bairro, cep, cidade, numeroEndereco, estado, rua } = authTokens.estabelecimento.estabelecimento;
+    const { bairro, cep, cidade, estado, rua } = authTokens.estabelecimento.estabelecimento;
     const { expandedSidebar } = useSidebarContext()
     const navLinks = [
         { text: 'Atual', href: '/localizacao/' },
@@ -24,17 +24,16 @@ const Location = () => {
                     <h2>Endereço</h2>
                     <ul>
                         <li>Rua: {rua}</li>
-                        <li>Nº: {numeroEndereco}</li>
                         <li>Bairro: {bairro}</li>
                         <li>Cidade: {cidade}</li>
                         <li>Estado: {estado}</li>
                         <li>CEP: {cep}</li>
                     </ul>
                 </section>
-                <section className="currentLocation">
+                <article className="currentLocation">
                     <h2>Localização</h2>
                     <MapsAPI />
-                </section>
+                </article>
             </main>
             <Sidebar />
         </React.Fragment>

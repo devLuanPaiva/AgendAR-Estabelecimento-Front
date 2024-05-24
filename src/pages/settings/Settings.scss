@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+.expandMainSettings,
+.collapseMainSettings {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    top: 0px;
+    gap: 0px;
+    padding: 0px 5%;
+    box-sizing: border-box;
+
+    h2 {
+        color: #045180;
+        text-align: justify;
+    }
+    .formSettings {
+        margin: 0 auto;
+        width: 90%;
+        display: flex;
+        row-gap: 25px;
+        flex-direction: column;
+        box-sizing: border-box;
+
+        label {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+
+            select,
+            input {
+                width: 100%;
+                height: 35px;
+                text-indent: 5px;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+        }
+
+        .buttonFormSettings {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-end;
+
+            button {
+                background-color: #000000;
+                color: #fff;
+                padding: 8px 10px;
+                border: 1px solid #000000;
+                border-radius: 4px;
+                font-weight: 500;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #000000e5;
+                border: 1px solid #000000e5;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+
+}
+
+.expandMainSettings {
+    left: 8%;
+    max-width: 92%;
+}
+
+.collapseMainSettings {
+    left: 18%;
+    max-width: 82%;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .expandMainSettings,
+    .collapseMainSettings {
+        padding-left: 73px;
+        gap: 10px;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    .expandMainSettings {
+        left: 0%;
+        max-width: 100%;
+        padding: 20px 25px;
+    }
+}

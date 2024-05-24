@@ -10,7 +10,6 @@ const Register = () => {
     const [zipcode, setZipcode] = useState('');
     const [street, setStreet] = useState('');
     const [district, setDistrict] = useState('');
-    const [addressNumber, setAddressNumber] = useState('');
     const [email, setEmail] = useState('');
     const [contact, setContact] = useState('');
     const [username, setUsername] = useState('')
@@ -27,7 +26,6 @@ const Register = () => {
             estado: selectedState,
             rua: street,
             bairro: district,
-            numeroEndereco: addressNumber,
             email: email,
             contato: contact,
             usuario: {
@@ -43,7 +41,6 @@ const Register = () => {
                 setZipcode('');
                 setStreet('');
                 setDistrict('');
-                setAddressNumber('');
                 setEmail('');
                 setContact('');
                 setUsername('');
@@ -97,12 +94,6 @@ const Register = () => {
                             placeholder='Rua'
                             value={street}
                             onChange={(e) => setStreet(e.target.value)}
-                        /><input
-                            type="text"
-                            required
-                            placeholder='Nº'
-                            value={addressNumber}
-                            onChange={(e) => setAddressNumber(e.target.value)}
                         />
                     </label>
                     <label >

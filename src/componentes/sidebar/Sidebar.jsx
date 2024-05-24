@@ -16,66 +16,66 @@ const Sidebar = () => {
     const {smallScreen, expandedSidebar, toggleSidebar} = useSidebarContext()
 
     return (
-        <aside className={`${expandedSidebar ? 'expandido' : 'recolhido'}`}>
-            <h1 className={`${expandedSidebar ? 'mostrar' : 'remover'}`}> Ag<span className="sublinarTitulo">end<span className="mudarCor">AR</span>
+        <aside className={`${expandedSidebar ? 'expanded' : 'collected'}`}>
+            <h1 className={`${expandedSidebar ? 'show' : 'remove'}`}> Ag<span className="underlineTitle">end<span className="changeColor">AR</span>
             </span></h1>
             <nav>
-                <Link className='navegacaoMenu' to="/painel/">
+                <Link className='sidebarNavigation' to="/painel/">
                     <abbr title="Painel">
                         <i><MdDashboard /></i>
                     </abbr>
-                    <p className={`${expandedSidebar ? 'mostrar' : 'remover'}`}>Painel</p>
+                    <p className={`${expandedSidebar ? 'show' : 'remove'}`}>Painel</p>
                 </Link>
-                <Link className='navegacaoMenu' to="/configuracoes/">
+                <Link className='sidebarNavigation' to="/configuracoes/">
                     <abbr title="Confirugações">
                         <i><IoSettingsSharp /></i>
                     </abbr>
-                    <p className={`${expandedSidebar ? 'mostrar' : 'remover'}`}>Configurações</p>
+                    <p className={`${expandedSidebar ? 'show' : 'remove'}`}>Configurações</p>
                 </Link>
-                <Link className='navegacaoMenu' to="/servicos/">
+                <Link className='sidebarNavigation' to="/servicos/">
                     <abbr title="Serviços">
                         <i><MdDesignServices /></i>
                     </abbr>
-                    <p className={`${expandedSidebar ? 'mostrar' : 'remover'}`}>Serviços</p>
+                    <p className={`${expandedSidebar ? 'show' : 'remove'}`}>Serviços</p>
                 </Link>
-                <Link className='navegacaoMenu' to="/horarios/">
+                <Link className='sidebarNavigation' to="/horarios/">
                     <abbr title="Horários">
                         <i><TbClockHour3Filled /></i>
                     </abbr>
-                    <p className={`${expandedSidebar ? 'mostrar' : 'remover'}`}>Horários</p>
+                    <p className={`${expandedSidebar ? 'show' : 'remove'}`}>Horários</p>
                 </Link>
-                <Link className='navegacaoMenu' to="/agendamentos/">
+                <Link className='sidebarNavigation' to="/agendamentos/">
                     <abbr title="Agendamentos">
                         <i><AiFillSchedule /></i>
                     </abbr>
-                    <p className={`${expandedSidebar ? 'mostrar' : 'remover'}`}>Agendamentos</p>
+                    <p className={`${expandedSidebar ? 'show' : 'remove'}`}>Agendamentos</p>
                 </Link>
-                <Link className='navegacaoMenu' to="/localizacao/">
+                <Link className='sidebarNavigation' to="/localizacao/">
                     <abbr title="Localização">
                         <i><FaLocationDot /></i>
                     </abbr>
-                    <p className={`${expandedSidebar ? 'mostrar' : 'remover'}`}>Localização</p>
+                    <p className={`${expandedSidebar ? 'show' : 'remove'}`}>Localização</p>
                 </Link>
             </nav>
-            <hr className='linhaMenu' />
-            <section className="sair">
+            <hr className='line' />
+            <section className="exit">
                 <button onClick={() => logout()}>
                     <abbr title="sair">
-                        <CiLogout className='icone' />
+                        <CiLogout className='icon' />
                     </abbr>
                 </button>
-                <div className={`${expandedSidebar ? 'mostrar' : 'remover'}`}>
+                <div className={`${expandedSidebar ? 'show' : 'remove'}`}>
                     <p>{username}</p>
                 </div>
             </section>
 
-            <button className={`${smallScreen ? 'removerBotoes' : 'menu-alternado'}`} onClick={toggleSidebar}>
+            <button className={`${smallScreen ? 'removeButtons' : 'sidebarAltenate'}`} onClick={toggleSidebar}>
                 {expandedSidebar ?
                     <abbr title="Recolher">
-                        <IoMdArrowDropleftCircle className='icone' />
+                        <IoMdArrowDropleftCircle className='icon' />
                     </abbr> :
                     <abbr title="Expandir">
-                        <IoMdArrowDroprightCircle className='icone' />
+                        <IoMdArrowDroprightCircle className='icon' />
                     </abbr>}
             </button>
         </aside>
