@@ -1,0 +1,69 @@
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.notifications {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #fff;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.toast .column {
+    display: flex;
+    align-items: center;
+}
+
+.toast .column i {
+    margin-right: 10px;
+}
+
+.toast .fa-xmark {
+    cursor: pointer;
+}
+
+.toast-container.show {
+    animation: slideInUp 0.3s ease forwards;
+}
+
+.toast-container.hide {
+    animation: slideOutUp 0.3s ease forwards;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}

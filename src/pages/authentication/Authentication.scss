@@ -52,9 +52,16 @@
                 font-weight: 700;
 
                 input {
-                    height: 35px;
-                    text-indent: 5px;
-                    border-radius: 5px;
+                    text-indent: 10px;
+                    height: 30px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    transition: border-color 0.3s;
+
+                    &:focus {
+                        border-color: #007bff;
+                        outline: none;
+                    }
                 }
             }
 
@@ -109,21 +116,24 @@
         }
     }
 }
+
 @media screen and (max-width: 590px) {
     #mainAuthentication {
 
         .formSection {
-            h1{
+            h1 {
                 font-size: 2rem;
-                button{
-                    .icone{
+
+                button {
+                    .icone {
                         font-size: 1.9rem;
                     }
                 }
             }
-            form{
-                .button{
-                    button{
+
+            form {
+                .button {
+                    button {
                         font-size: .9rem;
                         font-weight: 600;
                         padding: 8px 10px;
@@ -133,24 +143,28 @@
         }
     }
 }
+
 @media screen and (max-width: 350px) {
     #mainAuthentication {
 
         .formSection {
-            h1{
+            h1 {
                 font-size: 1.8rem;
-                button{
-                    .icone{
+
+                button {
+                    .icone {
                         font-size: 1.7rem;
                     }
                 }
             }
-            form{
-                label{
+
+            form {
+                label {
                     font-weight: 400;
                 }
-                .button{
-                    button{
+
+                .button {
+                    button {
                         font-size: .8rem;
                         font-weight: 600;
                         padding: 7px 9px;

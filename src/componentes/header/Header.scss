@@ -1,10 +1,11 @@
-.expandirHeader, .recolherHeader{
+.expandHeader, .collapseHeader{
     display: flex;
     flex-direction: column;
     position: relative;
     top: 0px;
     gap: 0px;
-    #tituloPrincipal{
+    box-sizing: border-box;
+    #titleMain{
         width: 100%;
         padding: 0px;
         margin: 0px;
@@ -12,20 +13,45 @@
     p{
         margin-top: 0px;
         margin-left: 53px;
+        box-sizing: border-box;
     }
 }
-.expandirHeader{
+.expandHeader{
     left: 8%;
     max-width: 92%;
 }
-.recolherHeader{
+.collapseHeader{
     left: 18%;
     max-width: 82%;
 }
 @media screen and (max-width: 650px){
-    .expandirHeader{
+    .expandHeader{
         padding: 0px;
         left: 0%;
         min-width: 100%;
+    }
+}
+@media screen and (max-width: 500px){
+    .expandHeader{
+        p{
+            font-size: .8rem;
+            margin-left: 43px;
+        }
+    }
+}
+@media screen and (max-width: 370px){
+    .expandHeader{
+        p{
+            font-size: .7rem;
+            margin-left: 33px;
+        }
+    }
+}
+@media screen and (max-width: 300px){
+    .expandHeader{
+        p{
+            font-size: .6rem;
+            margin-left: 23px;
+        }
     }
 }

@@ -7,7 +7,7 @@ import Phrase from '../titles/Phrase'
 const Header = (props) => {
     const {expandedSidebar} = useSidebarContext()
     return (
-        <header className={`${!expandedSidebar ? 'expandirHeader' : 'recolherHeader'}`}>
+        <header className={`${!expandedSidebar ? 'expandHeader' : 'collapseHeader'}`}>
             <Title title={props.textTitle} color={'#000'} />
             <Phrase phrase={props.textPhrase} color={'#000'} />
         </header>

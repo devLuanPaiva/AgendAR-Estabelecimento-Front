@@ -1,4 +1,4 @@
-#tituloPrincipal {
+#titleMain {
     height: 15%;
     width: 95%;
     display: flex;
@@ -8,13 +8,44 @@
     font-weight: 700;
     font-size: 2.5rem;
     font-display: swap;
+    margin-bottom: 0px;
     button{
         background-color: transparent;
         border: none;
-        .icone{
+        .icon{
             cursor: pointer;
             font-size: 2.4rem;
             
+        }
+    }
+}
+@media screen and (max-width: 500px) {
+    #titleMain{
+        font-size: 2rem;
+        button{
+            .icon{
+                font-size: 1.9rem;
+            }
+        }
+    }
+}
+@media screen and (max-width: 370px) {
+    #titleMain{
+        font-size: 1.5rem;
+        button{
+            .icon{
+                font-size: 1.3rem;
+            }
+        }
+    }
+}
+@media screen and (max-width: 300px) {
+    #titleMain{
+        font-size: 1.2rem;
+        button{
+            .icon{
+                font-size: 1rem;
+            }
         }
     }
 }

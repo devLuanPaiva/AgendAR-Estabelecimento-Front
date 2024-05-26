@@ -1,13 +1,14 @@
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../services/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 import './Location.scss'
 import Header from '../../componentes/header/Header';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
 import Nav from '../../componentes/nav/Nav';
-import useAxios from '../../services/useAxios';
+import useAxios from '../../hooks/useAxios';
+import Notification from '../../componentes/notification/Notification';
 
 const EditLocation = () => {
     const { isLoaded } = useJsApiLoader({
@@ -19,6 +20,8 @@ const EditLocation = () => {
     const { access, refresh } = authTokens
     const [center, setCenter] = useState(null);
     const [position, setPosition] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState('');
     const { expandedSidebar } = useSidebarContext()
     const api = useAxios()
 
@@ -31,15 +34,17 @@ const EditLocation = () => {
                 if (results && results.length > 0) {
                     const { lat, lng } = results[0].geometry.location;
                     return { lat, lng };
+                    
                 } else {
-                    throw new Error('Endereço não encontrado');
+                    setErrorMessage('Endereço não encontrado');
                 }
             } catch (error) {
                 console.error('Erro ao obter coordenadas:', error);
+                
                 return null;
             }
         };
-
+        
         getCoordinatesFromAddress(address).then(coords => {
             if (coords) {
                 setCenter(coords);
@@ -52,11 +57,11 @@ const EditLocation = () => {
         const newCoords = {
             lat: event.latLng.lat(),
             lng: event.latLng.lng(),
-
+            
         };
         setPosition(newCoords);
     };
-
+    
     const handleSaveClick = async () => {
         if (position) {
             try {
@@ -66,6 +71,7 @@ const EditLocation = () => {
                     estabelecimento: id,
                 })
                 if (response.status === 200) {
+                    setMessage('Atualizado com sucesso!');
                     console.log('Coordenadas salvas:', position);
                     const establishment = await api.get('user-info/')
                     updateTokens(access, refresh, establishment.data)
@@ -73,6 +79,7 @@ const EditLocation = () => {
 
             } catch (error) {
                 console.error('Erro ao salvar coordenadas:', error);
+                setErrorMessage(error.response.data);
             }
         }
     };
@@ -83,12 +90,14 @@ const EditLocation = () => {
     return (
         <React.Fragment>
             <Header textTitle={'Localização'} textPhrase={'Atualize a localização do seu estabelecimento para que seus clientes possam encontrá-lo facilmente.'} />
-
+            
+            {errorMessage && <Notification type="error" message={errorMessage} />}
+            {message && <Notification type="success" message={message} />}
             <Nav links={navLinks} />
             <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
                 <section className="selectLocation">
                     <h2>Selecione uma nova localização</h2>
-                    <article className="maps">
+                    <article className="articleMaps">
                         {
                             isLoaded ? (
                                 <>

@@ -3,7 +3,7 @@ import Header from '../../componentes/header/Header'
 import Nav from '../../componentes/nav/Nav'
 import Sidebar from '../../componentes/sidebar/Sidebar'
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider'
-import useAxios from '../../services/useAxios'
+import useAxios from '../../hooks/useAxios'
 import { useParams } from 'react-router-dom'
 
 const ScheduleEdit = () => {

@@ -49,3 +49,27 @@
         padding: 0px 25px;
     }
 }
+@media screen and (max-width: 500px){
+    .expandNavigation{
+        .linksNavigation{
+            font-size: .8rem;
+        }
+    }
+}
+@media screen and (max-width: 370px){
+    .expandNavigation{
+        .linksNavigation{
+            font-size: .7rem;
+            padding: 6px 8px;
+            border-radius: 3px;
+        }
+    }
+}
+@media screen and (max-width: 300px){
+    .expandNavigation{
+        .linksNavigation{
+            font-size: .6rem;
+            padding: 5px 7px;
+        }
+    }
+}

@@ -10,7 +10,7 @@ const LandingPage = () => {
                     <Link to={'/autenticacao/'} className="navigationLinks">
                         Acessar
                     </Link>
-                    <Link to={'/'} className="navigationLinks" onClick={() => document.querySelector('.secaoServicos').scrollIntoView({ behavior: 'smooth' })}>
+                    <Link to={'/'} className="navigationLinks" onClick={() => document.querySelector('.servicesSection').scrollIntoView({ behavior: 'smooth' })}>
                         Nossos Serviços
                     </Link>
                 </nav>

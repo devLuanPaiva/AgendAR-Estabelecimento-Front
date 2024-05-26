@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
-import { AuthContext } from './AuthContext';
-import api from './api';
+import { AuthContext } from '../context/AuthContext';
+import api from '../context/api';
 
 const useAxios = () => {
   const { getAuthTokens, refreshAuthToken, logout } = useContext(AuthContext);

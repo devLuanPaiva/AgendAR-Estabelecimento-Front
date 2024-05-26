@@ -8,8 +8,8 @@ import { MdDesignServices, MdSchedule } from "react-icons/md";
 import { RiCalendarScheduleLine } from "react-icons/ri";
 import './Appointments.scss'
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
-import { AuthContext } from '../../services/AuthContext';
-import useAxios from '../../services/useAxios';
+import { AuthContext } from '../../context/AuthContext';
+import useAxios from '../../hooks/useAxios';
 
 
 const WeeklyAppointments = () => {

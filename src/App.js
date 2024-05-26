@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from './pages/landingPage/LandingPage';
 import Authentication from './pages/authentication/Authentication';
-import AuthContextProvider from './services/AuthContext';
+import AuthContextProvider from './context/AuthContext';
 import SidebarProvider from "./componentes/sidebar/SidebarProvider";
-import ProtectedRouter from "./services/ProtectedRouter";
+import ProtectedRouter from "./context/ProtectedRouter";
 import Register from "./pages/register/Register";
 import Schedules from "./pages/schedules/Schedules";
 import Services from "./pages/services/Services";
@@ -23,7 +23,6 @@ function App() {
     <Router>
       <AuthContextProvider>
         <SidebarProvider>
-
           <Routes>
             <Route exact path='/' element={<LandingPage />} />
             <Route path='/registrarEstabelecimento/' element={<Register />} />

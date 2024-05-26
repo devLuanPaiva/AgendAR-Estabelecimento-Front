@@ -14,10 +14,10 @@ const Title = (props) => {
         }
     }
     return (
-        <h1 style={{ color: props.color }} id='tituloPrincipal'>
+        <h1 style={{ color: props.color }} id='titleMain'>
             <button onClick={returnPage} style={{ color: props.color }} >
                 <abbr title="Voltar">
-                    <RiArrowLeftWideLine className='icone' />
+                    <RiArrowLeftWideLine className='icon' />
                 </abbr>
             </button>
             {props.title}

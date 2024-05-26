@@ -1,19 +1,23 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
-import { AuthContext } from '../../services/AuthContext';
-import useAxios from '../../services/useAxios';
+import { AuthContext } from '../../context/AuthContext';
+import useAxios from '../../hooks/useAxios';
 import Header from '../../componentes/header/Header';
 import Nav from '../../componentes/nav/Nav';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 import './Settings.scss'
+import Notification from '../../componentes/notification/Notification';
+import useForm from '../../hooks/useForm';
 
 const Settings = () => {
   const api = useAxios();
   const { expandedSidebar } = useSidebarContext();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState('');
   const { authTokens, updateTokens } = useContext(AuthContext);
   const { access, refresh } = authTokens
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useForm({
     id: '',
     nome: '',
     email: '',
@@ -62,19 +66,19 @@ const Settings = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.id) {
-      alert('Os dados do estabelecimento não estão disponíveis.');
+      setErrorMessage('Os dados do estabelecimento não estão disponíveis.');
       return;
     }
     try {
       const response = await api.patch(`estabelecimento/${formData.id}/`, formData);
       if (response.status === 200) {
-        alert('Informações atualizadas com sucesso!');
+        setMessage('Informações atualizadas com sucesso!');
         const establishment = await api.get('user-info/')
         updateTokens(access, refresh, establishment.data)
       }
     } catch (error) {
       console.error('Erro ao atualizar informações:', error);
-      alert('Ocorreu um erro ao atualizar as informações.');
+      setErrorMessage(error.response.data);
     }
   };
 
@@ -86,6 +90,8 @@ const Settings = () => {
     <React.Fragment>
       <Header textTitle='Configurações' textPhrase='Atualize suas informações de cadastro.' />
       <Nav links={navLinks} />
+      {errorMessage && <Notification type="error" message={errorMessage} />}
+            {message && <Notification type="success" message={message} />}
       <main className={`${!expandedSidebar ? 'expandMainSettings' : 'collapseMainSettings'}`}>
         <h2>Atualize suas informações:</h2>
         <form onSubmit={handleSubmit} className='formSettings'>

@@ -5,8 +5,8 @@ import Nav from '../../componentes/nav/Nav'
 import Sidebar from '../../componentes/sidebar/Sidebar'
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider'
 import { FaTrash } from "react-icons/fa";
-import { AuthContext } from '../../services/AuthContext'
-import useAxios from '../../services/useAxios'
+import { AuthContext } from '../../context/AuthContext'
+import useAxios from '../../hooks/useAxios'
 
 const Services = () => {
   const { expandedSidebar } = useSidebarContext()

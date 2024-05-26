@@ -72,7 +72,7 @@
             label {
                 display: flex;
                 flex-direction: column;
-                gap: 5px;
+                row-gap: 10px;
                 width: 80%;
                 font-weight: 700;
 
@@ -84,19 +84,34 @@
 
                     select {
                         width: 45%;
-                        height: 35px;
+                        height: 30px;
                         text-indent: 5px;
-                        border-radius: 5px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        transition: border-color 0.3s;
+
+                        &:focus {
+                            border-color: #007bff;
+                            outline: none;
+                        }
                     }
                 }
 
                 input {
-                    height: 35px;
+                    height: 30px;
                     text-indent: 5px;
-                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    transition: border-color 0.3s;
+
+                    &:focus {
+                        border-color: #007bff;
+                        outline: none;
+                    }
                 }
             }
-            .buttonSection{
+
+            .buttonSection {
                 width: 80%;
                 display: flex;
                 justify-content: flex-end;
@@ -148,21 +163,24 @@
         }
     }
 }
+
 @media screen and (max-width: 590px) {
     #mainRegister {
 
         .formSection {
-            h1{
+            h1 {
                 font-size: 2rem;
-                button{
-                    .icone{
+
+                button {
+                    .icone {
                         font-size: 1.9rem;
                     }
                 }
             }
-            form{
-                .buttonSection{
-                    button{
+
+            form {
+                .buttonSection {
+                    button {
                         font-size: .9rem;
                         font-weight: 600;
                         padding: 8px 10px;
@@ -172,15 +190,17 @@
         }
     }
 }
+
 @media screen and (max-width: 480px) {
-    #mainRegister{
-        .formSection{
-            form{
-                label{
-                    .selecionarEstadosEMunicipios{
+    #mainRegister {
+        .formSection {
+            form {
+                label {
+                    .selecionarEstadosEMunicipios {
                         flex-direction: column;
                         gap: 10px;
-                        select{
+
+                        select {
                             width: 100%;
                         }
                     }
@@ -189,24 +209,28 @@
         }
     }
 }
+
 @media screen and (max-width: 350px) {
     #mainRegister {
 
         .formSection {
-            h1{
+            h1 {
                 font-size: 1.8rem;
-                button{
-                    .icone{
+
+                button {
+                    .icone {
                         font-size: 1.7rem;
                     }
                 }
             }
-            form{
-                label{
+
+            form {
+                label {
                     font-weight: 400;
                 }
-                .buttonSection{
-                    button{
+
+                .buttonSection {
+                    button {
                         font-size: .8rem;
                         font-weight: 600;
                         padding: 7px 9px;

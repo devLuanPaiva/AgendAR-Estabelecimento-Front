@@ -4,7 +4,7 @@ import Nav from '../../componentes/nav/Nav'
 import Sidebar from '../../componentes/sidebar/Sidebar'
 import MapsAPI from '../../componentes/maps/MapsAPI'
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider'
-import { AuthContext } from '../../services/AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import './Location.scss'
 const Location = () => {
     const { authTokens } = useContext(AuthContext);
@@ -19,7 +19,7 @@ const Location = () => {
             <Header textTitle={'Localização'} textPhrase={'Atualize a localização do seu estabelecimento para que seus clientes possam encontrá-lo facilmente.'} />
 
             <Nav links={navLinks} />
-            <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
+            <main className={`${!expandedSidebar ? 'expandMainLocation' : 'collapseMainLocation'}`}>
                 <section className="currentAddress">
                     <h2>Endereço</h2>
                     <ul>

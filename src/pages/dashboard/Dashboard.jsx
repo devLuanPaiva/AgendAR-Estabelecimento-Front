@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../services/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import './Dashboard.scss';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
 import Header from '../../componentes/header/Header';
 import Sidebar from '../../componentes/sidebar/Sidebar';
-import useAxios from '../../services/useAxios';
+import useAxios from '../../hooks/useAxios';
 import { IoPeople } from "react-icons/io5";
 import { GiProgression } from "react-icons/gi";
 import MapsAPI from '../../componentes/maps/MapsAPI';

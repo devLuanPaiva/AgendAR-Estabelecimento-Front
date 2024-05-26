@@ -6,7 +6,7 @@ import { AiFillSchedule } from "react-icons/ai";
 import { FaLocationDot } from "react-icons/fa6";
 import { CiLogout } from "react-icons/ci";
 import { IoMdArrowDroprightCircle, IoMdArrowDropleftCircle } from "react-icons/io";
-import { AuthContext } from '../../services/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import './Sidebar.scss'
 import { useSidebarContext } from './SidebarProvider';

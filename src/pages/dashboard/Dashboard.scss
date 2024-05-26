@@ -138,3 +138,87 @@
 
     }
 }
+@media screen and (max-width: 450px) {
+    .expandMainDashboard {
+        .currentLocation{
+            h2, .maps{
+                font-size: 1rem;
+            }
+        }
+
+        .appointmentQuantity {
+
+            .progressApointments {
+                h2 {
+                    font-size: 2rem;
+                }
+
+                h4 {
+                    font-size: .7rem;
+                }
+
+                div {
+                    font-size: .7rem;
+
+                    abbr {
+                        font-size: .7rem;
+                    }
+                }
+            }
+        }
+
+    }
+}
+@media screen and (max-width: 350px) {
+    .expandMainDashboard {
+
+        .appointmentQuantity {
+
+            .progressApointments {
+                border-radius: 3px;
+                h2 {
+                    font-size: 1.8rem;
+                }
+
+                h4 {
+                    font-size: .6rem;
+                }
+
+                div {
+                    font-size: .6rem;
+
+                    abbr {
+                        font-size: .6rem;
+                    }
+                }
+            }
+        }
+
+    }
+}
+@media screen and (max-width: 300px) {
+    .expandMainDashboard {
+
+        .appointmentQuantity {
+            gap: 7px;
+            .progressApointments {
+                h2 {
+                    font-size: 1.5rem;
+                }
+
+                h4 {
+                    font-size: .5rem;
+                }
+
+                div {
+                    font-size: .5rem;
+
+                    abbr {
+                        font-size: .5rem;
+                    }
+                }
+            }
+        }
+
+    }
+}

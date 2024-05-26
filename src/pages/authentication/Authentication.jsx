@@ -2,14 +2,16 @@ import axios from 'axios'
 import logo from '../../imagens/logo.png'
 import './Authentication.scss'
 import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../services/AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import Title from '../../componentes/titles/Title'
 import { useNavigate } from 'react-router-dom'
+import Notification from '../../componentes/notification/Notification'
+import useForm from '../../hooks/useForm'
 
 const Authentication = () => {
-    const [username, setUsername] = useState('')
-    const { updateTokens, logout} = useContext(AuthContext)
-    const [password, setPassword] = useState('')
+    const { updateTokens, logout } = useContext(AuthContext)
+    const [formValues, handleInputChange] = useForm({ username: '', password: '' })
+    const [errorMessage, setErrorMessage] = useState('');
     useEffect(() => {
         const handleLogout = () => {
             logout();
@@ -17,15 +19,15 @@ const Authentication = () => {
         handleLogout();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    
+
 
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             const response = await axios.post('http://127.0.0.1:8000/token/', {
-                username: username,
-                password: password,
+                username: formValues.username,
+                password: formValues.password,
             });
             const { access, refresh } = response.data;
 
@@ -40,7 +42,7 @@ const Authentication = () => {
         }
         catch (error) {
             console.error('Erro ao se autenticar:', error);
-
+            setErrorMessage(error.response.data.detail);
         }
     }
     return (
@@ -50,12 +52,27 @@ const Authentication = () => {
             </section>
             <section className="formSection">
                 <Title color="#fff" title="Autenticação" />
+                {errorMessage && <Notification type="error" message={errorMessage} />}
                 <form onSubmit={handleSubmit}>
                     <label>
-                        Usuário<input type="text" placeholder='Usuário' value={username} onChange={(e) => setUsername(e.target.value)} />
+                        Usuário<input
+                            type="text"
+                            placeholder='Usuário'
+                            required
+                            value={formValues.username}
+                            onChange={handleInputChange}
+                            name='username'
+                        />
                     </label>
                     <label>
-                        Senha<input type="password" placeholder='Senha' value={password} onChange={(e) => setPassword(e.target.value)} />
+                        Senha<input
+                            type="password"
+                            placeholder='Senha'
+                            required
+                            value={formValues.password}
+                            onChange={handleInputChange}
+                            name='password'
+                        />
                     </label>
                     <div className="button">
                         <button type='submit'>Acessar</button>

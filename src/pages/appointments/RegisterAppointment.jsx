@@ -1,21 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
-import { AuthContext } from '../../services/AuthContext';
-import useAxios from '../../services/useAxios';
+import { AuthContext } from '../../context/AuthContext';
+import useAxios from '../../hooks/useAxios';
 import Header from '../../componentes/header/Header';
 import Nav from '../../componentes/nav/Nav';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 import './Appointments.scss';
-import useFetch from '../../services/useFetch';
+import useFetch from '../../hooks/useFetch';
+import Notification from '../../componentes/notification/Notification';
+import useForm from '../../hooks/useForm';
 
 const RegisterAppointment = () => {
-    const [nameClient, setNameClient] = useState('');
-    const [contactClient, setContactClient] = useState('');
+    const [availableTimes, setAvailableTimes] = useState([]);
     const [selectedService, setSelectedService] = useState('');
-    const [selectedTime, setSelectedTime] = useState('');
-    const [selectedDay, setSelectedDay] = useState('');
-    const [selectedSchedule, setSelectedSchedule] = useState(null); 
-
+    const [formValues, handleInputChange] = useForm({
+        nameClient: '', contactClient: '', selectedTime: '', selectedDay: '', selectedSchedule: null,
+    });
+    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState('');
     const { expandedSidebar } = useSidebarContext();
     const { authTokens } = useContext(AuthContext);
     const { id } = authTokens.estabelecimento.estabelecimento;
@@ -46,6 +48,7 @@ const RegisterAppointment = () => {
         const date = new Date(day + 'T00:00:00');
         const dayOfWeek = date.toLocaleDateString('pt-BR', { weekday: 'long' });
         const mappedDayOfWeek = mapDayOfWeek(dayOfWeek);
+
         const times = listSchedules
             .filter(schedule => schedule.dia_da_semana === mappedDayOfWeek)
             .flatMap(schedule => {
@@ -66,16 +69,24 @@ const RegisterAppointment = () => {
 
         const bookedTimes = listAppointments
             .filter(appointment => appointment.dia_selecionado === day)
-            .map(appointment => appointment.horario_selecionado);
-
-        return times.filter(timeOption => !bookedTimes.includes(timeOption.time)).sort((a, b) => a.time.localeCompare(b.time));
+            .map(appointment => appointment.horario_selecionado.substring(0, 5));
+        const availableTimes = times.filter(timeOption => !bookedTimes.includes(timeOption.time));
+        return availableTimes.sort((a, b) => a.time.localeCompare(b.time));
     };
+
+    useEffect(() => {
+        if (formValues.selectedDay) {
+            setAvailableTimes(getAvailableTimes(formValues.selectedDay));
+            formValues.selectedTime = '';
+            formValues.selectedSchedule = null;
+        }
+    }, [formValues.selectedDay, listAppointments, listSchedules]);
 
     const handleTimeChange = (e) => {
         const selectedOption = e.target.value;
-        const selectedOptionData = getAvailableTimes(selectedDay).find(option => option.time === selectedOption);
-        setSelectedTime(selectedOption);
-        setSelectedSchedule(selectedOptionData ? selectedOptionData.schedule : null);
+        const selectedOptionData = availableTimes.find(option => option.time === selectedOption);
+        formValues.selectedTime = selectedOption;
+        formValues.selectedSchedule = selectedOptionData ? selectedOptionData.schedule : null;
     };
 
     const handleSubmit = async (e) => {
@@ -84,22 +95,23 @@ const RegisterAppointment = () => {
             const response = await api.post(`agendamentos/estabelecimentos/`, {
                 estabelecimento: id,
                 servico: selectedService.id,
-                nome: nameClient,
-                contato: contactClient,
-                horario_selecionado: selectedTime,
-                dia_selecionado: selectedDay,
-                horario: selectedSchedule 
+                nome: formValues.nameClient,
+                contato: formValues.contactClient,
+                horario_selecionado: formValues.selectedTime,
+                dia_selecionado: formValues.selectedDay,
+                horario: formValues.selectedSchedule
             });
             if (response.status === 201) {
-                setContactClient('');
-                setNameClient('');
-                setSelectedDay('');
+                setMessage('Agendado com sucesso!');
                 setSelectedService('');
-                setSelectedTime('');
-                setSelectedSchedule(null);
+                formValues.nameClient = ''; 
+                formValues.contactClient = ''; 
+                formValues.selectedTime = ''; 
+                formValues.selectedDay = ''; 
+                formValues.selectedSchedule = null;
             }
         } catch (error) {
-            console.error('Erro ao cadastrar agendamento:', error);
+            setErrorMessage(error.response.data);
             return null;
         }
     };
@@ -108,6 +120,8 @@ const RegisterAppointment = () => {
         <React.Fragment>
             <Header textTitle='Agendamentos' textPhrase='Visualize e gerencie os agendamentos do seu estabelecimento.' />
             <Nav links={navLinks} />
+            {errorMessage && <Notification type="error" message={errorMessage} />}
+            {message && <Notification type="success" message={message} />}
             <main className={`${!expandedSidebar ? 'expandMainAppointments' : 'collapseMainAppointments'}`}>
                 <h2>Cadastre um novo agendamento:</h2>
 
@@ -117,8 +131,9 @@ const RegisterAppointment = () => {
                             Nome do clíente<input
                                 type="text"
                                 placeholder='Informe o nome do clíente'
-                                value={nameClient}
-                                onChange={(e) => setNameClient(e.target.value)}
+                                value={formValues.nameClient}
+                                name='nameClient'
+                                onChange={handleInputChange}
                                 required
                             />
                         </label>
@@ -126,8 +141,9 @@ const RegisterAppointment = () => {
                             Contato do clíente<input
                                 type="tel"
                                 placeholder='Informe o contato do clíente'
-                                value={contactClient}
-                                onChange={(e) => setContactClient(e.target.value)}
+                                value={formValues.contactClient}
+                                name='contactClient'
+                                onChange={handleInputChange}
                                 required
                             />
                         </label>
@@ -148,33 +164,30 @@ const RegisterAppointment = () => {
                         <label>
                             Dia<input
                                 type="date"
-                                name="calendario para agendamentos"
-                                value={selectedDay}
+                                name="selectedDay"
+                                value={formValues.selectedDay}
                                 required
                                 placeholder='Selecione um dia'
-                                onChange={(e) => {
-                                    setSelectedDay(e.target.value);
-                                    setSelectedTime('');
-                                    setSelectedSchedule(null);
-                                }}
+                                onChange={handleInputChange}
                                 min={new Date().toISOString().split('T')[0]}
                             />
                         </label>
                         <label>
                             Horário<select
                                 onChange={handleTimeChange}
-                                value={selectedTime}
+                                name='selectedTime'
+                                value={formValues.selectedTime}
                                 required
                             >
                                 <option value=''>Selecione um horário</option>
-                                {selectedDay && getAvailableTimes(selectedDay).map((option, index) => (
+                                {formValues.selectedDay && availableTimes.map((option, index) => (
                                     <option key={index} value={option.time}>
                                         {option.time}
                                     </option>
                                 ))}
                             </select>
                         </label>
-                        <section className="buttonFormAppointments" >
+                        <section className="buttonFormAppointments">
                             <button type="submit">Agendar</button>
                         </section>
                     </form>

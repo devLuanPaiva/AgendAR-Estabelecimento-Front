@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../services/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 
 const MapsAPI = () => {
     const { isLoaded } = useJsApiLoader({

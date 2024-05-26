@@ -1,40 +1,43 @@
 import React, { useContext, useState } from 'react'
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider'
-import { AuthContext } from '../../services/AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import Header from '../../componentes/header/Header'
 import Nav from '../../componentes/nav/Nav'
 import Sidebar from '../../componentes/sidebar/Sidebar'
 import './Schedules.scss'
-import useAxios from '../../services/useAxios'
+import useAxios from '../../hooks/useAxios'
+import Notification from '../../componentes/notification/Notification'
+import useForm from '../../hooks/useForm'
 
 const RegisterShedules = () => {
     const { expandedSidebar } = useSidebarContext()
     const { authTokens } = useContext(AuthContext)
     const { id } = authTokens.estabelecimento.estabelecimento
-    const [startTime, setStartTime] = useState()
-    const [endTime, setEndTime] = useState()
-    const [shift, setShift] = useState()
-    const [dayOfTheWeek, setDayOfTheWeek] = useState()
+    const [formValues, handleInputChange] = useForm({ startTime: '', endTime: '', shift: '', dayOfTheWeek: '' })
+    const [errorMessage, setErrorMessage] = useState('')
+    const [message, setMessage] = useState('')
     const api = useAxios()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await api.post('horarios/', {
-                horario_fim: endTime,
-                horario_inicio: startTime,
-                dia_da_semana: dayOfTheWeek,
+                horario_fim: formValues.endTime,
+                horario_inicio: formValues.startTime,
+                dia_da_semana: formValues.dayOfTheWeek,
                 estabelecimento: id,
-                turno: shift
+                turno: formValues.shift
             })
             if (response.status === 201) {
-                setDayOfTheWeek('')
-                setEndTime('')
-                setShift('')
-                setStartTime('')
+                setMessage('Cadastrado com sucesso!')
+                formValues.dayOfTheWeek = '';
+                formValues.endTime = '';
+                formValues.shift = '';
+                formValues.startTime = '';
             }
         } catch (error) {
-            console.error('Erro ao cadastrar horário:', error);
+            console.error(error.response.data);
+            setErrorMessage(error.response.data);
             return null;
         }
     }
@@ -46,13 +49,16 @@ const RegisterShedules = () => {
         <React.Fragment>
             <Header textTitle='Horários' textPhrase='Gerencie seus horários comerciais para que seus clientes possam agendar serviços.' />
             <Nav links={navLinks} />
+            {errorMessage && <Notification type="error" message={errorMessage} />}
+            {message && <Notification type="success" message={message} />}
             <main className={`${!expandedSidebar ? 'expandMainSchedules' : 'collapseMainSchedules'}`}>
                 <h2>Cadastrar Horário:</h2>
                 <form onSubmit={handleSubmit} className='formSchedules'>
                     <label >Dia da semana:<select
                         id="selectedDay"
-                        value={dayOfTheWeek}
-                        onChange={e => setDayOfTheWeek(e.target.value)}
+                        value={formValues.dayOfTheWeek}
+                        onChange={handleInputChange}
+                        name='dayOfTheWeek'
                         required>
                         <option value="">Escolha um dia</option>
                         <option value="SEGUNDA">Segunda</option>
@@ -65,8 +71,9 @@ const RegisterShedules = () => {
                     </select>
                     </label>
                     <label>Turno:<select id="selectedShift"
-                        value={shift}
-                        onChange={e => setShift(e.target.value)}
+                        value={formValues.shift}
+                        onChange={handleInputChange}
+                        name='shift'
                         required>
                         <option value="">Escolha um turno</option>
                         <option value="MANHA">Manhã</option>
@@ -77,16 +84,18 @@ const RegisterShedules = () => {
                     <label >Horário ínicial:<input
                         type="time"
                         name="startTime"
-                        value={startTime}
+                        value={formValues.startTime}
                         required
-                        onChange={e => setStartTime(e.target.value)} />
+                        onChange={handleInputChange}
+                    />
                     </label>
                     <label >Horário final:<input
                         type="time"
                         name="endTime"
-                        value={endTime}
+                        value={formValues.endTime}
                         required
-                        onChange={e => setEndTime(e.target.value)} />
+                        onChange={handleInputChange}
+                    />
                     </label>
                     <section className="buttonFormSchedules" >
                         <button type="submit">Cadastrar Horário</button>

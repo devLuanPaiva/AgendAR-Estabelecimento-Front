@@ -4,13 +4,16 @@ import Header from '../../componentes/header/Header';
 import Nav from '../../componentes/nav/Nav';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
-import { AuthContext } from '../../services/AuthContext';
-import useAxios from '../../services/useAxios';
+import { AuthContext } from '../../context/AuthContext';
+import useAxios from '../../hooks/useAxios';
+import Notification from '../../componentes/notification/Notification';
+import useForm from '../../hooks/useForm';
 
 const RegisterServices = () => {
-    const [nameService, setNameService] = useState('')
-    const [valueService, setValueService] = useState('')
     const [descriptionService, setDescriptionService] = useState('')
+    const [formValues, handleInputChange] = useForm({ nameService: '', valueService: '' })
+    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState('');
     const [descriptionCount, setDescriptionCount] = useState(descriptionService.length);
     const { expandedSidebar } = useSidebarContext()
     const { authTokens } = useContext(AuthContext)
@@ -20,7 +23,7 @@ const RegisterServices = () => {
         { text: 'Atual', href: '/servicos/' },
         { text: 'Cadastrar', href: '/servicos/cadastrar/' },
     ];
-    const handleInputChange = (e) => {
+    const handleTextAreaChange = (e) => {
         const text = e.target.value;
         if (text.length <= 200) {
             setDescriptionService(text);
@@ -31,18 +34,20 @@ const RegisterServices = () => {
         e.preventDefault();
         try {
             const response = await api.post('servicos/', {
-                nome: nameService,
-                valor: parseFloat(valueService),
+                nome: formValues.nameService,
+                valor: parseFloat(formValues.valueService),
                 descricao: descriptionService,
                 estabelecimento: id
             })
             if (response.status === 201) {
+                setMessage('Cadastrado com sucesso!');
                 setDescriptionService('')
-                setNameService('')
-                setValueService('')
+                formValues.nameService = '';
+                formValues.valueService = '';
             }
         } catch (error) {
-            console.error('Erro ao cadastrar serviços:', error);
+            setErrorMessage(error.response.data);
+
             return null;
         }
     }
@@ -50,19 +55,35 @@ const RegisterServices = () => {
         <React.Fragment>
             <Header textTitle='Serviços' textPhrase='Gerencie os serviços oferecidos pelo seu estabelecimento.' />
             <Nav links={navLinks} />
+            {errorMessage && <Notification type="error" message={errorMessage} />}
+            {message && <Notification type="success" message={message} />}
             <main className={`${!expandedSidebar ? 'expandMainServices' : 'collapseMainServices'}`}>
                 <h2>Cadastre um novo serviço:</h2>
                 <form onSubmit={handleSubmit} className='formServices'>
                     <section className="informationMain">
-                        <label>Nome do serviço: <input type="text" placeholder='Informe o nome do serviço' required value={nameService} onChange={(e) => setNameService(e.target.value)} /> </label>
-                        <label>Valor do serviço: <input type="number" placeholder='Informe o valor do serviço' required value={valueService} onChange={(e) => setValueService(e.target.value)} /> </label>
+                        <label>Nome do serviço: <input
+                            type="text"
+                            placeholder='Informe o nome do serviço'
+                            required
+                            name='nameService'
+                            value={formValues.nameService}
+                            onChange={handleInputChange}
+                        />
+                        </label>
+                        <label>Valor do serviço: <input
+                            type="number"
+                            name='valueService'
+                            placeholder='Informe o valor do serviço'
+                            required value={formValues.valueService}
+                            onChange={handleInputChange}
+                        /> </label>
                     </section>
                     <label className='textBox'>Descrição:
                         <div style={{ position: 'relative' }}>
                             <textarea
                                 required
                                 value={descriptionService}
-                                onChange={handleInputChange}
+                                onChange={handleTextAreaChange}
                                 placeholder="Digite no máximo 200 caracteres..."
                                 rows={5}
                                 cols={50}
@@ -71,7 +92,7 @@ const RegisterServices = () => {
                             <div className="characterCount">{descriptionCount}/200 caracteres</div>
                         </div>
                     </label>
-                <section className="buttonFormServices" ><button type="submit">Cadastrar Serviço</button></section>
+                    <section className="buttonFormServices" ><button type="submit">Cadastrar Serviço</button></section>
                 </form>
             </main>
             <Sidebar />

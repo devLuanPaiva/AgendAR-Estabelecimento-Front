@@ -1,56 +1,60 @@
-import React, { useState } from 'react'
-import logo from '../../imagens/logo.png'
-import './Register.scss'
+import React, { useState } from 'react';
+import logo from '../../imagens/logo.png';
+import './Register.scss';
 import axios from 'axios';
 import Title from '../../componentes/titles/Title';
 import SelectStateAndCity from '../../componentes/selectStateAndCity/SelectStateAndCity';
+import Notification from '../../componentes/notification/Notification';
+import useForm from '../../hooks/useForm';
 
 const Register = () => {
-    const [companyName, setCompanyName] = useState('');
-    const [zipcode, setZipcode] = useState('');
-    const [street, setStreet] = useState('');
-    const [district, setDistrict] = useState('');
-    const [email, setEmail] = useState('');
-    const [contact, setContact] = useState('');
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+    const [formValues, handleInputChange] = useForm({
+        companyName: '',
+        zipcode: '',
+        street: '',
+        district: '',
+        email: '',
+        contact: '',
+        username: '',
+        password: '',
+    });
+
     const [selectedCityName, setSelectedCityName] = useState('');
     const [selectedState, setSelectedState] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const dados = {
-            nome: companyName,
-            cep: zipcode,
+            nome: formValues.companyName,
+            cep: formValues.zipcode,
             cidade: selectedCityName,
             estado: selectedState,
-            rua: street,
-            bairro: district,
-            email: email,
-            contato: contact,
+            rua: formValues.street,
+            bairro: formValues.district,
+            email: formValues.email,
+            contato: formValues.contact,
             usuario: {
-                username: username,
-                password: password,
+                username: formValues.username,
+                password: formValues.password,
             },
         };
         try {
             const response = await axios.post('http://127.0.0.1:8000/estabelecimento/', dados);
             console.log(response.data);
             if (response.status === 201) {
-                setCompanyName('');
-                setZipcode('');
-                setStreet('');
-                setDistrict('');
-                setEmail('');
-                setContact('');
-                setUsername('');
-                setPassword('');
+                setMessage('Registrado com sucesso!');
             }
         } catch (error) {
             console.error('Erro ao registrar estabelecimento:', error);
-
+            setErrorMessage(error.response.data.error);
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 5000);
         }
-    }
+    };
+
     return (
         <main id='mainRegister'>
             <section className="logoSection">
@@ -58,14 +62,17 @@ const Register = () => {
             </section>
             <section className="formSection">
                 <Title color="#fff" title="Registrar" />
+                {errorMessage && <Notification type="error" message={errorMessage} />}
+                {message && <Notification type="success" message={message} />}
                 <form onSubmit={handleSubmit}>
                     <label>
                         Nome da empresa:<input
                             type="text"
                             required
                             placeholder='Informe o nome da empresa'
-                            value={companyName}
-                            onChange={(e) => setCompanyName(e.target.value)}
+                            name='companyName'
+                            value={formValues.companyName}
+                            onChange={handleInputChange}
                         />
                     </label>
                     <label>
@@ -80,50 +87,61 @@ const Register = () => {
                             type="text"
                             required
                             placeholder='CEP'
-                            value={zipcode}
-                            onChange={(e) => setZipcode(e.target.value)}
-                        /> <input
+                            name='zipcode'
+                            value={formValues.zipcode}
+                            onChange={handleInputChange}
+                        />
+                        <input
                             type="text"
                             required
                             placeholder='Bairro'
-                            value={district}
-                            onChange={(e) => setDistrict(e.target.value)}
-                        /><input
+                            name='district'
+                            value={formValues.district}
+                            onChange={handleInputChange}
+                        />
+                        <input
                             type="text"
                             required
                             placeholder='Rua'
-                            value={street}
-                            onChange={(e) => setStreet(e.target.value)}
+                            name='street'
+                            value={formValues.street}
+                            onChange={handleInputChange}
                         />
                     </label>
-                    <label >
+                    <label>
                         Contato:<input
                             type="text"
                             required
                             placeholder='Contato'
-                            value={contact}
-                            onChange={(e) => setContact(e.target.value)}
-                        /><input
+                            name='contact'
+                            value={formValues.contact}
+                            onChange={handleInputChange}
+                        />
+                        <input
                             type="email"
                             required
                             placeholder='E-mail'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            name='email'
+                            value={formValues.email}
+                            onChange={handleInputChange}
                         />
                     </label>
-                    <label >
+                    <label>
                         Informações de autenticação:<input
                             type="text"
                             required
                             placeholder='Usuário'
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                        /><input
+                            value={formValues.username}
+                            name='username'
+                            onChange={handleInputChange}
+                        />
+                        <input
                             type="password"
                             required
                             placeholder='Senha'
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            name='password'
+                            value={formValues.password}
+                            onChange={handleInputChange}
                         />
                     </label>
                     <div className="buttonSection">
@@ -131,10 +149,8 @@ const Register = () => {
                     </div>
                 </form>
             </section>
-
         </main>
+    );
+};
 
-    )
-}
-
-export default Register
+export default Register;
