@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import useAxios from '../../hooks/useAxios';
@@ -44,7 +44,7 @@ const RegisterAppointment = () => {
         return mapping[dayOfWeek.toLowerCase()];
     };
 
-    const getAvailableTimes = (day) => {
+    const getAvailableTimes = useCallback((day) => {
         const date = new Date(day + 'T00:00:00');
         const dayOfWeek = date.toLocaleDateString('pt-BR', { weekday: 'long' });
         const mappedDayOfWeek = mapDayOfWeek(dayOfWeek);
@@ -72,7 +72,7 @@ const RegisterAppointment = () => {
             .map(appointment => appointment.horario_selecionado.substring(0, 5));
         const availableTimes = times.filter(timeOption => !bookedTimes.includes(timeOption.time));
         return availableTimes.sort((a, b) => a.time.localeCompare(b.time));
-    };
+    },[listAppointments, listSchedules]);
 
     useEffect(() => {
         if (formValues.selectedDay) {
@@ -80,7 +80,8 @@ const RegisterAppointment = () => {
             formValues.selectedTime = '';
             formValues.selectedSchedule = null;
         }
-    }, [formValues.selectedDay, listAppointments, listSchedules]);
+    }, [formValues.selectedDay, listAppointments, listSchedules, formValues, getAvailableTimes]);
+    
 
     const handleTimeChange = (e) => {
         const selectedOption = e.target.value;
@@ -123,7 +124,7 @@ const RegisterAppointment = () => {
             {errorMessage && <Notification type="error" message={errorMessage} />}
             {message && <Notification type="success" message={message} />}
             <main className={`${!expandedSidebar ? 'expandMainAppointments' : 'collapseMainAppointments'}`}>
-                <h2>Cadastre um novo agendamento:</h2>
+                <h2>Novo agendamento:</h2>
 
                 {listServices.length > 0 && listSchedules.length > 0 ? (
                     <form onSubmit={handleSubmit} className='formAppointment'>
@@ -187,7 +188,7 @@ const RegisterAppointment = () => {
                                 ))}
                             </select>
                         </label>
-                        <section className="buttonFormAppointments">
+                        <section className="buttonFormAppointment">
                             <button type="submit">Agendar</button>
                         </section>
                     </form>

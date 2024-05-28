@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext } from 'react'
 import { MdDashboard, MdDesignServices } from "react-icons/md";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TbClockHour3Filled } from "react-icons/tb";
@@ -13,7 +13,7 @@ import { useSidebarContext } from './SidebarProvider';
 const Sidebar = () => {
     const { authTokens, logout } = useContext(AuthContext);
     const { username } = authTokens.estabelecimento.estabelecimento.usuario
-    const {smallScreen, expandedSidebar, toggleSidebar} = useSidebarContext()
+    const { smallScreen, expandedSidebar, toggleSidebar } = useSidebarContext()
 
     return (
         <aside className={`${expandedSidebar ? 'expanded' : 'collected'}`}>
@@ -60,7 +60,7 @@ const Sidebar = () => {
             <hr className='line' />
             <section className="exit">
                 <button onClick={() => logout()}>
-                    <abbr title="sair">
+                    <abbr title="Sair">
                         <CiLogout className='icon' />
                     </abbr>
                 </button>

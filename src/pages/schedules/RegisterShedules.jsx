@@ -30,6 +30,9 @@ const RegisterShedules = () => {
             })
             if (response.status === 201) {
                 setMessage('Cadastrado com sucesso!')
+                setTimeout(() => {
+                    setMessage('');
+                }, 3000);
                 formValues.dayOfTheWeek = '';
                 formValues.endTime = '';
                 formValues.shift = '';
@@ -38,6 +41,9 @@ const RegisterShedules = () => {
         } catch (error) {
             console.error(error.response.data);
             setErrorMessage(error.response.data);
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 3000);
             return null;
         }
     }

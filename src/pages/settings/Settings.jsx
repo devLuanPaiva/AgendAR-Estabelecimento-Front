@@ -7,7 +7,6 @@ import Nav from '../../componentes/nav/Nav';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 import './Settings.scss'
 import Notification from '../../componentes/notification/Notification';
-import useForm from '../../hooks/useForm';
 
 const Settings = () => {
   const api = useAxios();
@@ -15,9 +14,9 @@ const Settings = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [message, setMessage] = useState('');
   const { authTokens, updateTokens } = useContext(AuthContext);
-  const { access, refresh } = authTokens
+  const { access, refresh } = authTokens;
 
-  const [formData, setFormData] = useForm({
+  const [formData, setFormData] = useState({
     id: '',
     nome: '',
     email: '',
@@ -30,37 +29,42 @@ const Settings = () => {
   });
 
   useEffect(() => {
-    setFormData({
-      id: authTokens.estabelecimento.estabelecimento.id,
-      nome: authTokens.estabelecimento.estabelecimento.nome,
-      email: authTokens.estabelecimento.estabelecimento.email,
-      contato: authTokens.estabelecimento.estabelecimento.contato,
-      usuario: {
-        id: authTokens.estabelecimento.estabelecimento.usuario.id,
-        username: authTokens.estabelecimento.estabelecimento.usuario.username,
-        password: ''
-      }
-    });
-
-  }, [authTokens]);
+    if (authTokens && authTokens.estabelecimento && authTokens.estabelecimento.estabelecimento) {
+      setFormData({
+        id: authTokens.estabelecimento.estabelecimento.id,
+        nome: authTokens.estabelecimento.estabelecimento.nome,
+        email: authTokens.estabelecimento.estabelecimento.email,
+        contato: authTokens.estabelecimento.estabelecimento.contato,
+        usuario: {
+          id: authTokens.estabelecimento.estabelecimento.usuario.id,
+          username: authTokens.estabelecimento.estabelecimento.usuario.username,
+          password: ''
+        }
+      });
+    }
+  }, [authTokens, setFormData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
+    if (name) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value
+      }));
+    }
   };
 
   const handleUserChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      usuario: {
-        ...prevState.usuario,
-        [name]: value
-      }
-    }));
+    if (name) {
+      setFormData((prevState) => ({
+        ...prevState,
+        usuario: {
+          ...prevState.usuario,
+          [name]: value
+        }
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -73,12 +77,12 @@ const Settings = () => {
       const response = await api.patch(`estabelecimento/${formData.id}/`, formData);
       if (response.status === 200) {
         setMessage('Informações atualizadas com sucesso!');
-        const establishment = await api.get('user-info/')
-        updateTokens(access, refresh, establishment.data)
+        const establishment = await api.get('user-info/');
+        updateTokens(access, refresh, establishment.data);
       }
     } catch (error) {
       console.error('Erro ao atualizar informações:', error);
-      setErrorMessage(error.response.data);
+      setErrorMessage(error.response?.data || 'Erro ao atualizar informações');
     }
   };
 
@@ -91,7 +95,7 @@ const Settings = () => {
       <Header textTitle='Configurações' textPhrase='Atualize suas informações de cadastro.' />
       <Nav links={navLinks} />
       {errorMessage && <Notification type="error" message={errorMessage} />}
-            {message && <Notification type="success" message={message} />}
+      {message && <Notification type="success" message={message} />}
       <main className={`${!expandedSidebar ? 'expandMainSettings' : 'collapseMainSettings'}`}>
         <h2>Atualize suas informações:</h2>
         <form onSubmit={handleSubmit} className='formSettings'>

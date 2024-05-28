@@ -41,13 +41,25 @@ const RegisterServices = () => {
             })
             if (response.status === 201) {
                 setMessage('Cadastrado com sucesso!');
+                setTimeout(() => {
+                    setMessage('');
+                }, 3000);
                 setDescriptionService('')
                 formValues.nameService = '';
                 formValues.valueService = '';
             }
         } catch (error) {
-            setErrorMessage(error.response.data);
-
+            if (error.response && error.response.data && error.response.data.error) {
+                setErrorMessage(error.response.data.error);
+            } else if(error.response.data.nome){
+                setErrorMessage('O nome deve ter no máximo 30 caracteres.');
+            }
+             else {
+                setErrorMessage('Erro ao cadastrar o serviço.');
+            }
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 3000);
             return null;
         }
     }
@@ -89,7 +101,7 @@ const RegisterServices = () => {
                                 cols={50}
                                 style={{ width: '100%', height: '', resize: 'none', textIndent: '5px' }}
                             />
-                            <div className="characterCount">{descriptionCount}/200 caracteres</div>
+                            <p className="characterCount">{descriptionCount}/200 caracteres</p>
                         </div>
                     </label>
                     <section className="buttonFormServices" ><button type="submit">Cadastrar Serviço</button></section>

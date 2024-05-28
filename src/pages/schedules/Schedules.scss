@@ -25,29 +25,28 @@
     .formSchedules,
     .ulSchedules {
         margin: 0 auto;
-        width: 90%;
         display: flex;
         box-sizing: border-box;
 
     }
 
     .ulSchedules {
+        width: 95%;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: space-around;
-        gap: 20px;
+        justify-content: space-between;
+        gap: 15px;
 
         .liScheduleOfDay {
             background-color: #fff;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
             padding: 0px 10px;
             border-radius: 8px;
             display: flex;
             flex-direction: column;
-            box-sizing: border-box;
             height: 200px;
+            box-sizing: border-box;
 
             .captionSchedule {
                 margin-bottom: 10px;
@@ -93,6 +92,7 @@
                         display: flex;
                         justify-content: flex-end;
                         column-gap: 10px;
+                        margin-left: 10px;
                         box-sizing: border-box;
 
                         button {
@@ -121,6 +121,7 @@
     .formSchedules {
         flex-direction: column;
         padding: 20px;
+        width: 90%;
         box-sizing: border-box;
 
         label {
@@ -189,29 +190,220 @@
 
 }
 
+@media screen and (max-width: 1000px) {
+
+    .expandMainSchedules,
+    .collapseMainSchedules {
+        .ulSchedules {
+            justify-content: space-around;
+            width: 100%;
+            padding: 0px;
+            row-gap: 15px;
+            column-gap: 5px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 760px) {
+
+    .expandMainSchedules,
+    .collapseMainSchedules {
+        .ulSchedules {
+            .liScheduleOfDay {
+                width: 80%;
+            }
+        }
+    }
+
+}
+
 @media screen and (max-width: 650px) {
     .expandMainSchedules {
         left: 0%;
         max-width: 100%;
         padding: 20px 25px;
 
-        .listSchedules {
+        .formSchedules{
+            padding: 0px 10px;
             width: 100%;
-            padding: 0px;
-            align-items: center;
-            box-sizing: border-box;
         }
 
-        .formSchedules {
-            .informationMain {
-                flex-direction: column;
-                row-gap: 10px;
+    }
+}
 
-                label {
-                    width: 100%;
+@media screen and (max-width: 500px) {
+    .expandMainSchedules {
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        .ulSchedules {
+            .liScheduleOfDay {
+                width: 90%;
+
+                h3 {
+                    font-size: 1rem;
+                }
+
+                section {
+                    .articleSchedules {
+                        p {
+                            font-size: .9rem;
+                        }
+
+                        .buttonsSchedule {
+                            column-gap: 7px;
+
+                            button {
+                                padding: 7px;
+                                border-radius: 3px;
+
+                                .icon {
+                                    font-size: .9rem;
+                                    width: .9em;
+                                    height: .9em;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
 
+        .formSchedules {
+            label {
+                font-size: .9rem;
+                input, select {
+                    font-size: .9rem;
+                    padding: 9px;
+                }
+            }
+
+            .buttonFormSchedules {
+                button {
+                    font-size: .9rem;
+                    padding: 8px 16px;
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 360px) {
+    .expandMainSchedules {
+        h2 {
+            font-size: 1rem;
+        }
+
+        .ulSchedules {
+            .liScheduleOfDay {
+                width: 90%;
+                height: 170px;
+
+                h3 {
+                    font-size: .8rem;
+                }
+
+                section {
+                    .articleSchedules {
+                        p {
+                            font-size: .8rem;
+                        }
+
+                        .buttonsSchedule {
+                            column-gap: 5px;
+                            margin-left: 0px;
+
+                            button {
+                                margin-left: 0px;
+                                padding: 6px;
+                                border-radius: 2px;
+
+                                .icon {
+                                    font-size: .8rem;
+                                    width: .8em;
+                                    height: .8em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .formSchedules {
+            label {
+                font-size: .8rem;
+                input, select {
+                    font-size: .8rem;
+                    padding: 8px;
+                }
+            }
+
+            .buttonFormSchedules {
+                button {
+                    font-size: .8rem;
+                    padding: 7px 14px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .expandMainSchedules {
+        h2 {
+            font-size: .9rem;
+        }
+
+        .ulSchedules {
+            .liScheduleOfDay {
+                height: 150px;
+                width: 95%;
+
+                h3 {
+                    font-size: .7rem;
+                }
+
+                section {
+                    .articleSchedules {
+                        p {
+                            font-size: .7rem;
+                        }
+
+                        .buttonsSchedule {
+                            column-gap: 2px;
+
+                            button {
+                                padding: 5px;
+
+                                .icon {
+                                    font-size: .7rem;
+                                    width: .7em;
+                                    height: .7em;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .formSchedules {
+            label {
+                font-size: .7rem;
+                input, select {
+                    font-size: .7rem;
+                    padding: 7px;
+                }
+            }
+
+            .buttonFormSchedules {
+                button {
+                    font-size: .7rem;
+                    padding: 6px 12px;
+                }
+            }
+        }
     }
 }

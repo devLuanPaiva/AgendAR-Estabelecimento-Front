@@ -34,16 +34,16 @@ const LandingPage = () => {
                             <p>Visualização e gerenciamento da agenda de atendimentos, incluindo marcações confirmadas, horários disponíveis e bloqueio de horários indisponíveis.</p>
                         </div>
                         <div className="feature">
-                            <h3>Pagamentos Seguros</h3>
-                            <p>Configuração e integração com plataformas de pagamento online para receber pagamentos dos serviços agendados.</p>
+                            <h3>Localização</h3>
+                            <p>Configure a localização do seu estabelecimento para que seus clientes possam encontrá-lo mais rapidamente.</p>
                         </div>
                         <div className="feature">
-                            <h3>Notificações e Lembretes</h3>
+                            <h3>Notificações</h3>
                             <p>Envio de notificações e lembretes automáticos para os usuários e prestadores de serviços sobre os agendamentos e compromissos.</p>
                         </div>
                         <div className="feature">
-                            <h3>Avaliação e Feedback</h3>
-                            <p>Visualização das avaliações  e comentários deixados pelos clientes, permitindo uma análise detalhada dos serviços prestados.</p>
+                            <h3>Progesso</h3>
+                            <p>Visualize o progresso do seu estabelecimento com relatórios sobre a quantidade de agendamentos mensais, semanais e diários, ajudando você a acompanhar e otimizar a gestão dos seus serviços.</p>
                         </div>
                     </article>
                 </section>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
 .expandMainServices,
 .collapseMainServices {
     display: flex;
@@ -53,7 +55,7 @@
                 input {
                     margin-top: 5px;
                     padding: 10px;
-                    font-size: 16px;
+                    font-size: 1.1rem;
                     border: 1px solid #ccc;
                     border-radius: 4px;
                     transition: border-color 0.3s;
@@ -76,12 +78,13 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column;
+                box-sizing: border-box;
 
                 textarea {
                     width: 100%;
                     margin-top: 5px;
                     padding: 10px;
-                    font-size: 16px;
+                    font-size: 1.1rem;
                     border: 1px solid #ccc;
                     border-radius: 4px;
                     transition: border-color 0.3s;
@@ -91,6 +94,14 @@
                         border-color: #007bff;
                         outline: none;
                     }
+                }
+
+                .characterCount {
+                    position: absolute;
+                    right: 2%;
+                    top: 65%;
+                    text-align: end;
+                    width: 165px;
                 }
             }
         }
@@ -103,7 +114,7 @@
 
             button {
                 padding: 10px 20px;
-                font-size: 16px;
+                font-size: 1.2rem;
                 color: #fff;
                 background-color: #000;
                 border: none;
@@ -143,6 +154,12 @@
                 justify-content: space-between;
                 width: 110px;
 
+                p {
+                    font-family: "Roboto Mono", monospace;
+                    font-weight: 400;
+                    font-style: normal;
+                }
+
                 button {
                     background-color: transparent;
                     border: none;
@@ -150,10 +167,6 @@
 
                     .icon {
                         cursor: pointer;
-                    }
-
-                    .icon:hover {
-                        color: rgb(106, 3, 3);
                     }
                 }
             }
@@ -202,6 +215,175 @@
 
                 label {
                     width: 100%;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .expandMainServices {
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        .listServices {
+            li {
+                h3 {
+                    font-size: 1rem;
+                }
+
+                p {
+                    font-size: .9rem;
+                }
+            }
+        }
+
+        .formServices {
+            .informationMain {
+                label {
+                    font-size: .9rem;
+
+                    input {
+                        font-size: .9rem;
+                        padding: 9px;
+                    }
+                }
+
+            }
+
+            .textBox {
+                div {
+                    textarea {
+                        font-size: .9rem;
+                        padding: 9px;
+                    }
+
+                    .characterCount {
+                        font-size: .9rem;
+
+                    }
+                }
+            }
+
+            .buttonFormServices {
+                button {
+                    font-size: .9rem;
+                    padding: 8px 16px;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .expandMainServices {
+        h2 {
+            font-size: 1rem;
+        }
+
+        .listServices {
+            li {
+                h3 {
+                    font-size: .9rem;
+                }
+
+                p {
+                    font-size: .8rem;
+                }
+            }
+        }
+
+        .formServices {
+            .informationMain {
+                label {
+                    font-size: .8rem;
+
+                    input {
+                        font-size: .8rem;
+                        padding: 8px;
+                    }
+                }
+
+            }
+
+            .textBox {
+                div {
+                    textarea {
+                        font-size: .8rem;
+                        padding: 8px;
+                    }
+
+                    .characterCount {
+                        font-size: .8rem;
+
+                    }
+                }
+            }
+
+            .buttonFormServices {
+                margin-top: 0px;
+                button {
+                    font-size: .8rem;
+                    padding: 7px 14px;
+                }
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .expandMainServices {
+        h2 {
+            font-size: .9rem;
+        }
+
+        .listServices {
+            li {
+                h3 {
+                    font-size: .8rem;
+                }
+
+                p {
+                    font-size: .7rem;
+                }
+            }
+        }
+
+        .formServices {
+            .informationMain {
+                label {
+                    font-size: .7rem;
+
+                    input {
+                        font-size: .7rem;
+                        padding: 7px;
+                    }
+                }
+
+            }
+
+            .textBox {
+                div {
+                    textarea {
+                        font-size: .7rem;
+                        padding: 7px;
+                    }
+
+                    .characterCount {
+                        font-size: .7rem;
+
+                    }
+                }
+            }
+
+            .buttonFormServices {
+                button {
+                    font-size: .7rem;
+                    padding: 6px 12px;
                 }
             }
         }

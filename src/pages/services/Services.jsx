@@ -7,6 +7,7 @@ import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider'
 import { FaTrash } from "react-icons/fa";
 import { AuthContext } from '../../context/AuthContext'
 import useAxios from '../../hooks/useAxios'
+import Notification from '../../componentes/notification/Notification'
 
 const Services = () => {
   const { expandedSidebar } = useSidebarContext()
@@ -14,16 +15,26 @@ const Services = () => {
   const { id } = authTokens.estabelecimento.estabelecimento
   const [listServices, setListServices] = useState([])
   const api = useAxios()
+  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState('');
 
   const deleteService = async (id) => {
     try {
       const response = await api.delete(`servicos/${id}/`)
       if (response.status === 204) {
         fetchServices()
+        setMessage('Deletado com sucesso!')
+        setTimeout(() => {
+          setMessage('');
+        }, 3000);
       }
 
     } catch (error) {
       console.error('Erro ao deletar:', error);
+      setErrorMessage(error.response.data)
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
       return null;
     }
   }
@@ -50,6 +61,8 @@ const Services = () => {
     <React.Fragment>
       <Header textTitle='Serviços' textPhrase='Gerencie os serviços oferecidos pelo seu estabelecimento.' />
       <Nav links={navLinks} />
+      {errorMessage && <Notification type="error" message={errorMessage} />}
+      {message && <Notification type="success" message={message} />}
       <main className={`${!expandedSidebar ? 'expandMainServices' : 'collapseMainServices'}`}>
 
         <h2>Serviços cadastrados:</h2>
