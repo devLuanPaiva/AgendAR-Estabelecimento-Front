@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './Notification.scss'; 
+import './Notification.scss';
+
 const Notification = ({ type, message }) => {
     const [visible, setVisible] = useState(true);
 
@@ -29,7 +30,7 @@ const Notification = ({ type, message }) => {
         }, toastDetails.timer);
 
         return () => clearTimeout(timer);
-    }, []);
+    }, [toastDetails.timer]);
 
     return (
         <div className={`toast-container ${visible ? 'show' : 'hide'}`}>

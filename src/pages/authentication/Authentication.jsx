@@ -1,10 +1,10 @@
 import axios from 'axios'
-import logo from '../../imagens/logo.png'
+import logo from '../../images/logoOnBookAndMobile.png'
 import './Authentication.scss'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import Title from '../../componentes/titles/Title'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Notification from '../../componentes/notification/Notification'
 import useForm from '../../hooks/useForm'
 
@@ -46,6 +46,8 @@ const Authentication = () => {
         }
     }
     return (
+
+
         <main id='mainAuthentication'>
             <section className="logoSection">
                 <img src={logo} alt="logomarca AgendAR" />
@@ -74,9 +76,10 @@ const Authentication = () => {
                             name='password'
                         />
                     </label>
-                    <div className="button">
+                    <section className="buttonSection">
                         <button type='submit'>Acessar</button>
-                    </div>
+                        <p>Não tem uma conta? <Link id='linkAuthentication' to='/registrarEstabelecimento'>Registre-se aqui</Link></p>
+                    </section>
                 </form>
             </section>
 

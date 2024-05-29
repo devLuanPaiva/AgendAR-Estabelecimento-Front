@@ -9,7 +9,7 @@
     box-sizing: border-box;
 
     .logoSection {
-        width: 30%;
+    width: 30%;
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -65,12 +65,14 @@
                 }
             }
 
-            .button {
+            .buttonSection {
                 width: 80%;
                 display: flex;
-                justify-content: flex-end;
+                flex-direction: column;
+                justify-content: center;
 
                 button {
+                    width: 100%;
                     background-color: #f1f1f1;
                     color: #4192D9;
                     font-weight: 700;

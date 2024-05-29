@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Fasthand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
 header {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 15px 40px;
+    padding: 5px 30px;
     box-sizing: border-box;
 
     h1 {
@@ -10,23 +13,8 @@ header {
         font-weight: 800;
         font-style: normal;
 
-        .titleUnderline {
-            display: inline-block;
-            position: relative;
-
-            .changeColor {
-                color: #1E63A0;
-            }
-        }
-
-        .titleUnderline::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 37px;
-            width: 100%;
-            height: 3px;
-            background-color: #1E63A0;
+        .changeColor {
+            color: #1E63A0;
         }
     }
 
@@ -52,26 +40,40 @@ header {
 }
 
 main {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    min-height: 100vh;
-    padding: 15px 40px;
+    padding: 10px 30px;
+    box-sizing: border-box;
 
-    article {
-        width: 100%;
-        min-height: 40%;
+    .systemPresentation {
+        background-image: url('../../images/backgroundImage.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: local;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
+        border-radius: 15px;
+        box-sizing: border-box;
 
         .presentation {
             width: 50%;
-            height: 400px;
+            max-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            row-gap: 10px;
+            box-sizing: border-box;
 
             h2 {
-                font-size: 2.9rem;
-                margin-bottom: 25px;
+                font-size: 2.5rem;
+                color: #fff;
+                margin: 0px 0px 0px 25px;
+
             }
 
             h2::first-letter {
@@ -79,36 +81,38 @@ main {
             }
 
             .registerLink {
+                margin-left: 25px;
                 font-size: 1.3rem;
+                font-weight: bold;
                 text-decoration: none;
                 cursor: pointer;
                 padding: 7px 10px;
                 border-radius: 4px;
-                background-color: #012840;
-                color: #fff;
                 text-transform: capitalize;
-            }
+                background-color: #f2f2f2;
+                color: #1E63A0;
+                transition: background-color 0.3s;
 
-            .registerLink:hover {
-                background-color: #012840d5;
+                &:hover {
+                    background-color: #f2f2f2f0;
+                }
             }
         }
 
-        .logo {
-            width: 40%;
-            height: 400px;
-            background-image: url('../../imagens/apresentacao.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: right center;
-        }
-    }
+        .figureSoon {
+            margin: 0px;
+            width: 50%;
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
 
-    .line {
-        margin: 20px 0px;
-        width: 100%;
-        background-color: #000;
-        height: 3px;
+            align-items: baseline;
+
+            img {
+                max-height: 100%;
+                max-width: 100%;
+            }
+        }
     }
 
     .phraseSection,
@@ -141,6 +145,9 @@ main {
                 padding: 10px;
                 border-radius: 10px;
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 
                 h3 {
                     font-size: 1.2rem;
@@ -151,6 +158,11 @@ main {
                     text-align: justify;
                 }
 
+            }
+
+            .feature.show {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -191,24 +203,71 @@ main {
     }
 }
 
-@media screen and (max-width: 1650px) {
-    main {
-        article {
-            .presentation {
-                h2 {
-                    font-size: 2.8rem;
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #012840;
+    color: #ffffff;
+    padding: 20px 0px;
+    box-sizing: border-box;
+
+    h3 {
+        font-size: 1.3em;
+        margin-bottom: 10px;
+
+        strong {
+            font-size: 1.3em;
+
+            .text {
+                font-size: 1.3em;
+                color: #309FFF;
+                font-family: 'Fasthand', cursive;
+            }
+        }
+    }
+
+    .socialMedia {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+
+        .linksToFooter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            margin: 0 10px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease-in-out;
+            background-color: #f2f2f2;
+            color: #1E63A0;
+
+            &:hover {
+                background-color: #1E63A0;
+                .iconColor{
+                    color:#f2f2f2;
                 }
             }
+
+
+            .iconColor {
+                color: #1E63A0;
+                font-size: 18px;
+               
+            }
+
         }
     }
 }
 
-@media screen and (max-width: 1560px) {
+@media screen and (max-width: 1470px) {
     main {
-        article {
+        .systemPresentation {
             .presentation {
                 h2 {
-                    font-size: 2.6rem;
+                    font-size: 2.3rem;
                 }
             }
         }
@@ -217,117 +276,119 @@ main {
 
 @media screen and (max-width: 1360px) {
     main {
-        article {
+        .systemPresentation {
             .presentation {
                 h2 {
-                    font-size: 2.5rem;
-                }
-            }
-
-            .logo {
-                background-position: right top;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 1225px) {
-    main {
-        article {
-            .presentation {
-                h2 {
-                    font-size: 2.2rem;
-                }
-            }
-
-            .logo {
-                background-size: cover;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    main {
-        article {
-
-            .logo {
-                width: 50%;
-            }
-
-        }
-    }
-}
-
-@media screen and (max-width: 985px) {
-    main {
-        article {
-            .presentation {
-                h2 {
-                    font-size: 2rem;
-                    margin-bottom: 5px;
+                    font-size: 2.1rem;
                 }
 
                 .registerLink {
                     font-size: 1.2rem;
+                    padding: 6px 9px;
                 }
             }
         }
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1250px) {
     main {
-        article {
+        .systemPresentation {
             .presentation {
-                height: 280px;
-                width: 55%;
-
                 h2 {
-                    font-size: 1.6rem;
+                    font-size: 1.9rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    main {
+        .systemPresentation {
+            .presentation {
+                h2 {
+                    font-size: 1.7rem;
                 }
 
                 .registerLink {
                     font-size: 1rem;
+                    padding: 5px 8px;
                 }
             }
 
-            .logo {
-                height: 280px;
-                width: 45%;
-            }
         }
     }
 }
 
-@media screen and (max-width: 685px) {
+@media screen and (max-width: 920px) {
     main {
-        article {
+        .systemPresentation {
+            height: 300px;
+
             .presentation {
+                padding: 10px 0px;
 
                 h2 {
-                    font-size: 1.4rem;
+                    font-size: 1.5rem;
                 }
 
                 .registerLink {
-                    font-size: 1rem;
+                    font-size: .9rem;
+                    padding: 4px 7px;
+                    border-radius: 3px;
                 }
             }
+
+            .figureSoon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    bottom: 0%;
+                    height: 95%;
+                }
+            }
+
         }
     }
 }
 
-@media screen and (max-width: 657px) {
+@media screen and (max-width: 890px) {
     main {
-        article {
+        .systemPresentation {
             .presentation {
-                width: 50%;
+                h2 {
+                    font-size: 1.3rem;
+                }
             }
 
-            .logo {
-                width: 50%;
-            }
+
         }
+    }
+}
+
+@media screen and (max-width: 790px) {
+    main {
+        .systemPresentation {
+            border-radius: 10px;
+            max-height: 250px;
+
+            .presentation {
+                h2 {
+                    font-size: 1rem;
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width:660px) {
+    main {
 
         .phraseSection,
         .servicesSection {
@@ -363,33 +424,11 @@ main {
                 }
             }
         }
+
     }
 }
 
 @media screen and (max-width: 600px) {
-    main {
-        article {
-            .presentation {
-                height: 220px;
-
-                h2 {
-                    font-size: 1.2rem;
-                }
-
-                .registerLink {
-                    font-size: .8rem;
-                }
-            }
-
-            .logo {
-                height: 220px;
-                background-size: contain;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 583px) {
     header {
         h1 {
             font-size: 1rem;
@@ -409,23 +448,18 @@ main {
     }
 
     main {
-        article {
+        .systemPresentation {
             .presentation {
-                height: 200px;
-
                 h2 {
-                    font-size: 1rem;
+                    font-size: .9rem;
                 }
 
                 .registerLink {
-                    font-size: .7rem;
+                    font-size: .8rem;
+                    padding: 3px 6px;
                 }
             }
 
-            .logo {
-                height: 200px;
-                background-size: cover;
-            }
         }
 
         .phraseSection,
@@ -459,7 +493,38 @@ main {
     }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 520px) {
+    header {
+        padding: 5px 20px;
+    }
+
+    main {
+        padding: 5px 20px;
+
+        .systemPresentation {
+            border-radius: 5px;
+            max-height: 200px;
+            .presentation {
+                width: 55%;
+
+                h2 {
+                    font-size: .8rem;
+                }
+
+                .registerLink {
+                    font-size: .6rem;
+                }
+            }
+
+        }
+
+        .figureSoon {
+            width: 45%;
+        }
+    }
+}
+
+@media screen and (max-width: 460px) {
     header {
         h1 {
             font-size: .9rem;
@@ -481,12 +546,11 @@ main {
     }
 
     main {
-        article {
+        .systemPresentation {
+            max-height: 180px;
             .presentation {
-                height: 190px;
-
                 h2 {
-                    font-size: .8rem;
+                    font-size: .7rem;
                 }
 
                 .registerLink {
@@ -494,10 +558,6 @@ main {
                 }
             }
 
-            .logo {
-                height: 190px;
-                background-size: cover;
-            }
         }
 
         .phraseSection,
@@ -531,9 +591,10 @@ main {
     }
 }
 
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 400px) {
     header {
-        padding: 15px 10px;
+        padding: 5px 10px;
+
         h1 {
             font-weight: 700;
         }
@@ -550,25 +611,18 @@ main {
     }
 
     main {
-        padding: 15px 10px;
-        article {
-            .presentation {
-                height: 150px;
+        padding: 5px 10px;
 
+        .systemPresentation {
+            max-height: 130px;
+            .presentation {
                 h2 {
-                    font-size: .7rem;
-                    font-weight: 400;
+                    font-size: .6rem;
                 }
 
                 .registerLink {
-                    font-size: .6rem;
-                    font-weight: 400;
+                    font-size: .4rem;
                 }
-            }
-
-            .logo {
-                height: 150px;
-                background-size: contain;
             }
 
         }
@@ -604,33 +658,21 @@ main {
     }
 }
 
-@media screen and (max-width: 310px) {
-
-
+@media screen and (max-width: 320px) {
     main {
-        article {
+        .systemPresentation {
+            max-height: 100px;
             .presentation {
-                height: 140px;
-
                 h2 {
-                    font-size: .6rem;
-                    font-weight: 400;
+                    font-size: .5rem;
                 }
 
                 .registerLink {
-                    font-size: .4rem;
-                    font-weight: 400;
-                    padding: 3px 6px;
-                    border-radius: 2px;
+                    font-size: .3rem;
+                    padding: 2px 4px;
                 }
             }
 
-            .logo {
-                height: 140px;
-            }
-
         }
-
-
     }
 }
