@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../../imagens/logo.png';
+import logo from '../../images/logoWhite.png'
 import './Register.scss';
 import axios from 'axios';
 import Title from '../../componentes/titles/Title';

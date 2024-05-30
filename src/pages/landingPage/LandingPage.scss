@@ -503,7 +503,7 @@ footer {
 
         .systemPresentation {
             border-radius: 5px;
-            max-height: 200px;
+            height: 200px;
             .presentation {
                 width: 55%;
 
@@ -547,7 +547,7 @@ footer {
 
     main {
         .systemPresentation {
-            max-height: 180px;
+            height: 180px;
             .presentation {
                 h2 {
                     font-size: .7rem;
@@ -614,7 +614,7 @@ footer {
         padding: 5px 10px;
 
         .systemPresentation {
-            max-height: 130px;
+            height: 130px;
             .presentation {
                 h2 {
                     font-size: .6rem;
@@ -661,7 +661,7 @@ footer {
 @media screen and (max-width: 320px) {
     main {
         .systemPresentation {
-            max-height: 100px;
+            height: 100px;
             .presentation {
                 h2 {
                     font-size: .5rem;

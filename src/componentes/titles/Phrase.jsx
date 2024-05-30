@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Phrase = (props) => {
+const Phrase = ({color, phrase}) => {
   return (
-    <p style={{ color: props.color }}>{props.phrase}</p>
+    <p style={{ color: color }}>{phrase}</p>
   )
 }
 

@@ -3,7 +3,7 @@ import { RiArrowLeftWideLine } from "react-icons/ri";
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Title.scss'
 
-const Title = (props) => {
+const Title = ({color, title}) => {
     const navigate = useNavigate()
     const location = useLocation()
     const returnPage = () => {
@@ -14,13 +14,13 @@ const Title = (props) => {
         }
     }
     return (
-        <h1 style={{ color: props.color }} id='titleMain'>
-            <button onClick={returnPage} style={{ color: props.color }} >
+        <h1 style={{ color: color }} id='titleMain'>
+            <button onClick={returnPage} style={{ color: color }} >
                 <abbr title="Voltar">
                     <RiArrowLeftWideLine className='icon' />
                 </abbr>
             </button>
-            {props.title}
+            {title}
         </h1>
     )
 }
