@@ -14,7 +14,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 const Authentication = () => {
     const { updateTokens, logout } = useContext(AuthContext)
     const [formValues, handleInputChange] = useForm({ username: '', password: '' })
-    const [toggleButton, setToggleButtom] = useState(false)
+    const [toggleButton, setToggleButton] = useState(false)
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
@@ -47,12 +47,17 @@ const Authentication = () => {
         }
         catch (error) {
             console.error('Erro ao se autenticar:', error);
-            setErrorMessage(error.response.data.detail);
+            if(error.response.data.detail === 'No active account found with the given credentials'){
+                setErrorMessage('Nenhuma conta ativa encontrada com as credenciais fornecidas');
+                setTimeout(() => {
+                    setErrorMessage('');
+                }, 5000);
+            }
         }
     }
 
     const changeButton = () => {
-        setToggleButtom(!toggleButton)
+        setToggleButton(!toggleButton)
     }
 
     return (

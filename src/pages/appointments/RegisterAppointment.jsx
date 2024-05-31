@@ -9,6 +9,7 @@ import './Appointments.scss';
 import useFetch from '../../hooks/useFetch';
 import Notification from '../../componentes/notification/Notification';
 import useForm from '../../hooks/useForm';
+import IsLoading from '../../componentes/isLoading/IsLoading';
 
 const RegisterAppointment = () => {
     const [availableTimes, setAvailableTimes] = useState([]);
@@ -27,9 +28,9 @@ const RegisterAppointment = () => {
         { text: 'Semanais', href: '/agendamentos/semanais' },
         { text: 'Cadastrar', href: '/agendamentos/cadastrar' },
     ];
-    const { data: listServices } = useFetch(`servicos/?estabelecimento_id=${id}`);
-    const { data: listSchedules } = useFetch(`horarios/?estabelecimento_id=${id}`);
-    const { data: listAppointments } = useFetch(`agendamentos/estabelecimentos/?estabelecimento_id=${id}`);
+    const { data: listServices, isLoading: loadingServices } = useFetch(`servicos/?estabelecimento_id=${id}`);
+    const { data: listSchedules, isLoading: loadingSchedules } = useFetch(`horarios/?estabelecimento_id=${id}`);
+    const { data: listAppointments, isLoading: loadingAppointments } = useFetch(`agendamentos/estabelecimentos/?estabelecimento_id=${id}`);
 
     const mapDayOfWeek = (dayOfWeek) => {
         const mapping = {
@@ -72,7 +73,7 @@ const RegisterAppointment = () => {
             .map(appointment => appointment.horario_selecionado.substring(0, 5));
         const availableTimes = times.filter(timeOption => !bookedTimes.includes(timeOption.time));
         return availableTimes.sort((a, b) => a.time.localeCompare(b.time));
-    },[listAppointments, listSchedules]);
+    }, [listAppointments, listSchedules]);
 
     useEffect(() => {
         if (formValues.selectedDay) {
@@ -81,7 +82,7 @@ const RegisterAppointment = () => {
             formValues.selectedSchedule = null;
         }
     }, [formValues.selectedDay, listAppointments, listSchedules, formValues, getAvailableTimes]);
-    
+
 
     const handleTimeChange = (e) => {
         const selectedOption = e.target.value;
@@ -105,10 +106,10 @@ const RegisterAppointment = () => {
             if (response.status === 201) {
                 setMessage('Agendado com sucesso!');
                 setSelectedService('');
-                formValues.nameClient = ''; 
-                formValues.contactClient = ''; 
-                formValues.selectedTime = ''; 
-                formValues.selectedDay = ''; 
+                formValues.nameClient = '';
+                formValues.contactClient = '';
+                formValues.selectedTime = '';
+                formValues.selectedDay = '';
                 formValues.selectedSchedule = null;
             }
         } catch (error) {
@@ -116,7 +117,9 @@ const RegisterAppointment = () => {
             return null;
         }
     };
-
+    if (loadingAppointments || loadingSchedules || loadingServices) {
+        return <IsLoading />
+    }
     return (
         <React.Fragment>
             <Header textTitle='Agendamentos' textPhrase='Visualize e gerencie os agendamentos do seu estabelecimento.' />

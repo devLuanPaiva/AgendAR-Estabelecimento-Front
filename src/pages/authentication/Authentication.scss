@@ -52,6 +52,9 @@
     }
 
     .formAuthentication {
+        #titleMain {
+            height: 60px;
+        }
         width: 50%;
         height: 100vh;
         background-color: #fff;
@@ -129,8 +132,6 @@
                             border-color: #242424;
                             outline: none;
                         }
-
-
                     }
                 }
             }
@@ -219,16 +220,13 @@
             height: 30vh;
 
             h1 {
-                padding: 0px;
+                padding: 0px 10px;
                 font-size: 3.9rem;
                 text-align: center;
             }
         }
 
         .formAuthentication {
-            #titleMain {
-                height: 60px;
-            }
 
             width: 100%;
             margin: 0 auto;

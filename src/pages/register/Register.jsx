@@ -45,23 +45,26 @@ const Register = () => {
             console.log(response.data);
             if (response.status === 201) {
                 setMessage('Registrado com sucesso!');
+                setTimeout(()=>{setMessage('')}, 5000)
             }
         } catch (error) {
             console.error('Erro ao registrar estabelecimento:', error);
             setErrorMessage(error.response.data.error);
-            setTimeout(() => {
-                setErrorMessage('');
-            }, 5000);
+            setTimeout(() => {setErrorMessage('')}, 5000);
         }
     };
 
     return (
         <main id='mainRegister'>
             <section className="logoSection">
-                <img src={logo} alt="AgendAR logo" />
+                <figure id='logo'>
+                    <img src={logo} alt="logomarca AgendAR" />
+                </figure>
+                <h1>cadastre sua empresa e impulsione seu crescimento com nosso sistema.
+                </h1>
             </section>
-            <section className="formSection">
-                <Title color="#fff" title="Registrar" />
+            <section className="formRegister">
+                <Title color="#000" title="Registrar" />
                 {errorMessage && <Notification type="error" message={errorMessage} />}
                 {message && <Notification type="success" message={message} />}
                 <form onSubmit={handleSubmit}>

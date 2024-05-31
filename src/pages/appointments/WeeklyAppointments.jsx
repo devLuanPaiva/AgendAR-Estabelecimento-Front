@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Header from '../../componentes/header/Header'
 import Nav from '../../componentes/nav/Nav'
 import Sidebar from '../../componentes/sidebar/Sidebar'
@@ -10,13 +10,17 @@ import './Appointments.scss'
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import useAxios from '../../hooks/useAxios';
-
+import useFetch from '../../hooks/useFetch';
+import IsLoading from '../../componentes/isLoading/IsLoading';
+import { useMutation } from 'react-query';
+import Notification from '../../componentes/notification/Notification';
 
 const WeeklyAppointments = () => {
+    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState('');
     const { expandedSidebar } = useSidebarContext()
     const { authTokens } = useContext(AuthContext)
     const { id } = authTokens.estabelecimento.estabelecimento
-    const [listAppointments, setListAppointments] = useState([])
     const api = useAxios()
     const navLinks = [
         { text: 'Hoje', href: '/agendamentos/' },
@@ -24,23 +28,7 @@ const WeeklyAppointments = () => {
         { text: 'Cadastrar', href: '/agendamentos/cadastrar' },
     ];
 
-    const fetchAppointments = useCallback(async () => {
-        try {
-            const response = await api.get(`agendamentos/semana/?estabelecimento_id=${id}`)
-            if (response.status === 200) {
-                console.log(response.data)
-                setListAppointments(response.data);
-            }
-
-        } catch (error) {
-            console.error('Erro ao obter lista de agendamentos do dia: ', error);
-            return null;
-        }
-    }, [id, api])
-
-    useEffect(() => {
-        fetchAppointments()
-    }, [fetchAppointments])
+    const { data: listAppointments, isLoading, refetch } = useFetch(`agendamentos/semana/?estabelecimento_id=${id}`);
     const formatTime = (time) => {
         return time ? time.slice(0, 5) : 'Fechado'
     }
@@ -51,38 +39,51 @@ const WeeklyAppointments = () => {
         return date.toLocaleDateString('pt-BR', options);
     }
     const formatPhoneNumber = (contact) => {
-        const cleaned = ('' + contact).replace(/\D/g, ''); 
-        const match = RegExp(/^(\d{2})(\d{5})(\d{4})$/).exec(cleaned); 
+        const cleaned = ('' + contact).replace(/\D/g, '');
+        const match = RegExp(/^(\d{2})(\d{5})(\d{4})$/).exec(cleaned);
         if (match) {
             return `(${match[1]}) ${match[2]}-${match[3]}`;
         }
         return contact;
     }
-    
 
-    const deleteAppointment = async (appointment) => {
-        let url = ''
-        if (appointment.cliente) {
-            url = 'clientes'
-        }
-        else {
-            url = 'estabelecimentos'
-        }
-        try {
-            const response = await api.delete(`agendamentos/${url}/${appointment.id}`)
-            if (response.status === 204) {
-                fetchAppointments()
+    const { mutate: deleteAppointment } = useMutation(
+        async (appointment) => {
+            let url = '';
+            if (appointment.cliente) {
+                url = 'clientes';
+            } else {
+                url = 'estabelecimentos';
             }
-        } catch (error) {
-            console.error('Erro ao deletar:', error);
-            return null;
+            const response = await api.delete(`agendamentos/${url}/${appointment.id}`);
+            return response.data;
+        },
+        {
+            onSuccess: () => {
+                setMessage('Deletado com sucesso!');
+                setTimeout(() => {
+                    setMessage('');
+                }, 3000);
+                refetch();
+            },
+            onError: (error) => {
+                console.error('Erro ao deletar:', error);
+                setErrorMessage(error.response.data);
+                setTimeout(() => {
+                    setErrorMessage('');
+                }, 3000);
+            },
         }
-
+    );
+    if (isLoading) {
+        return <IsLoading />;
     }
     return (
         <React.Fragment>
             <Header textTitle='Agendamentos' textPhrase='Visualize e gerencie os agendamentos do seu estabelecimento.' />
             <Nav links={navLinks} />
+            {errorMessage && <Notification type="error" message={errorMessage} />}
+            {message && <Notification type="success" message={message} />}
             <main className={`${!expandedSidebar ? 'expandMainAppointments' : 'collapseMainAppointments'}`}>
                 <h2>Agendamentos da semana:</h2>
                 {listAppointments.length > 0 ?
@@ -98,8 +99,8 @@ const WeeklyAppointments = () => {
                                 <li key={index}>
                                     <h3>Agendamento</h3>
                                     <p><FaUserClock className='icon' /> {appointment.nome || appointment.cliente.nome}</p>
-                                    <p><BsTelephoneFill className='icon'/>
-                                    {formatPhoneNumber(appointment.contato || appointment.cliente.contato)}</p>
+                                    <p><BsTelephoneFill className='icon' />
+                                        {formatPhoneNumber(appointment.contato || appointment.cliente.contato)}</p>
                                     <p><MdDesignServices className='icon' /> {appointment.servico_nome}</p>
                                     <p><RiCalendarScheduleLine className='icon' /> {formatDay(appointment.dia_selecionado)} </p>
                                     <p><MdSchedule className='icon' /> {formatTime(appointment.horario_selecionado)}</p>

@@ -1,27 +1,18 @@
-import { useState, useEffect } from 'react';
 import useAxios from './useAxios';
+import { useQuery } from 'react-query';
 
 const useFetch = (url) => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const api = useAxios()
+    const { data, isLoading, error, refetch } = useQuery("data", () => {
+        return api
+            .get(url)
+            .then().then((response) => response.data)
+    }, {
+        retry: 2,
+    })
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await api.get(url);
-                setData(response.data);
-                setLoading(false);
-            } catch (err) {
-                setError(err);
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, [url, api]);
-
-    return { data, loading, error };
+    
+    return { data, error, isLoading, refetch };
 };
 
 export default useFetch;

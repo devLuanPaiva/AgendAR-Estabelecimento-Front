@@ -17,6 +17,7 @@ import RegisterShedules from "./pages/schedules/RegisterShedules";
 import ScheduleEdit from "./pages/schedules/ScheduleEdit";
 import WeeklyAppointments from "./pages/appointments/WeeklyAppointments";
 import RegisterAppointment from "./pages/appointments/RegisterAppointment";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <SidebarProvider>
           <Routes>
             <Route exact path='/' element={<LandingPage />} />
+            <Route path="*" element={<PageNotFound/>} />
             <Route path='/registrarEstabelecimento/' element={<Register />} />
             <Route path='/autenticacao/' element={<Authentication />} />
             <Route path="/" element={<ProtectedRouter />} >

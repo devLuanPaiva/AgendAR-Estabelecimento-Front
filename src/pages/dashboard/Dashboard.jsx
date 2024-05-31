@@ -1,40 +1,27 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import './Dashboard.scss';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
 import Header from '../../componentes/header/Header';
 import Sidebar from '../../componentes/sidebar/Sidebar';
-import useAxios from '../../hooks/useAxios';
 import { IoPeople } from "react-icons/io5";
 import { GiProgression } from "react-icons/gi";
 import MapsAPI from '../../componentes/maps/MapsAPI';
+import useFetch from '../../hooks/useFetch';
+import IsLoading from '../../componentes/isLoading/IsLoading';
 
 const Dashboard = () => {
     const { authTokens } = useContext(AuthContext);
     const { id, nome } = authTokens.estabelecimento.estabelecimento;
     const { expandedSidebar } = useSidebarContext();
-    const [statisticData, setStatisticData] = useState({});
-    const api = useAxios();
-
     const formatPercent = (value) => {
         return value !== undefined ? `${value.toFixed(2)}%` : '0%';
     };
 
-    const fetchStatisticData = useCallback(async () => {
-        try {
-            const response = await api.get(`agendamentos/dados-estatisticos/?estabelecimento_id=${id}`);
-            if (response.status === 200) {
-                setStatisticData(response.data);
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    }, [api, id]);
-
-    useEffect(() => {
-        fetchStatisticData();
-    }, [fetchStatisticData]);
-
+    const { data: statisticData, isLoading } = useFetch(`agendamentos/dados-estatisticos/?estabelecimento_id=${id}`)
+    if (isLoading) {
+        return <IsLoading />;
+    }
     return (
         <React.Fragment>
             <Header textTitle={`Olá, ${nome}!`} textPhrase={'Veja abaixo algumas informações sobre o seu estabelecimento.'} />

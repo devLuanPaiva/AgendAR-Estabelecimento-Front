@@ -1,66 +1,67 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react';
 import Header from '../../componentes/header/Header';
 import Nav from '../../componentes/nav/Nav';
 import Sidebar from '../../componentes/sidebar/Sidebar';
 import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import useAxios from '../../hooks/useAxios';
-import { BsTelephoneFill } from "react-icons/bs";
-import { FaTrash, FaUserClock } from "react-icons/fa";
-import { MdDesignServices, MdSchedule } from "react-icons/md";
-import './Appointments.scss'
-
+import { BsTelephoneFill } from 'react-icons/bs';
+import { FaTrash, FaUserClock } from 'react-icons/fa';
+import { MdDesignServices, MdSchedule } from 'react-icons/md';
+import './Appointments.scss';
+import IsLoading from '../../componentes/isLoading/IsLoading';
+import useFetch from '../../hooks/useFetch';
+import { useMutation } from 'react-query';
+import Notification from '../../componentes/notification/Notification';
 const Appointments = () => {
-    const { expandedSidebar } = useSidebarContext()
-    const { authTokens } = useContext(AuthContext)
-    const { id } = authTokens.estabelecimento.estabelecimento
-    const [listAppointments, setListAppointments] = useState([])
-    const api = useAxios()
+    const [errorMessage, setErrorMessage] = useState('');
+    const [message, setMessage] = useState('');
+    const { expandedSidebar } = useSidebarContext();
+    const { authTokens } = useContext(AuthContext);
+    const { id } = authTokens.estabelecimento.estabelecimento;
+    const api = useAxios();
     const navLinks = [
         { text: 'Hoje', href: '/agendamentos/' },
         { text: 'Semanais', href: '/agendamentos/semanais' },
         { text: 'Cadastrar', href: '/agendamentos/cadastrar' },
     ];
+    const { data: listAppointments, isLoading, refetch } = useFetch(`agendamentos/hoje/?estabelecimento_id=${id}`);
 
-    const fetchAppointments = useCallback(async () => {
-        try {
-            const response = await api.get(`agendamentos/hoje/?estabelecimento_id=${id}`)
-            if (response.status === 200) {
-                
-                setListAppointments(response.data);
-            }
-
-        } catch (error) {
-            console.error('Erro ao obter lista de agendamentos do dia: ', error);
-            return null;
-        }
-    }, [id, api])
-
-    useEffect(() => {
-        fetchAppointments()
-    }, [fetchAppointments])
     const formatTime = (time) => {
-        return time ? time.slice(0, 5) : 'Fechado'
+        return time ? time.slice(0, 5) : 'Fechado';
     }
 
-    const deleteAppointment = async (appointment) => {
-        let url = ''
-        if (appointment.cliente) {
-            url = 'clientes'
-        }
-        else {
-            url = 'estabelecimentos'
-        }
-        try {
-            const response = await api.delete(`agendamentos/${url}/${appointment.id}`)
-            if (response.status === 204) {
-                fetchAppointments()
+    const { mutate: deleteAppointment } = useMutation(
+        async (appointment) => {
+            let url = '';
+            if (appointment.cliente) {
+                url = 'clientes';
+            } else {
+                url = 'estabelecimentos';
             }
-        } catch (error) {
-            console.error('Erro ao deletar:', error);
-            return null;
+            const response = await api.delete(`agendamentos/${url}/${appointment.id}`);
+            return response.data;
+        },
+        {
+            onSuccess: () => {
+                setMessage('Deletado com sucesso!');
+                setTimeout(() => {
+                    setMessage('');
+                }, 3000);
+                refetch();
+            },
+            onError: (error) => {
+                console.error('Erro ao deletar:', error);
+                setErrorMessage(error.response.data);
+                setTimeout(() => {
+                    setErrorMessage('');
+                }, 3000);
+            },
         }
+    );
 
+    if (isLoading) {
+        return <IsLoading />;
     }
     const formatPhoneNumber = (contact) => {
         const cleaned = ('' + contact).replace(/\D/g, '');
@@ -69,16 +70,18 @@ const Appointments = () => {
             return `(${match[1]}) ${match[2]}-${match[3]}`;
         }
         return contact;
-    }
+    };
+
     return (
         <React.Fragment>
-            <Header textTitle='Agendamentos' textPhrase='Visualize e gerencie os agendamentos do seu estabelecimento.' />
+            <Header textTitle="Agendamentos" textPhrase="Visualize e gerencie os agendamentos do seu estabelecimento." />
             <Nav links={navLinks} />
+            {errorMessage && <Notification type="error" message={errorMessage} />}
+            {message && <Notification type="success" message={message} />}
             <main className={`${!expandedSidebar ? 'expandMainAppointments' : 'collapseMainAppointments'}`}>
-
                 <h2>Agendamentos para hoje:</h2>
-                {listAppointments.length > 0 ?
-                    <ul className='listAppointments'>
+                {listAppointments.length > 0 ? (
+                    <ul className="listAppointments">
                         {listAppointments
                             .toSorted((a, b) => {
                                 return new Date('1970/01/01 ' + a.horario_selecionado) - new Date('1970/01/01 ' + b.horario_selecionado);
@@ -86,25 +89,34 @@ const Appointments = () => {
                             .map((appointment, index) => (
                                 <li key={index}>
                                     <h3>Agendamento</h3>
-                                    <p><FaUserClock className='icon' /> {appointment.nome || appointment.cliente.nome}</p>
-                                    <p><BsTelephoneFill className='icon' />
-                                        {formatPhoneNumber(appointment.contato || appointment.cliente.contato)}</p>
-                                    <p><MdDesignServices className='icon' /> {appointment.servico_nome}</p>
-                                    <p><MdSchedule className='icon' /> {formatTime(appointment.horario_selecionado)}</p>
-
+                                    <p>
+                                        <FaUserClock className="icon" /> {appointment.nome || appointment.cliente.nome}
+                                    </p>
+                                    <p>
+                                        <BsTelephoneFill className="icon" />
+                                        {formatPhoneNumber(appointment.contato || appointment.cliente.contato)}
+                                    </p>
+                                    <p>
+                                        <MdDesignServices className="icon" /> {appointment.servico_nome}
+                                    </p>
+                                    <p>
+                                        <MdSchedule className="icon" /> {formatTime(appointment.horario_selecionado)}
+                                    </p>
                                     <section className="buttons">
-                                        <button onClick={() => deleteAppointment(appointment)}><FaTrash className='icon' /></button>
-
+                                        <button onClick={() => deleteAppointment(appointment)}>
+                                            <FaTrash className="icon" />
+                                        </button>
                                     </section>
                                 </li>
                             ))}
                     </ul>
-                    : <p>Não existe agendamentos para hoje.</p>
-                }
+                ) : (
+                    <p>Não existe agendamentos para hoje.</p>
+                )}
             </main>
             <Sidebar />
         </React.Fragment>
-    )
-}
+    );
+};
 
-export default Appointments
+export default Appointments;

@@ -70,7 +70,7 @@ const EditLocation = () => {
                 })
                 if (response.status === 200) {
                     setMessage('Atualizado com sucesso!');
-                    console.log('Coordenadas salvas:', position);
+                    setTimeout(()=>{setMessage('')}, 5000)
                     const establishment = await api.get('user-info/')
                     updateTokens(access, refresh, establishment.data)
                 }
@@ -78,6 +78,8 @@ const EditLocation = () => {
             } catch (error) {
                 console.error('Erro ao salvar coordenadas:', error);
                 setErrorMessage(error.response.data);
+                setTimeout(() => {setErrorMessage('')}, 5000);
+
             }
         }
     };

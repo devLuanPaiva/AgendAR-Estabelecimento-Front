@@ -1,4 +1,9 @@
 #mainRegister {
+    background-image: url('../../images/backgroundImage.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: local;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -9,22 +14,51 @@
     box-sizing: border-box;
 
     .logoSection {
-        width: 30%;
+        width: 50%;
         min-height: 100vh;
+        position: relative;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        box-sizing: border-box;
 
-        img {
-            width: 400px;
-            height: 400px;
+        #logo {
+            position: absolute;
+            top: 3%;
+            left: 20px;
+            padding: 0px;
+            margin: 0px;
+
+            img {
+                width: 30px;
+                height: 30px;
+                padding: 0px;
+                margin: 0px;
+            }
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3.5rem;
+            padding-left: 20px;
+            box-sizing: border-box;
+
+            &::first-letter {
+                text-transform: uppercase;
+            }
+
         }
     }
 
-    .formSection {
-        width: 70%;
+    .formRegister {
+        #titleMain {
+            height: 60px;
+        }
+
+        width: 50%;
         min-height: 100vh;
-        background-color: #012840;
+        background-color: #fff;
         border-radius: 30px 0px 0px 30px;
         color: white;
         display: flex;
@@ -32,41 +66,14 @@
         justify-content: flex-start;
         align-items: center;
 
-        h1 {
-            height: 15%;
-            width: 95%;
-            display: flex;
-            align-items: center;
-            font-family: 'Poppins', sans-serif;
-            font-style: normal;
-            font-weight: 700;
-            font-size: 2.5rem;
-            font-display: swap;
-
-            span {
-                display: inline-block;
-                position: relative;
-            }
-
-            span::after {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 47px;
-                width: 100%;
-                height: 3px;
-                background-color: #1E63A0;
-            }
-        }
-
         form {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
-            justify-content: space-around;
-            min-height: 80%;
+            row-gap: 20px;
+            justify-content: center;
+            padding: 20px 0px;
             box-sizing: border-box;
 
             label {
@@ -75,6 +82,7 @@
                 row-gap: 10px;
                 width: 80%;
                 font-weight: 700;
+                color: #000;
 
                 .SelectStatesAndCities {
                     width: 100%;
@@ -84,17 +92,21 @@
 
                     select {
                         width: 45%;
+                        padding: 6px;
                         height: 30px;
-                        text-indent: 5px;
-                        border: 1px solid #ccc;
+                        border: 1px solid #757575;
+                        background-color: #f1f1f1;
                         border-radius: 4px;
                         transition: border-color 0.3s;
+                        font-size: 1rem;
+                        box-sizing: border-box;
 
                         &:focus {
-                            border-color: #007bff;
+                            border-color: #242424;
                             outline: none;
                         }
-                        option{
+
+                        option {
                             padding: 5px 2px;
                             box-sizing: border-box;
                         }
@@ -102,14 +114,19 @@
                 }
 
                 input {
-                    height: 30px;
+                    width: 100%;
+                    padding: 6px;
                     text-indent: 5px;
-                    border: 1px solid #ccc;
+                    height: 30px;
+                    border: 1px solid #757575;
+                    background-color: #f1f1f1;
                     border-radius: 4px;
                     transition: border-color 0.3s;
+                    font-size: 1rem;
+                    box-sizing: border-box;
 
                     &:focus {
-                        border-color: #007bff;
+                        border-color: #242424;
                         outline: none;
                     }
                 }
@@ -121,21 +138,20 @@
                 justify-content: flex-end;
 
                 button {
-                    background-color: #f1f1f1;
-                    color: #4192D9;
+                    background-color: #010E42;
+                    color: #fff;
                     font-weight: 700;
                     font-size: 1.1rem;
                     padding: 10px 12px;
                     border-radius: 5px;
-                    border: 1px solid #f1f1f1;
+                    border: 1px solid #010E42;
                     box-sizing: border-box;
-                }
 
-                button:hover {
-                    background-color: #4192D9;
-                    color: #f1f1f1;
-                    border: 1px solid #4192D9;
-                    cursor: pointer;
+                    &:hover {
+                        background-color: #001E64;
+                        border: 1px solid #001E64;
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -146,43 +162,65 @@
 @media screen and (max-width: 1060px) {
     #mainRegister {
         .logoSection {
-            width: 45%;
-        }
-
-        .formSection {
-            width: 55%;
+            h1 {
+                font-size: 3rem;
+            }
         }
     }
 }
 
-@media screen and (max-width: 910px) {
+@media screen and (max-width: 870px) {
     #mainRegister {
         .logoSection {
-            display: none;
-        }
-
-        .formSection {
-            width: 100%;
-            border-radius: 0px;
+            h1 {
+                font-size: 2.5rem;
+            }
         }
     }
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 800px) {
     #mainRegister {
+        background-position: right center;
+        min-height: 100vh;
+        flex-direction: column;
+        margin: 0px;
+        padding: 0px;
 
-        .formSection {
+        .logoSection {
+            width: 100%;
+            min-height: 30vh;
+
             h1 {
+                padding: 0px 10px;
                 font-size: 2rem;
+                text-align: center;
+            }
+        }
 
-                button {
-                    .icone {
-                        font-size: 1.9rem;
+        .formRegister {
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 25px 25px 0px 0px;
+            min-height: 90vh;
+            gap: 0px;
+            padding-bottom: 20px;
+            form {
+                label {
+                    input {
+                        padding: 7px;
+                        font-size: .9rem;
+                    }
+
+                    .SelectStatesAndCities {
+                        flex-direction: column;
+                        gap: 10px;
+                        select {
+                            width: 100%;
+                        }
                     }
                 }
-            }
 
-            form {
                 .buttonSection {
                     button {
                         font-size: .9rem;
@@ -195,49 +233,119 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 640px) {
     #mainRegister {
-        .formSection {
+        .logoSection {
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #mainRegister {
+        .logoSection {
+            h1 {
+                font-size: 1rem;
+            }
+
+            #logo {
+
+                img {
+                    width: 20px;
+                    height: 20px;
+
+                }
+            }
+        }
+
+        .formRegister {
+
             form {
                 label {
-                    .selecionarEstadosEMunicipios {
-                        flex-direction: column;
-                        gap: 10px;
-
+                    input {
+                        font-size: .8rem;
+                    }
+                    .SelectStatesAndCities {
                         select {
-                            width: 100%;
+                            font-size: .8rem;
                         }
+                    }
+                }
+
+                .buttonSection {
+                    button {
+                        font-size: .8rem;
                     }
                 }
             }
         }
     }
 }
-
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 410px) {
     #mainRegister {
-
-        .formSection {
+        .logoSection {
             h1 {
-                font-size: 1.8rem;
-
-                button {
-                    .icone {
-                        font-size: 1.7rem;
-                    }
-                }
+                font-size: 1.4rem;
             }
+        }
+
+        .formRegister {
+            border-radius: 20px 20px 0px 0px;
 
             form {
+                justify-content: flex-start;
                 label {
-                    font-weight: 400;
+                    input {
+                        height: 20px;
+                        padding: .6px;
+                        font-size: .7rem;
+                    }
+                    .SelectStatesAndCities {
+                        select {
+                            height: 20px;
+                            padding: .6px;
+                            font-size: .7rem;                        }
+                    }
                 }
 
                 .buttonSection {
                     button {
-                        font-size: .8rem;
-                        font-weight: 600;
-                        padding: 7px 9px;
+                        font-size: .7rem;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 340px) {
+    #mainRegister {
+        .logoSection {
+            h1 {
+                font-size: .8rem;
+            }
+        }
+
+        .formRegister {
+
+            form {
+                justify-content: flex-start;
+                label {
+                    input {
+                        
+                        font-size: .6rem;
+                    }
+                    .SelectStatesAndCities {
+                        select {
+                           
+                            font-size: .6rem;                        }
+                    }
+                }
+
+                .buttonSection {
+                    button {
+                        font-size: .6rem;
                     }
                 }
             }

@@ -1,45 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
 import axios from 'axios';
 
 const SelectStateAndCity = ({ selectedCityName, selectedState, setSelectedCityName, setSelectedState }) => {
-    const [states, setStates] = useState([]);
-    const [cities, setCities] = useState([]);
-    const [loadingStates, setLoadingStates] = useState(true);
-    const [loadingCities, setLoadingCities] = useState(false);
     const [selectedStateCode, setSelectedStateCode] = useState('');
     const [selectedCity, setSelectedCity] = useState({});
 
-    useEffect(() => {
-        const fetchStates = async () => {
-            try {
-                const response = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
-                setStates(response.data);
-                setLoadingStates(false);
-            } catch (error) {
-                console.error('Error loading states:', error);
-                setLoadingStates(false);
-            }
-        };
+    const { data: states, isLoading: loadingStates } = useQuery('states', async () => {
+        const response = await axios.get('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+        return response.data;
+    });
 
-        fetchStates();
-    }, []);
-
-    useEffect(() => {
-        const fetchCities = async () => {
-            if (selectedStateCode !== '') {
-                try {
-                    const response = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedStateCode}/municipios`);
-                    setCities(response.data);
-                    setLoadingCities(false);
-                } catch (error) {
-                    console.error('Error loading cities:', error);
-                    setLoadingCities(false);
-                }
-            }
-        };
-
-        fetchCities();
-    }, [selectedStateCode]);
+    const { data: cities, isLoading: loadingCities } = useQuery(['cities', selectedStateCode], async () => {
+        if (selectedStateCode !== '') {
+            const response = await axios.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedStateCode}/municipios`);
+            return response.data;
+        }
+        return [];
+    });
 
     const sortStatesAlphabetically = (states) => {
         return states.sort((a, b) => a.nome.localeCompare(b.nome));
@@ -59,8 +37,8 @@ const SelectStateAndCity = ({ selectedCityName, selectedState, setSelectedCityNa
 
     return (
         <section className='SelectStatesAndCities'>
-
-            <select id="selectedState"
+            <select
+                id="selectedState"
                 disabled={loadingStates}
                 onChange={handleStateChange}
                 required
@@ -75,15 +53,14 @@ const SelectStateAndCity = ({ selectedCityName, selectedState, setSelectedCityNa
                         </option>
                     ))
                 )}
-
             </select>
-
-            <select id="selectedCity"
-                disabled={loadingCities}
+            <select
+                id="selectedCity"
+                disabled={loadingCities || selectedStateCode === ''}
                 onChange={handleCityChange}
                 required
-                value={selectedCity.nome} >
-                <option value='' selected>Selecione um município:</option>
+                value={selectedCity.nome}>
+                <option value='' selected>Selecione um município</option>
                 {loadingCities ? (
                     <option value="">Carregando...</option>
                 ) : (
@@ -94,7 +71,6 @@ const SelectStateAndCity = ({ selectedCityName, selectedState, setSelectedCityNa
                     ))
                 )}
             </select>
-
         </section>
     );
 };
