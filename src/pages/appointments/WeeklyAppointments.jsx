@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react'
-import Header from '../../componentes/header/Header'
-import Nav from '../../componentes/nav/Nav'
-import Sidebar from '../../componentes/sidebar/Sidebar'
+import Header from '../../components/header/Header'
+import Nav from '../../components/nav/Nav'
+import Sidebar from '../../components/sidebar/Sidebar'
 import { BsTelephoneFill } from "react-icons/bs";
 import { FaTrash, FaUserClock } from "react-icons/fa";
 import { MdDesignServices, MdSchedule } from "react-icons/md";
 import { RiCalendarScheduleLine } from "react-icons/ri";
 import './Appointments.scss'
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import useAxios from '../../hooks/useAxios';
 import useFetch from '../../hooks/useFetch';
-import IsLoading from '../../componentes/isLoading/IsLoading';
+import IsLoading from '../../components/isLoading/IsLoading';
 import { useMutation } from 'react-query';
-import Notification from '../../componentes/notification/Notification';
+import Notification from '../../components/notification/Notification';
 
 const WeeklyAppointments = () => {
     const [errorMessage, setErrorMessage] = useState('');

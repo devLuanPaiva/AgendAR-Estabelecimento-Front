@@ -3,9 +3,9 @@ import logo from '../../images/logoWhite.png'
 import './Authentication.scss'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import Title from '../../componentes/titles/Title'
+import Title from '../../components/titles/Title'
 import { Link, useNavigate } from 'react-router-dom'
-import Notification from '../../componentes/notification/Notification'
+import Notification from '../../components/notification/Notification'
 import useForm from '../../hooks/useForm'
 import { FaRegUser, FaRegEyeSlash } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
@@ -101,7 +101,7 @@ const Authentication = () => {
                     </section>
                     <section className="buttonSection">
                         <Link to={'/'} className='forgotPassword'>Esqueceu a senha?</Link>
-                        <button type='submit'>Acessar</button>
+                        <button type='submit' className='btn-blue'>Acessar</button>
                         <p>Não tem uma conta? <Link id='linkAuthentication' to='/registrarEstabelecimento'>Registre-se aqui</Link></p>
                     </section>
                 </form>

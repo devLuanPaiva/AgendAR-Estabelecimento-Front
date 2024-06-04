@@ -1,6 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Fasthand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 header {
     width: 100%;
     display: flex;
@@ -9,7 +8,7 @@ header {
     box-sizing: border-box;
 
     h1 {
-        font-family: "Poppins", sans-serif;
+        font-family: $font-stack;
         font-weight: 800;
         font-style: normal;
 
@@ -74,10 +73,9 @@ main {
                 color: #fff;
                 margin: 0px 0px 0px 25px;
 
-            }
-
-            h2::first-letter {
-                text-transform: uppercase;
+                &::first-letter {
+                    text-transform: uppercase;
+                }
             }
 
             .registerLink {
@@ -222,7 +220,7 @@ footer {
             .text {
                 font-size: 1.3em;
                 color: #309FFF;
-                font-family: 'Fasthand', cursive;
+                font-family: $font-fasthand;
             }
         }
     }

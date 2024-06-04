@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import logo from '../../images/logoWhite.png'
 import './Register.scss';
 import axios from 'axios';
-import Title from '../../componentes/titles/Title';
-import SelectStateAndCity from '../../componentes/selectStateAndCity/SelectStateAndCity';
-import Notification from '../../componentes/notification/Notification';
+import Title from '../../components/titles/Title';
+import SelectStateAndCity from '../../components/selectStateAndCity/SelectStateAndCity';
+import Notification from '../../components/notification/Notification';
 import useForm from '../../hooks/useForm';
 
 const Register = () => {
@@ -147,9 +147,9 @@ const Register = () => {
                             onChange={handleInputChange}
                         />
                     </label>
-                    <div className="buttonSection">
-                        <button type='submit'>Registrar</button>
-                    </div>
+                    <section className="buttonSection">
+                        <button type='submit' className='btn-blue'>Registrar</button>
+                    </section>
                 </form>
             </section>
         </main>

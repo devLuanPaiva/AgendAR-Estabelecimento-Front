@@ -1,16 +1,16 @@
 import React, { useContext, useState } from 'react';
-import Header from '../../componentes/header/Header';
-import Nav from '../../componentes/nav/Nav';
-import Sidebar from '../../componentes/sidebar/Sidebar';
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
+import Header from '../../components/header/Header';
+import Nav from '../../components/nav/Nav';
+import Sidebar from '../../components/sidebar/Sidebar';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import './Schedules.scss';
 import { MdEdit } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import Notification from '../../componentes/notification/Notification';
+import Notification from '../../components/notification/Notification';
 import useFetch from '../../hooks/useFetch';
-import IsLoading from '../../componentes/isLoading/IsLoading';
+import IsLoading from '../../components/isLoading/IsLoading';
 import { useMutation } from 'react-query';
 import useAxios from '../../hooks/useAxios';
 

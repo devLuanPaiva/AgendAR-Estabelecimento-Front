@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import './Dashboard.scss';
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
-import Header from '../../componentes/header/Header';
-import Sidebar from '../../componentes/sidebar/Sidebar';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
+import Header from '../../components/header/Header';
+import Sidebar from '../../components/sidebar/Sidebar';
 import { IoPeople } from "react-icons/io5";
 import { GiProgression } from "react-icons/gi";
-import MapsAPI from '../../componentes/maps/MapsAPI';
+import MapsAPI from '../../components/maps/MapsAPI';
 import useFetch from '../../hooks/useFetch';
-import IsLoading from '../../componentes/isLoading/IsLoading';
+import IsLoading from '../../components/isLoading/IsLoading';
 
 const Dashboard = () => {
     const { authTokens } = useContext(AuthContext);

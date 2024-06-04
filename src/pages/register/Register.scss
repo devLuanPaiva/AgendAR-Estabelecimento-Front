@@ -1,3 +1,4 @@
+@import '../../styles/mixins.scss';
 #mainRegister {
     background-image: url('../../images/backgroundImage.jpg');
     background-position: center center;
@@ -93,7 +94,7 @@
                     select {
                         width: 45%;
                         padding: 6px;
-                        height: 30px;
+                        height: 40px;
                         border: 1px solid #757575;
                         background-color: #f1f1f1;
                         border-radius: 4px;
@@ -117,7 +118,7 @@
                     width: 100%;
                     padding: 6px;
                     text-indent: 5px;
-                    height: 30px;
+                    height: 40px;
                     border: 1px solid #757575;
                     background-color: #f1f1f1;
                     border-radius: 4px;
@@ -137,22 +138,10 @@
                 display: flex;
                 justify-content: flex-end;
 
-                button {
-                    background-color: #010E42;
-                    color: #fff;
-                    font-weight: 700;
-                    font-size: 1.1rem;
-                    padding: 10px 12px;
-                    border-radius: 5px;
-                    border: 1px solid #010E42;
-                    box-sizing: border-box;
-
-                    &:hover {
-                        background-color: #001E64;
-                        border: 1px solid #001E64;
-                        cursor: pointer;
-                    }
+                .btn-blue {
+                    @include button-style(#010E42, #fff);
                 }
+
             }
         }
     }
@@ -205,6 +194,7 @@
             min-height: 90vh;
             gap: 0px;
             padding-bottom: 20px;
+
             form {
                 label {
                     input {
@@ -215,6 +205,7 @@
                     .SelectStatesAndCities {
                         flex-direction: column;
                         gap: 10px;
+
                         select {
                             width: 100%;
                         }
@@ -222,7 +213,7 @@
                 }
 
                 .buttonSection {
-                    button {
+                    .btn-blue {
                         font-size: .9rem;
                         font-weight: 600;
                         padding: 8px 10px;
@@ -267,6 +258,7 @@
                     input {
                         font-size: .8rem;
                     }
+
                     .SelectStatesAndCities {
                         select {
                             font-size: .8rem;
@@ -275,7 +267,7 @@
                 }
 
                 .buttonSection {
-                    button {
+                    .btn-blue {
                         font-size: .8rem;
                     }
                 }
@@ -283,6 +275,7 @@
         }
     }
 }
+
 @media screen and (max-width: 410px) {
     #mainRegister {
         .logoSection {
@@ -296,22 +289,25 @@
 
             form {
                 justify-content: flex-start;
+
                 label {
                     input {
                         height: 20px;
                         padding: .6px;
                         font-size: .7rem;
                     }
+
                     .SelectStatesAndCities {
                         select {
                             height: 20px;
                             padding: .6px;
-                            font-size: .7rem;                        }
+                            font-size: .7rem;
+                        }
                     }
                 }
 
                 .buttonSection {
-                    button {
+                    .btn-blue {
                         font-size: .7rem;
                     }
                 }
@@ -319,6 +315,7 @@
         }
     }
 }
+
 @media screen and (max-width: 340px) {
     #mainRegister {
         .logoSection {
@@ -331,20 +328,23 @@
 
             form {
                 justify-content: flex-start;
+
                 label {
                     input {
-                        
+
                         font-size: .6rem;
                     }
+
                     .SelectStatesAndCities {
                         select {
-                           
-                            font-size: .6rem;                        }
+
+                            font-size: .6rem;
+                        }
                     }
                 }
 
                 .buttonSection {
-                    button {
+                    .btn-blue {
                         font-size: .6rem;
                     }
                 }

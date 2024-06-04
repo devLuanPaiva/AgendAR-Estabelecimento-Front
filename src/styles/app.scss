@@ -1,4 +1,5 @@
-@import '../styles/variables.scss';
+@import './variables.scss';
+@import './mixins.scss';
 
 .expandMain,
 .collapseMain {
@@ -83,19 +84,8 @@
             justify-content: flex-end;
             margin-top: 20px;
 
-            button {
-                padding: 10px 20px;
-                font-size: 16px;
-                color: #fff;
-                background-color: #000;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-
-                &:hover {
-                    background-color: #000000e5;
-                }
+            .btn-black {
+                @include button-style(#000, #fff);
             }
         }
     }

@@ -2,13 +2,13 @@ import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext';
 import axios from 'axios';
-import Sidebar from '../../componentes/sidebar/Sidebar';
+import Sidebar from '../../components/sidebar/Sidebar';
 import './Location.scss'
-import Header from '../../componentes/header/Header';
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
-import Nav from '../../componentes/nav/Nav';
+import Header from '../../components/header/Header';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
+import Nav from '../../components/nav/Nav';
 import useAxios from '../../hooks/useAxios';
-import Notification from '../../componentes/notification/Notification';
+import Notification from '../../components/notification/Notification';
 
 const EditLocation = () => {
     const { isLoaded } = useJsApiLoader({
@@ -111,7 +111,7 @@ const EditLocation = () => {
                                     </GoogleMap>
 
                                     <section className="buttonLocation" >
-                                        <button onClick={handleSaveClick}>Salvar Coordenadas</button>
+                                        <button onClick={handleSaveClick} className='btn-black' >Salvar Coordenadas</button>
                                     </section>
                                 </>
                             ) : <></>

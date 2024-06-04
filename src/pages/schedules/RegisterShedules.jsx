@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
-import Header from '../../componentes/header/Header';
-import Nav from '../../componentes/nav/Nav';
-import Sidebar from '../../componentes/sidebar/Sidebar';
+import Header from '../../components/header/Header';
+import Nav from '../../components/nav/Nav';
+import Sidebar from '../../components/sidebar/Sidebar';
 import './Schedules.scss';
 import useAxios from '../../hooks/useAxios';
-import Notification from '../../componentes/notification/Notification';
+import Notification from '../../components/notification/Notification';
 import useForm from '../../hooks/useForm';
 
 const RegisterShedules = () => {
@@ -92,8 +92,7 @@ const RegisterShedules = () => {
                         </select>
                     </label>
                     <label>
-                        Horário ínicial:
-                        <input
+                        Horário ínicial<input
                             type="time"
                             name="startTime"
                             value={formValues.startTime}
@@ -102,8 +101,7 @@ const RegisterShedules = () => {
                         />
                     </label>
                     <label>
-                        Horário final:
-                        <input
+                        Horário final<input
                             type="time"
                             name="endTime"
                             value={formValues.endTime}
@@ -112,7 +110,7 @@ const RegisterShedules = () => {
                         />
                     </label>
                     <section className="generalButton">
-                        <button type="submit">Cadastrar Horário</button>
+                        <button type="submit" className='btn-black'>Cadastrar Horário</button>
                     </section>
                 </form>
             </main>

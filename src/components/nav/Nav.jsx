@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './Nav.scss'
-import { useSidebarContext } from '../sidebar/SidebarProvider'
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider'
 
 const Nav = ({ links }) => {
     const { expandedSidebar } = useSidebarContext()

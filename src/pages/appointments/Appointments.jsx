@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
-import Header from '../../componentes/header/Header';
-import Nav from '../../componentes/nav/Nav';
-import Sidebar from '../../componentes/sidebar/Sidebar';
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
+import Header from '../../components/header/Header';
+import Nav from '../../components/nav/Nav';
+import Sidebar from '../../components/sidebar/Sidebar';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import useAxios from '../../hooks/useAxios';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { FaTrash, FaUserClock } from 'react-icons/fa';
 import { MdDesignServices, MdSchedule } from 'react-icons/md';
 import './Appointments.scss';
-import IsLoading from '../../componentes/isLoading/IsLoading';
+import IsLoading from '../../components/isLoading/IsLoading';
 import useFetch from '../../hooks/useFetch';
 import { useMutation } from 'react-query';
-import Notification from '../../componentes/notification/Notification';
+import Notification from '../../components/notification/Notification';
 const Appointments = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [message, setMessage] = useState('');

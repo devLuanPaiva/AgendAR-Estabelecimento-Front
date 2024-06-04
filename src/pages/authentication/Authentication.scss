@@ -1,3 +1,4 @@
+@import '../../styles/mixins.scss';
 #mainAuthentication {
     background-image: url('../../images/backgroundImage.jpg');
     background-position: center center;
@@ -165,21 +166,8 @@
                     }
                 }
 
-                button {
-                    background-color: #010E42;
-                    color: #fff;
-                    font-weight: 700;
-                    font-size: 1.1rem;
-                    padding: 10px 12px;
-                    border-radius: 5px;
-                    border: 1px solid #010E42;
-                    box-sizing: border-box;
-
-                    &:hover {
-                        background-color: #001E64;
-                        border: 1px solid #001E64;
-                        cursor: pointer;
-                    }
+                .btn-blue {
+                    @include button-style(#010E42, #fff);
                 }
 
             }
@@ -250,7 +238,6 @@
                 }
 
                 .buttonSection {
-
                     button,
                     p,
                     .forgotPassword {
@@ -322,8 +309,7 @@
                 }
 
                 .buttonSection {
-
-                    button,
+                    .btn-blue,
                     p,
                     .forgotPassword {
                         font-size: .8rem;
@@ -374,7 +360,7 @@
 
                 .buttonSection {
 
-                    button,
+                    .btn-blue,
                     p,
                     .forgotPassword {
                         font-size: .7rem;
@@ -411,7 +397,7 @@
 
                 .buttonSection {
 
-                    button,
+                    .btn-blue,
                     p,
                     .forgotPassword {
                         font-size: .6rem;

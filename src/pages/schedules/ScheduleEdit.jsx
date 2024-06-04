@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-import Header from '../../componentes/header/Header';
-import Nav from '../../componentes/nav/Nav';
-import Sidebar from '../../componentes/sidebar/Sidebar';
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
+import Header from '../../components/header/Header';
+import Nav from '../../components/nav/Nav';
+import Sidebar from '../../components/sidebar/Sidebar';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import useAxios from '../../hooks/useAxios';
 import { useParams } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
-import Notification from '../../componentes/notification/Notification';
-import IsLoading from '../../componentes/isLoading/IsLoading';
+import Notification from '../../components/notification/Notification';
+import IsLoading from '../../components/isLoading/IsLoading';
 
 const fetchScheduleById = async (api, idSchedule) => {
     const response = await api.get(`horarios/${idSchedule}`);
@@ -130,7 +130,7 @@ const ScheduleEdit = () => {
                         />
                     </label>
                     <section className="generalButton">
-                        <button type="submit">Atualizar Horário</button>
+                        <button type="submit" className='btn-black'>Atualizar Horário</button>
                     </section>
                 </form>
             </main>

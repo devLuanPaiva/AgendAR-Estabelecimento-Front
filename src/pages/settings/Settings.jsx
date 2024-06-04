@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import useAxios from '../../hooks/useAxios';
-import Header from '../../componentes/header/Header';
-import Nav from '../../componentes/nav/Nav';
-import Sidebar from '../../componentes/sidebar/Sidebar';
+import Header from '../../components/header/Header';
+import Nav from '../../components/nav/Nav';
+import Sidebar from '../../components/sidebar/Sidebar';
 import './Settings.scss'
-import Notification from '../../componentes/notification/Notification';
+import Notification from '../../components/notification/Notification';
 
 const Settings = () => {
   const api = useAxios();

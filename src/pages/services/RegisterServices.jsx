@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import './Services.scss'
-import Header from '../../componentes/header/Header';
-import Nav from '../../componentes/nav/Nav';
-import Sidebar from '../../componentes/sidebar/Sidebar';
-import { useSidebarContext } from '../../componentes/sidebar/SidebarProvider';
+import Header from '../../components/header/Header';
+import Nav from '../../components/nav/Nav';
+import Sidebar from '../../components/sidebar/Sidebar';
+import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import useAxios from '../../hooks/useAxios';
-import Notification from '../../componentes/notification/Notification';
+import Notification from '../../components/notification/Notification';
 import useForm from '../../hooks/useForm';
 
 const RegisterServices = () => {
@@ -102,7 +102,9 @@ const RegisterServices = () => {
                             <p className="characterCount">{descriptionCount}/200 caracteres</p>
                         </div>
                     </label>
-                    <section className="generalButton"><button type="submit">Cadastrar Serviço</button></section>
+                    <section className="generalButton">
+                        <button type="submit" className='btn-black'>Cadastrar Serviço</button>
+                    </section>
                 </form>
             </main>
             <Sidebar />

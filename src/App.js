@@ -3,7 +3,7 @@ import './styles/app.scss'
 import LandingPage from './pages/landingPage/LandingPage';
 import Authentication from './pages/authentication/Authentication';
 import AuthContextProvider from './context/AuthContext';
-import SidebarProvider from "./componentes/sidebar/SidebarProvider";
+import SidebarProvider from "./components/sidebar/SidebarProvider";
 import ProtectedRouter from "./context/ProtectedRouter";
 import Register from "./pages/register/Register";
 import Schedules from "./pages/schedules/Schedules";
