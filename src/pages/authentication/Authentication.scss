@@ -93,7 +93,7 @@
                     .iconLeft {
                         position: absolute;
                         left: 10px;
-                        top: 20%;
+                        top: 18%;
                         margin: 0px;
                         padding: 0px;
                         color: #6f6e6e;
@@ -102,7 +102,7 @@
                     button {
                         position: absolute;
                         right: 10px;
-                        top: 20%;
+                        top: 12%;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -118,15 +118,15 @@
 
                     input {
                         width: 100%;
-                        padding: 8px;
+                        padding: 10px 8px;
                         margin-bottom: 20px;
                         text-indent: 20px;
-                        height: 30px;
+                        height: 40px;
                         border: 1px solid #757575;
                         background-color: #f1f1f1;
                         border-radius: 4px;
                         transition: border-color 0.3s;
-                        font-size: 1.1rem;
+                        font-size: 1rem;
 
                         &:focus {
                             border-color: #242424;
@@ -242,7 +242,7 @@
 
                     label {
                         input {
-                            height: 25px;
+                            height: 35px;
                             padding: 7px;
                             font-size: .9rem;
                         }
@@ -353,7 +353,7 @@
                 .credentials {
                     label {
                         input {
-                            height: 20px;
+                            height: 30px;
                             padding: 6px;
                             font-size: .7rem;
                         }

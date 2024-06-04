@@ -1,39 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
-.expandMainAppointments,
-.collapseMainAppointments {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    position: relative;
-    top: 0px;
-    gap: 0px;
-    padding: 10px 5%;
-    box-sizing: border-box;
-
-    h2 {
-        color: #045180;
-        text-align: justify;
-    }
-
-    p {
-        width: 100%;
-        text-align: center;
-    }
-
-    .formAppointment,
+.expandMain,
+.collapseMain {
     .listAppointments {
-        margin: 0 auto;
-        width: 100%;
-        max-height: 100%;
-        display: flex;
-        box-sizing: border-box;
-
-    }
-
-    .listAppointments {
-        list-style-type: none;
         padding: 10px 0px;
         margin: 0;
         flex-wrap: wrap;
@@ -43,7 +12,7 @@
         color: #fff;
         box-sizing: border-box;
 
-        li {
+        .liAppointments {
             background-color: #fff;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             width: 240px;
@@ -103,70 +72,12 @@
         }
     }
 
-    .formAppointment {
-        flex-direction: column;
-        padding: 20px;
-        box-sizing: border-box;
-
-        label {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-
-            input,
-            select {
-                margin-top: 5px;
-                padding: 10px;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                transition: border-color 0.3s;
-
-                &:focus {
-                    border-color: #007bff;
-                    outline: none;
-                }
-            }
-        }
-
-        .buttonFormAppointment {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-
-            button {
-                padding: 10px 20px;
-                font-size: 16px;
-                color: #fff;
-                background-color: #000;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-
-                &:hover {
-                    background-color: #000000e5;
-                }
-            }
-        }
-    }
-
-}
-
-.expandMainAppointments {
-    left: 8%;
-    max-width: 92%;
-}
-
-.collapseMainAppointments {
-    left: 18%;
-    max-width: 82%;
 }
 
 @media screen and (max-width: 1200px) {
 
-    .expandMainAppointments,
-    .collapseMainAppointments {
+    .expandMain,
+    .collapseMain {
         padding-left: 73px;
         gap: 10px;
 
@@ -181,13 +92,13 @@
 }
 
 @media screen and (max-width: 650px) {
-    .expandMainAppointments {
+    .expandMain {
         left: 0%;
         bottom: 100px;
         max-width: 100%;
         padding: 20px 25px;
 
-        .formAppointment{
+        .formAppointment {
             padding: 0px 10px;
             width: 100%;
         }
@@ -195,11 +106,11 @@
 }
 
 @media(min-width: 500px) and (max-width:650px) {
-    .expandMainAppointments {
+    .expandMain {
         .listAppointments {
             gap: 10px;
 
-            li {
+            .liAppointments {
                 padding: 10px;
                 width: 220px;
 
@@ -220,14 +131,17 @@
 }
 
 @media screen and (max-width: 500px) {
-    .expandMainAppointments {
+    .expandMain {
         h2 {
             font-size: 1.2rem;
         }
+
         .formAppointment {
             label {
                 font-size: .9rem;
-                input, select {
+
+                input,
+                select {
                     font-size: .9rem;
                     padding: 9px;
                 }
@@ -244,11 +158,11 @@
 }
 
 @media(min-width: 460px) and (max-width:500px) {
-    .expandMainAppointments {
+    .expandMain {
         .listAppointments {
             gap: 10px;
 
-            li {
+            .liAppointments {
                 padding: 8px;
                 width: 200px;
 
@@ -277,11 +191,11 @@
 }
 
 @media screen and (max-width: 460px) {
-    .expandMainAppointments {
+    .expandMain {
         .listAppointments {
             gap: 15px;
 
-            li {
+            .liAppointments {
                 width: 85%;
 
                 h3 {
@@ -298,13 +212,13 @@
 }
 
 @media screen and (max-width: 360px) {
-    .expandMainAppointments {
+    .expandMain {
         h2 {
             font-size: 1rem;
         }
 
         .listAppointments {
-            li {
+            .liAppointments {
 
                 p {
                     font-size: .7rem;
@@ -322,10 +236,13 @@
                 }
             }
         }
+
         .formAppointment {
             label {
                 font-size: .8rem;
-                input, select {
+
+                input,
+                select {
                     font-size: .8rem;
                     padding: 8px;
                 }
@@ -342,13 +259,13 @@
 }
 
 @media screen and (max-width: 300px) {
-    .expandMainAppointments {
+    .expandMain {
         h2 {
             font-size: .9rem;
         }
 
         .listAppointments {
-            li {
+            .liAppointments {
 
                 h3 {
                     font-size: .9rem;
@@ -370,10 +287,13 @@
                 }
             }
         }
+
         .formAppointment {
             label {
                 font-size: .7rem;
-                input, select {
+
+                input,
+                select {
                     font-size: .7rem;
                     padding: 7px;
                 }

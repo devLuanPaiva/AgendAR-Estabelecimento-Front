@@ -30,13 +30,13 @@ const Authentication = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://127.0.0.1:8000/token/', {
+            const response = await axios.post('http://3.233.229.141:8000/token/', {
                 username: formValues.username,
                 password: formValues.password,
             });
             const { access, refresh } = response.data;
 
-            const establishment = await axios.get('http://127.0.0.1:8000/user-info/', {
+            const establishment = await axios.get('http://3.233.229.141:8000/user-info/', {
                 headers: {
                     Authorization: `Bearer ${access}`,
                 },

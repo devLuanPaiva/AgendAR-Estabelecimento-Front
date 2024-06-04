@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './styles/app.scss'
 import LandingPage from './pages/landingPage/LandingPage';
 import Authentication from './pages/authentication/Authentication';
 import AuthContextProvider from './context/AuthContext';

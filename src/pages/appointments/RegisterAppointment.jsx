@@ -126,11 +126,10 @@ const RegisterAppointment = () => {
             <Nav links={navLinks} />
             {errorMessage && <Notification type="error" message={errorMessage} />}
             {message && <Notification type="success" message={message} />}
-            <main className={`${!expandedSidebar ? 'expandMainAppointments' : 'collapseMainAppointments'}`}>
+            <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
                 <h2>Novo agendamento:</h2>
-
                 {listServices.length > 0 && listSchedules.length > 0 ? (
-                    <form onSubmit={handleSubmit} className='formAppointment'>
+                    <form onSubmit={handleSubmit} className='generalForm'>
                         <label>
                             Nome do clíente<input
                                 type="text"
@@ -191,7 +190,7 @@ const RegisterAppointment = () => {
                                 ))}
                             </select>
                         </label>
-                        <section className="buttonFormAppointment">
+                        <section className="generalButton">
                             <button type="submit">Agendar</button>
                         </section>
                     </form>

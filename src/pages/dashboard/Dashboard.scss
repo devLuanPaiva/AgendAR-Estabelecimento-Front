@@ -1,15 +1,8 @@
-.expandMainDashboard,
-.collapseMainDashboard {
-    display: flex;
+.expandMain,
+.collapseMain {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    position: relative;
-    top: 0px;
-    gap: 20px;
-    padding: 0px 5%;
-    box-sizing: border-box;
-
 
     .appointmentQuantity {
         gap: 25px;
@@ -89,18 +82,18 @@
 }
 
 
-.expandMainDashboard {
+.expandMain {
     left: 8%;
     max-width: 92%;
 }
 
-.collapseMainDashboard {
+.collapseMain {
     left: 18%;
     max-width: 82%;
 }
 
 @media screen and (max-width: 650px) {
-    .expandMainDashboard {
+    .expandMain {
         left: 0%;
         max-width: 100%;
         padding: 0px;
@@ -139,7 +132,7 @@
     }
 }
 @media screen and (max-width: 450px) {
-    .expandMainDashboard {
+    .expandMain {
         .currentLocation{
             h2, .maps{
                 font-size: 1rem;
@@ -170,7 +163,7 @@
     }
 }
 @media screen and (max-width: 350px) {
-    .expandMainDashboard {
+    .expandMain {
 
         .appointmentQuantity {
 
@@ -197,7 +190,7 @@
     }
 }
 @media screen and (max-width: 300px) {
-    .expandMainDashboard {
+    .expandMain {
 
         .appointmentQuantity {
             gap: 7px;

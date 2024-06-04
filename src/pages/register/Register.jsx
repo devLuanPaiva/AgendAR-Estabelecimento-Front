@@ -41,7 +41,7 @@ const Register = () => {
             },
         };
         try {
-            const response = await axios.post('http://127.0.0.1:8000/estabelecimento/', dados);
+            const response = await axios.post('http://3.233.229.141:8000/estabelecimento/', dados);
             console.log(response.data);
             if (response.status === 201) {
                 setMessage('Registrado com sucesso!');

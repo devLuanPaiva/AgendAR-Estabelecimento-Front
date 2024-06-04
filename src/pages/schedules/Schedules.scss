@@ -1,35 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
-.expandMainSchedules,
-.collapseMainSchedules {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    position: relative;
-    top: 0px;
-    gap: 0px;
-    padding: 0px 5%;
-    box-sizing: border-box;
-
-    h2 {
-        color: #045180;
-        text-align: justify;
-    }
-
-    p {
-        width: 100%;
-        text-align: center;
-    }
-
-    .formSchedules,
-    .ulSchedules {
-        margin: 0 auto;
-        display: flex;
-        box-sizing: border-box;
-
-    }
-
+.expandMain,
+.collapseMain {
+    
     .ulSchedules {
         width: 95%;
         flex-direction: row;
@@ -118,72 +91,13 @@
         }
     }
 
-    .formSchedules {
-        flex-direction: column;
-        padding: 20px;
-        width: 90%;
-        box-sizing: border-box;
-
-        label {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-
-            input,
-            select {
-                margin-top: 5px;
-                padding: 10px;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                transition: border-color 0.3s;
-
-                &:focus {
-                    border-color: #007bff;
-                    outline: none;
-                }
-            }
-        }
-
-        .buttonFormSchedules {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
-
-            button {
-                padding: 10px 20px;
-                font-size: 16px;
-                color: #fff;
-                background-color: #000;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-
-                &:hover {
-                    background-color: #000000e5;
-                }
-            }
-        }
-    }
-
 }
 
-.expandMainSchedules {
-    left: 8%;
-    max-width: 92%;
-}
-
-.collapseMainSchedules {
-    left: 18%;
-    max-width: 82%;
-}
 
 @media screen and (max-width: 1200px) {
 
-    .expandMainSchedules,
-    .collapseMainSchedules {
+    .expandMain,
+    .collapseMain {
         padding-left: 73px;
         gap: 10px;
     }
@@ -192,8 +106,8 @@
 
 @media screen and (max-width: 1000px) {
 
-    .expandMainSchedules,
-    .collapseMainSchedules {
+    .expandMain,
+    .collapseMain {
         .ulSchedules {
             justify-content: space-around;
             width: 100%;
@@ -207,8 +121,8 @@
 
 @media screen and (max-width: 760px) {
 
-    .expandMainSchedules,
-    .collapseMainSchedules {
+    .expandMain,
+    .collapseMain {
         .ulSchedules {
             .liScheduleOfDay {
                 width: 80%;
@@ -219,7 +133,7 @@
 }
 
 @media screen and (max-width: 650px) {
-    .expandMainSchedules {
+    .expandMain {
         left: 0%;
         max-width: 100%;
         padding: 20px 25px;
@@ -233,7 +147,7 @@
 }
 
 @media screen and (max-width: 500px) {
-    .expandMainSchedules {
+    .expandMain {
         h2 {
             font-size: 1.2rem;
         }
@@ -241,7 +155,7 @@
         .ulSchedules {
             .liScheduleOfDay {
                 width: 90%;
-
+                height: 180px;
                 h3 {
                     font-size: 1rem;
                 }
@@ -292,7 +206,7 @@
 }
 
 @media screen and (max-width: 360px) {
-    .expandMainSchedules {
+    .expandMain {
         h2 {
             font-size: 1rem;
         }
@@ -300,7 +214,7 @@
         .ulSchedules {
             .liScheduleOfDay {
                 width: 90%;
-                height: 170px;
+                height: 160px;
 
                 h3 {
                     font-size: .8rem;
@@ -352,14 +266,14 @@
 }
 
 @media screen and (max-width: 300px) {
-    .expandMainSchedules {
+    .expandMain {
         h2 {
             font-size: .9rem;
         }
 
         .ulSchedules {
             .liScheduleOfDay {
-                height: 150px;
+                height: 140px;
                 width: 95%;
 
                 h3 {

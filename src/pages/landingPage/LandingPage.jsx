@@ -83,7 +83,6 @@ const LandingPage = () => {
                         </div>
                     </article>
                 </section>
-                <hr className="line" />
                 <section className="phraseSection">
                     <h2>Venha para a Agend<span className="changeColor">AR</span></h2>
                     <article>

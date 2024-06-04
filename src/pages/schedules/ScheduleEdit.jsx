@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import Header from '../../componentes/header/Header';
 import Nav from '../../componentes/nav/Nav';
 import Sidebar from '../../componentes/sidebar/Sidebar';
@@ -7,6 +8,24 @@ import useAxios from '../../hooks/useAxios';
 import { useParams } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import Notification from '../../componentes/notification/Notification';
+import IsLoading from '../../componentes/isLoading/IsLoading';
+
+const fetchScheduleById = async (api, idSchedule) => {
+    const response = await api.get(`horarios/${idSchedule}`);
+    return response.data;
+};
+
+const updateSchedule = async (api, { idSchedule, formValues }) => {
+    const startTime = formValues.startTime.slice(0, 5);
+    const endTime = formValues.endTime.slice(0, 5);
+    const response = await api.patch(`horarios/${idSchedule}/`, {
+        horario_fim: endTime,
+        horario_inicio: startTime,
+        dia_da_semana: formValues.dayOfTheWeek,
+        turno: formValues.shift,
+    });
+    return response.data;
+};
 
 const ScheduleEdit = () => {
     const { expandedSidebar } = useSidebarContext();
@@ -15,71 +34,59 @@ const ScheduleEdit = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [message, setMessage] = useState('');
     const [formValues, handleInputChange, setFormValues] = useForm({ startTime: '', endTime: '', shift: '', dayOfTheWeek: '' });
-    const navLinks = [
-        { text: 'Atual', href: '/horarios/' },
-        { text: 'Cadastrar', href: '/horarios/cadastrar/' },
-        { text: 'Editar', href: `/horarios/editar/${idSchedule}` },
-    ];
+    const queryClient = useQueryClient();
 
-    const fetchSchedule = useCallback(async () => {
-        try {
-            const response = await api.get(`horarios/${idSchedule}`);
-            if (response.status === 200) {
-                setFormValues({
-                    startTime: response.data.horario_inicio,
-                    endTime: response.data.horario_fim,
-                    dayOfTheWeek: response.data.dia_da_semana,
-                    shift: response.data.turno,
-                });
-            }
-        } catch (error) {
-            console.error('Erro ao obter lista de horários: ', error);
-        }
-    }, [idSchedule, api, setFormValues]);
-
-    useEffect(() => {
-        fetchSchedule();
-    }, [fetchSchedule]);
-
-    const handleUpdate = async (e) => {
-        e.preventDefault();
-        try {
-            const startTime = formValues.startTime.slice(0, 5);
-            const endTime = formValues.endTime.slice(0, 5);
-            const response = await api.patch(`horarios/${idSchedule}/`, {
-                horario_fim: endTime,
-                horario_inicio: startTime,
-                dia_da_semana: formValues.dayOfTheWeek,
-                turno: formValues.shift,
+    const { isLoading } = useQuery(['schedule', idSchedule], () => fetchScheduleById(api, idSchedule), {
+        onSuccess: (data) => {
+            setFormValues({
+                startTime: data.horario_inicio,
+                endTime: data.horario_fim,
+                dayOfTheWeek: data.dia_da_semana,
+                shift: data.turno,
             });
+        }
+    });
 
-            if (response.status === 200) {
-                setMessage('Atualizado com sucesso!');
-                setTimeout(() => {
-                    setMessage('');
-                }, 3000);
-
-            }
-        } catch (error) {
-            console.error('Erro ao atualizar horário:', error);
+    const mutation = useMutation((newData) => updateSchedule(api, newData), {
+        onSuccess: () => {
+            queryClient.invalidateQueries(['schedule', idSchedule]);
+            setMessage('Atualizado com sucesso!');
+            setTimeout(() => {
+                setMessage('');
+            }, 3000);
+        },
+        onError: (error) => {
             setErrorMessage(error.response.data);
             setTimeout(() => {
                 setErrorMessage('');
             }, 3000);
         }
+    });
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        mutation.mutate({ idSchedule, formValues });
     };
+
+    if(isLoading){
+        return <IsLoading/>
+    }
+
 
     return (
         <React.Fragment>
             <Header textTitle='Horários' textPhrase='Gerencie seus horários comerciais para que seus clientes possam agendar serviços.' />
-            <Nav links={navLinks} />
+            <Nav links={[
+                { text: 'Atual', href: '/horarios/' },
+                { text: 'Cadastrar', href: '/horarios/cadastrar/' },
+                { text: 'Editar', href: `/horarios/editar/${idSchedule}` },
+            ]} />
             {errorMessage && <Notification type="error" message={errorMessage} />}
             {message && <Notification type="success" message={message} />}
-            <main className={`${!expandedSidebar ? 'expandMainSchedules' : 'collapseMainSchedules'}`}>
+            <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
                 <h2>Editar horário:</h2>
-                <form onSubmit={handleUpdate} className='formSchedules'>
-                    <label>Dia da semana:
-                        <select
+                <form onSubmit={handleUpdate} className='generalForm'>
+                    <label>Dia da semana:<select
                             id="selectedDay"
                             value={formValues.dayOfTheWeek}
                             name='dayOfTheWeek'
@@ -95,8 +102,7 @@ const ScheduleEdit = () => {
                             <option value="DOMINGO">Domingo</option>
                         </select>
                     </label>
-                    <label>Turno:
-                        <select id="selectedShift"
+                    <label>Turno:<select id="selectedShift"
                             value={formValues.shift}
                             onChange={handleInputChange}
                             name='shift'
@@ -107,8 +113,7 @@ const ScheduleEdit = () => {
                             <option value="NOITE">Noite</option>
                         </select>
                     </label>
-                    <label>Horário ínicial:
-                        <input
+                    <label>Horário ínicial:<input
                             type="time"
                             name="startTime"
                             value={formValues.startTime}
@@ -116,8 +121,7 @@ const ScheduleEdit = () => {
                             onChange={handleInputChange}
                         />
                     </label>
-                    <label>Horário final:
-                        <input
+                    <label>Horário final:<input
                             type="time"
                             name="endTime"
                             value={formValues.endTime}
@@ -125,7 +129,7 @@ const ScheduleEdit = () => {
                             onChange={handleInputChange}
                         />
                     </label>
-                    <section className="buttonFormSchedules">
+                    <section className="generalButton">
                         <button type="submit">Atualizar Horário</button>
                     </section>
                 </form>

@@ -1,38 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
-.expandMainSettings,
-.collapseMainSettings {
-    display: flex;
+.expandMain,
+.collapseMain {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    position: relative;
-    top: 0px;
-    gap: 0px;
-    padding: 0px 5%;
-    box-sizing: border-box;
 
-    h2 {
-        color: #045180;
-        text-align: justify;
-    }
 
     .formSettings {
         width: 90%;
         margin: 0 auto;
         flex-direction: column;
-        padding: 20px;
+        padding: 0px 20px;
         box-sizing: border-box;
 
         label {
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
-            font-size: 1.1rem;
+            font-size: 1rem;
+
             input {
                 margin-top: 5px;
-                padding: 10px;
-                font-size: 1.1rem;
+                padding: 2px 6px;
+                font-size: .9rem;
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 transition: border-color 0.3s;
@@ -51,8 +42,8 @@
             margin-top: 20px;
 
             button {
-                padding: 10px 20px;
-                font-size: 1.1rem;
+                padding: 8px 16px;
+                font-size: .9rem;
                 color: #fff;
                 background-color: #000;
                 border: none;
@@ -69,20 +60,20 @@
 
 }
 
-.expandMainSettings {
+.expandMain {
     left: 8%;
     max-width: 92%;
 }
 
-.collapseMainSettings {
+.collapseMain {
     left: 18%;
     max-width: 82%;
 }
 
 @media screen and (max-width: 1200px) {
 
-    .expandMainSettings,
-    .collapseMainSettings {
+    .expandMain,
+    .collapseMain {
         padding-left: 73px;
         gap: 10px;
     }
@@ -90,11 +81,12 @@
 }
 
 @media screen and (max-width: 650px) {
-    .expandMainSettings {
+    .expandMain {
         left: 0%;
         max-width: 100%;
         padding: 20px 25px;
-        .formSettings{
+
+        .formSettings {
             width: 100%;
             margin-top: 0px;
             padding-top: 0px;
@@ -103,34 +95,15 @@
 }
 
 @media screen and (max-width: 500px) {
-    .expandMainSettings {
+    .expandMain {
         h2 {
             font-size: 1.2rem;
         }
-
-        .formSettings {
-            label {
-                font-size: .9rem;
-
-                input {
-                    font-size: .9rem;
-                    padding: 9px;
-                }
-            }
-
-            .buttonFormSettings {
-                button {
-                    font-size: .9rem;
-                    padding: 8px 16px;
-                }
-            }
-        }
-
     }
 }
 
 @media screen and (max-width: 360px) {
-    .expandMainSettings {
+    .expandMain {
         h2 {
             font-size: 1rem;
         }
@@ -151,7 +124,7 @@
 
                 button {
                     font-size: .8rem;
-                    padding: 8px 16px;
+                    padding: 7px 14px;
                 }
             }
         }
@@ -160,7 +133,7 @@
 }
 
 @media screen and (max-width: 300px) {
-    .expandMainSettings {
+    .expandMain {
         h2 {
             font-size: .9rem;
         }

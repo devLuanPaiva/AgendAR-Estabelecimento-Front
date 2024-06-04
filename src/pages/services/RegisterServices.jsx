@@ -51,10 +51,10 @@ const RegisterServices = () => {
         } catch (error) {
             if (error.response && error.response.data && error.response.data.error) {
                 setErrorMessage(error.response.data.error);
-            } else if(error.response.data.nome){
+            } else if (error.response.data.nome) {
                 setErrorMessage('O nome deve ter no máximo 30 caracteres.');
             }
-             else {
+            else {
                 setErrorMessage('Erro ao cadastrar o serviço.');
             }
             setTimeout(() => {
@@ -69,27 +69,25 @@ const RegisterServices = () => {
             <Nav links={navLinks} />
             {errorMessage && <Notification type="error" message={errorMessage} />}
             {message && <Notification type="success" message={message} />}
-            <main className={`${!expandedSidebar ? 'expandMainServices' : 'collapseMainServices'}`}>
+            <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
                 <h2>Cadastre um novo serviço:</h2>
-                <form onSubmit={handleSubmit} className='formServices'>
-                    <section className="informationMain">
-                        <label>Nome do serviço: <input
-                            type="text"
-                            placeholder='Informe o nome do serviço'
-                            required
-                            name='nameService'
-                            value={formValues.nameService}
-                            onChange={handleInputChange}
-                        />
-                        </label>
-                        <label>Valor do serviço: <input
-                            type="number"
-                            name='valueService'
-                            placeholder='Informe o valor do serviço'
-                            required value={formValues.valueService}
-                            onChange={handleInputChange}
-                        /> </label>
-                    </section>
+                <form onSubmit={handleSubmit} className='generalForm formServices'>
+                    <label>Nome do serviço: <input
+                        type="text"
+                        placeholder='Informe o nome do serviço'
+                        required
+                        name='nameService'
+                        value={formValues.nameService}
+                        onChange={handleInputChange}
+                    />
+                    </label>
+                    <label>Valor do serviço: <input
+                        type="number"
+                        name='valueService'
+                        placeholder='Informe o valor do serviço'
+                        required value={formValues.valueService}
+                        onChange={handleInputChange}
+                    /> </label>
                     <label className='textBox'>Descrição:
                         <div style={{ position: 'relative' }}>
                             <textarea
@@ -104,7 +102,7 @@ const RegisterServices = () => {
                             <p className="characterCount">{descriptionCount}/200 caracteres</p>
                         </div>
                     </label>
-                    <section className="buttonFormServices" ><button type="submit">Cadastrar Serviço</button></section>
+                    <section className="generalButton"><button type="submit">Cadastrar Serviço</button></section>
                 </form>
             </main>
             <Sidebar />

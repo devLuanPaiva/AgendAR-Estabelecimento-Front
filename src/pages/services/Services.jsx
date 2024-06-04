@@ -62,13 +62,13 @@ const Services = () => {
       <Nav links={navLinks} />
       {errorMessage && <Notification type="error" message={errorMessage} />}
       {message && <Notification type="success" message={message} />}
-      <main className={`${!expandedSidebar ? 'expandMainServices' : 'collapseMainServices'}`}>
+      <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
 
         <h2>Serviços cadastrados:</h2>
         {listServices.length > 0 ?
-          <ul className='listServices'>
+          <ul className='generalList listServices '>
             {listServices.map((servico, index) => (
-              <li key={index}>
+              <li className='generalLi' key={index}>
                 <h3>{servico.nome}</h3>
                 <div className="valueAndTrash">
                   <p>{servico.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</p>

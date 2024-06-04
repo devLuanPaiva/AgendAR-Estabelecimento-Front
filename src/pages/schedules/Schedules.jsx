@@ -102,10 +102,10 @@ const Schedules = () => {
             <Nav links={navLinks} />
             {errorMessage && <Notification type="error" message={errorMessage} />}
             {message && <Notification type="success" message={message} />}
-            <main className={`${!expandedSidebar ? 'expandMainSchedules' : 'collapseMainSchedules'}`}>
+            <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
                 <h2>Horários cadastrados:</h2>
                 {listSchedules.length > 0 ?
-                    <ul className="ulSchedules">
+                    <ul className="generalList ulSchedules">
                         {sortedDays.map((day, index) => (
                             <li key={index} className='liScheduleOfDay'>
                                 <h3 className='captionSchedule'>{day === 'TERCA' ? 'TERÇA' : day === 'SABADO' ? 'SÁBADO' : day}</h3>

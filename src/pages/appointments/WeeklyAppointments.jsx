@@ -28,7 +28,7 @@ const WeeklyAppointments = () => {
         { text: 'Cadastrar', href: '/agendamentos/cadastrar' },
     ];
 
-    const { data: listAppointments, isLoading, refetch } = useFetch(`agendamentos/semana/?estabelecimento_id=${id}`);
+    const { data: listAppointments = [], isLoading, refetch } = useFetch(`agendamentos/semana/?estabelecimento_id=${id}`);
     const formatTime = (time) => {
         return time ? time.slice(0, 5) : 'Fechado'
     }
@@ -84,10 +84,10 @@ const WeeklyAppointments = () => {
             <Nav links={navLinks} />
             {errorMessage && <Notification type="error" message={errorMessage} />}
             {message && <Notification type="success" message={message} />}
-            <main className={`${!expandedSidebar ? 'expandMainAppointments' : 'collapseMainAppointments'}`}>
+            <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
                 <h2>Agendamentos da semana:</h2>
                 {listAppointments.length > 0 ?
-                    <ul className='listAppointments'>
+                    <ul className='generalList listAppointments'>
                         {listAppointments
                             .toSorted((a, b) => {
                                 if (a.dia_selecionado !== b.dia_selecionado) {
@@ -96,7 +96,7 @@ const WeeklyAppointments = () => {
                                 return new Date('1970/01/01 ' + a.horario_selecionado) - new Date('1970/01/01 ' + b.horario_selecionado);
                             })
                             .map((appointment, index) => (
-                                <li key={index}>
+                                <li key={index} className='generalLi liAppointments'>
                                     <h3>Agendamento</h3>
                                     <p><FaUserClock className='icon' /> {appointment.nome || appointment.cliente.nome}</p>
                                     <p><BsTelephoneFill className='icon' />

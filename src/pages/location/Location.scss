@@ -1,6 +1,7 @@
 .expandMainLocation,
 .collapseMainLocation {
     display: flex;
+    min-height: 90vh;
     flex-direction: row;
     justify-content: space-around;
     align-items: flex-start;

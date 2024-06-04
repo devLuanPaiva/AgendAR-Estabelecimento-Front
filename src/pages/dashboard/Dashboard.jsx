@@ -25,7 +25,7 @@ const Dashboard = () => {
     return (
         <React.Fragment>
             <Header textTitle={`Olá, ${nome}!`} textPhrase={'Veja abaixo algumas informações sobre o seu estabelecimento.'} />
-            <main className={`${!expandedSidebar ? 'expandMainDashboard' : 'collapseMainDashboard'}`}>
+            <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
                 {statisticData ? (
                     <section className="appointmentQuantity">
                         <article className='progressApointments'>

@@ -11,6 +11,7 @@
     justify-content: space-between;
     box-sizing: border-box;
     background-color: #012840;
+
     h1 {
         font-family: "Poppins", sans-serif;
         font-weight: 800;
@@ -111,18 +112,20 @@
             font-weight: 300;
         }
     }
-    .sidebarAltenate{
+
+    .sidebarAltenate {
         position: absolute;
         top: 5%;
         left: 90%;
         background-color: transparent;
         border: none;
 
-        abbr{
+        abbr {
             display: flex;
             align-items: center;
             justify-content: center;
-            .icon{
+
+            .icon {
                 cursor: pointer;
                 font-size: 2.4rem;
                 border-radius: 50%;
@@ -132,11 +135,13 @@
             }
         }
     }
-    .removeButtons{
+
+    .removeButtons {
         display: none;
     }
 
 }
+
 .collected {
     position: fixed;
     top: 0px;
@@ -163,6 +168,7 @@
         align-items: center;
         box-sizing: border-box;
         height: 80%;
+
         .sidebarNavigation {
             display: flex;
             text-decoration: none;
@@ -196,6 +202,7 @@
             background-image: linear-gradient(to bottom right, #205373, #1b5980e1);
         }
     }
+
     .line {
         width: 100%;
         background-color: #fff;
@@ -210,9 +217,11 @@
         width: 100%;
         align-items: center;
         justify-content: center;
+
         button {
             background-color: transparent;
             border: none;
+
             abbr {
                 .icon {
                     padding: 20px;
@@ -221,7 +230,8 @@
                     font-size: 2rem;
                     color: #fff;
                 }
-                .icon:hover{
+
+                .icon:hover {
                     cursor: pointer;
                     background-image: linear-gradient(to bottom right, #205373, #1b5980e1);
 
@@ -230,22 +240,24 @@
             }
         }
 
-        .remove{
+        .remove {
             display: none;
         }
     }
-    .sidebarAltenate{
+
+    .sidebarAltenate {
         position: absolute;
         top: 5%;
         left: 80%;
         background-color: transparent;
         border: none;
 
-        abbr{
+        abbr {
             display: flex;
             align-items: center;
             justify-content: center;
-            .icon{
+
+            .icon {
                 cursor: pointer;
                 font-size: 2.4rem;
                 border-radius: 50%;
@@ -256,141 +268,149 @@
         }
     }
 }
-@media screen and (max-width: 1490px){
-    .expanded{
-        nav{
+
+@media screen and (max-width: 1490px) {
+    .expanded {
+        nav {
             padding-left: 10%;
         }
     }
 }
-@media screen and (max-width: 1360px){
-    .expanded{
-        nav{
+
+@media screen and (max-width: 1360px) {
+    .expanded {
+        nav {
             padding-left: 5%;
         }
     }
 }
-@media screen and (max-width: 1250px){
-    .expanded{
-        h1{
+
+@media screen and (max-width: 1250px) {
+    .expanded {
+        h1 {
             font-size: 2rem;
             text-align: justify;
+
             .underlineTitle::after {
                 top: 38px;
             }
         }
-        nav{
+
+        nav {
             height: 80%;
             padding-left: 0%;
-            .sidebarNavigation{
+
+            .sidebarNavigation {
                 font-size: 1rem;
             }
         }
     }
 }
-@media screen and (max-width: 1100px){
-    .expanded{
-        h1{
+
+@media screen and (max-width: 1100px) {
+    .expanded {
+        h1 {
             font-size: 1.8rem;
+
             .underlineTitle::after {
                 top: 34px;
             }
         }
-        nav{
+
+        nav {
             height: 75%;
             justify-content: space-evenly;
-            .sidebarNavigation{
+
+            .sidebarNavigation {
                 font-size: .8rem;
             }
         }
-        .exit{
-            button{
-                .icon{
-                    font-size: 1.8rem;
-                }
-            }
-        }
+
     }
-    .collected{
-        nav{
-            .sidebarNavigation{
+
+    .collected {
+        nav {
+            .sidebarNavigation {
                 padding: 15px;
             }
         }
-        .exit{
-            button{
-                abbr{
-                    .icon{
-                        padding: 15px;
+
+        .exit {
+            button {
+                abbr {
+                    .icon {
+                        border-radius: 8px;
                     }
                 }
             }
         }
     }
 }
-@media screen and (max-width: 1015px){
-    .expanded{
-        h1{
+
+@media screen and (max-width: 1015px) {
+    .expanded {
+        h1 {
             font-size: 1.6rem;
+
             .underlineTitle::after {
                 top: 30px;
             }
         }
-        
+
     }
 }
-@media screen and (max-width: 930px){
-    .expanded{
+
+@media screen and (max-width: 930px) {
+    .expanded {
         display: none;
     }
-    .collected{
-        .sidebarAltenate, .removeButtons{
+
+    .collected {
+
+        .sidebarAltenate,
+        .removeButtons {
             display: none;
         }
-    }
-}
-@media screen and (max-width: 890px){
-    .collected{
-        nav{
-            .sidebarNavigation{
-                padding: 10px;
-            }
-        }
-        .exit{
-            button{
-                abbr{
-                    .icon{
-                        padding: 10px;
+
+        .exit {
+            button {
+                abbr {
+                    .icon {
+                        padding: 5px;
+                        border-radius: 5px;
                     }
                 }
             }
         }
     }
 }
-@media screen and (max-width: 780px){
-    .collected{
-        nav{
-            .sidebarNavigation{
+
+@media screen and (max-width: 890px) {
+    .collected {
+        nav {
+            .sidebarNavigation {
+                padding: 10px;
+            }
+        }
+
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .collected {
+        nav {
+            .sidebarNavigation {
                 padding: 5px;
                 border-radius: 5px;
                 font-size: 1.5rem;
             }
         }
-        .exit{
-            button{
-                abbr{
-                    .icon{
-                        padding: 5px;
-                        border-radius: 5px;
-                        font-size: 1.5rem;
-                    }
-                }
-            }
-        }
+
     }
 }
-@media screen and (max-width: 650px){
-    .collected{
+
+@media screen and (max-width: 650px) {
+    .collected {
         flex-direction: row-reverse;
         position: relative;
         bottom: 0px;
@@ -398,20 +418,23 @@
         max-height: 100px;
         align-items: center;
         justify-content: center;
+
         .line {
             width: 2px;
             background-color: #fff;
             border-radius: 5px;
             height: 50px;
         }
-        nav{
+
+        nav {
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
             height: 100%;
             width: 85%;
         }
-        .exit{
+
+        .exit {
             align-items: center;
             justify-content: center;
             width: 10%;

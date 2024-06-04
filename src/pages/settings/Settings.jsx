@@ -96,7 +96,7 @@ const Settings = () => {
       <Nav links={navLinks} />
       {errorMessage && <Notification type="error" message={errorMessage} />}
       {message && <Notification type="success" message={message} />}
-      <main className={`${!expandedSidebar ? 'expandMainSettings' : 'collapseMainSettings'}`}>
+      <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
         <h2>Atualize suas informações:</h2>
         <form onSubmit={handleSubmit} className='formSettings'>
           <label>Nome<input
