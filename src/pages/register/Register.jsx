@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../../images/logoWhite.png'
-import './Register.scss';
+// import './Register.scss';
 import axios from 'axios';
 import Title from '../../components/titles/Title';
 import SelectStateAndCity from '../../components/selectStateAndCity/SelectStateAndCity';

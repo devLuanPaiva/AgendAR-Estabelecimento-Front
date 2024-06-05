@@ -78,8 +78,6 @@
 
     .expandMain,
     .collapseMain {
-        padding-left: 73px;
-        gap: 10px;
 
         .listAppointments {
             width: 100%;
@@ -93,11 +91,6 @@
 
 @media screen and (max-width: 650px) {
     .expandMain {
-        left: 0%;
-        bottom: 100px;
-        max-width: 100%;
-        padding: 20px 25px;
-
         .formAppointment {
             padding: 0px 10px;
             width: 100%;
@@ -132,10 +125,6 @@
 
 @media screen and (max-width: 500px) {
     .expandMain {
-        h2 {
-            font-size: 1.2rem;
-        }
-
         .formAppointment {
             label {
                 font-size: .9rem;
@@ -147,12 +136,7 @@
                 }
             }
 
-            .buttonFormAppointment {
-                button {
-                    font-size: .9rem;
-                    padding: 8px 16px;
-                }
-            }
+
         }
     }
 }
@@ -213,10 +197,6 @@
 
 @media screen and (max-width: 360px) {
     .expandMain {
-        h2 {
-            font-size: 1rem;
-        }
-
         .listAppointments {
             .liAppointments {
 
@@ -248,21 +228,12 @@
                 }
             }
 
-            .buttonFormAppointment {
-                button {
-                    font-size: .8rem;
-                    padding: 7px 14px;
-                }
-            }
         }
     }
 }
 
 @media screen and (max-width: 300px) {
     .expandMain {
-        h2 {
-            font-size: .9rem;
-        }
 
         .listAppointments {
             .liAppointments {
@@ -296,13 +267,6 @@
                 select {
                     font-size: .7rem;
                     padding: 7px;
-                }
-            }
-
-            .buttonFormAppointment {
-                button {
-                    font-size: .7rem;
-                    padding: 6px 12px;
                 }
             }
         }

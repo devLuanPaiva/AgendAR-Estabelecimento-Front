@@ -5,7 +5,7 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import MapsAPI from '../../components/maps/MapsAPI'
 import { useSidebarContext } from '../../components/sidebar/SidebarProvider'
 import { AuthContext } from '../../context/AuthContext'
-import './Location.scss'
+// import './Location.scss'
 const Location = () => {
     const { authTokens } = useContext(AuthContext);
     const { bairro, cep, cidade, estado, rua } = authTokens.estabelecimento.estabelecimento;

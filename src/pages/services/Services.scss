@@ -84,24 +84,8 @@
     }
 }
 
-
-
-@media screen and (max-width: 1200px) {
-
-    .expandMain,
-    .collapseMain {
-        padding-left: 73px;
-        gap: 10px;
-    }
-
-}
-
 @media screen and (max-width: 650px) {
     .expandMain {
-        left: 0%;
-        max-width: 100%;
-        padding: 20px 25px;
-
         .listServices {
             padding: 0px;
             align-items: center;
@@ -124,10 +108,6 @@
 
 @media screen and (max-width: 500px) {
     .expandMain {
-        h2 {
-            font-size: 1.2rem;
-        }
-
         .listServices {
             li {
                 h3 {
@@ -166,13 +146,6 @@
                     }
                 }
             }
-
-            .buttonFormServices {
-                button {
-                    font-size: .9rem;
-                    padding: 8px 16px;
-                }
-            }
         }
 
     }
@@ -180,9 +153,6 @@
 
 @media screen and (max-width: 360px) {
     .expandMain {
-        h2 {
-            font-size: 1rem;
-        }
 
         .listServices {
             li {
@@ -220,14 +190,6 @@
                         font-size: .8rem;
 
                     }
-                }
-            }
-
-            .buttonFormServices {
-                margin-top: 0px;
-                button {
-                    font-size: .8rem;
-                    padding: 7px 14px;
                 }
             }
         }
@@ -237,9 +199,6 @@
 
 @media screen and (max-width: 300px) {
     .expandMain {
-        h2 {
-            font-size: .9rem;
-        }
 
         .listServices {
             li {
@@ -280,12 +239,6 @@
                 }
             }
 
-            .buttonFormServices {
-                button {
-                    font-size: .7rem;
-                    padding: 6px 12px;
-                }
-            }
         }
 
     }

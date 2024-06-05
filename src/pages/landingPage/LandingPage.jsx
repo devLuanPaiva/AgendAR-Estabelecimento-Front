@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import './LandingPage.scss'
+// import './LandingPage.scss'
 import img from '../../images/landingPage.png'
 import React, { useEffect, useRef } from "react";
 import {FaLinkedinIn, FaGoogle,FaGithubAlt} from "react-icons/fa"

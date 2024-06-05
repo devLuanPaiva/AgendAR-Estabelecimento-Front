@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import './PageNotFound.scss'
+// import './PageNotFound.scss'
 
 const PageNotFound = () => {
     const navigate = useNavigate()

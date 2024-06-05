@@ -5,7 +5,7 @@ import useAxios from '../../hooks/useAxios';
 import Header from '../../components/header/Header';
 import Nav from '../../components/nav/Nav';
 import Sidebar from '../../components/sidebar/Sidebar';
-import './Appointments.scss';
+// import './Appointments.scss';
 import useFetch from '../../hooks/useFetch';
 import Notification from '../../components/notification/Notification';
 import useForm from '../../hooks/useForm';

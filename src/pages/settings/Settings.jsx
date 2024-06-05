@@ -5,7 +5,6 @@ import useAxios from '../../hooks/useAxios';
 import Header from '../../components/header/Header';
 import Nav from '../../components/nav/Nav';
 import Sidebar from '../../components/sidebar/Sidebar';
-import './Settings.scss'
 import Notification from '../../components/notification/Notification';
 
 const Settings = () => {
@@ -98,7 +97,7 @@ const Settings = () => {
       {message && <Notification type="success" message={message} />}
       <main className={`${!expandedSidebar ? 'expandMain' : 'collapseMain'}`}>
         <h2>Atualize suas informações:</h2>
-        <form onSubmit={handleSubmit} className='formSettings'>
+        <form onSubmit={handleSubmit} className='generalForm'>
           <label>Nome<input
             value={formData.nome}
             onChange={handleInputChange}
@@ -134,7 +133,9 @@ const Settings = () => {
             placeholder='Informe a nova senha'
             type="password"
           /></label>
-          <section className="buttonFormSettings"><button type="submit">Salvar</button></section>
+          <section className="generalButton">
+            <button type="submit" className='btn-black'>Salvar</button>
+          </section>
         </form>
       </main>
       <Sidebar />

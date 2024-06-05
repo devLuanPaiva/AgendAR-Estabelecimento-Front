@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import './Dashboard.scss';
+// import './Dashboard.scss';
 import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import Header from '../../components/header/Header';
 import Sidebar from '../../components/sidebar/Sidebar';

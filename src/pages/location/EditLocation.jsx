@@ -13,7 +13,7 @@ import Notification from '../../components/notification/Notification';
 const EditLocation = () => {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY_01
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY_01
     });
     const { authTokens, updateTokens } = useContext(AuthContext);
     const { id, bairro, cep, cidade, numeroEndereco, estado, rua } = authTokens.estabelecimento.estabelecimento;
@@ -29,7 +29,7 @@ const EditLocation = () => {
         const address = `${rua}, ${numeroEndereco} - ${bairro}, ${cidade} - ${estado}, ${cep}`;
         const getCoordinatesFromAddress = async (address) => {
             try {
-                const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${process.env.GOOGLE_MAPS_API_KEY_02}`);
+                const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY_02}`);
                 const { results } = response.data;
                 if (results && results.length > 0) {
                     const { lat, lng } = results[0].geometry.location;

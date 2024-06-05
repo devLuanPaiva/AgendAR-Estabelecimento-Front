@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 import Header from '../../components/header/Header';
 import Nav from '../../components/nav/Nav';
 import Sidebar from '../../components/sidebar/Sidebar';
-import './Schedules.scss';
+// import './Schedules.scss';
 import useAxios from '../../hooks/useAxios';
 import Notification from '../../components/notification/Notification';
 import useForm from '../../hooks/useForm';

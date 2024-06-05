@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import './Services.scss'
+// import './Services.scss'
 import Header from '../../components/header/Header';
 import Nav from '../../components/nav/Nav';
 import Sidebar from '../../components/sidebar/Sidebar';

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import logo from '../../images/logoWhite.png'
-import './Authentication.scss'
+// import './Authentication.scss'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import Title from '../../components/titles/Title'

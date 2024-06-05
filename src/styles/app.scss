@@ -11,7 +11,7 @@
     position: relative;
     top: 0px;
     gap: 20px;
-    padding: 0px 5%;
+    padding: 0px 5% 20px 5%;
     box-sizing: border-box;
 
     h2 {
@@ -59,12 +59,14 @@
             font-size: 1.1rem;
             font-weight: bold;
             box-sizing: border-box;
+
             input,
             select {
                 width: 100%;
                 padding: 2px;
                 text-indent: 5px;
                 height: 40px;
+                background-color: $card-bg-color;
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 transition: border-color 0.3s;
@@ -93,10 +95,81 @@
 
 .expandMain {
     left: 8%;
-    max-width: 92%;
+    width: 92%;
 }
 
 .collapseMain {
     left: 18%;
-    max-width: 82%;
+    width: 82%;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .expandMain,
+    .collapseMain {
+        padding-left: 73px;
+        gap: 10px;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    .expandMain {
+        left: 0%;
+        margin: 0px;
+        padding: 0px;
+        padding-bottom: 25px;
+        width: 100vw;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .expandMain {
+
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        .generalForm {
+            .generalButton {
+                .btn-black {
+                    font-size: .9rem;
+                    padding: 8px 16px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .expandMain {
+
+        h2 {
+            font-size: 1rem;
+        }
+        .generalForm {
+            .generalButton {
+                .btn-black {
+                    font-size: .8rem;
+                    padding: 7px 14px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .expandMain {
+        h2 {
+            font-size: .9rem;
+        }
+        .generalForm {
+            .generalButton {
+                .btn-black {
+                    font-size: .7rem;
+                    padding: 6px 12px;
+                }
+            }
+        }
+    }
 }

@@ -8,7 +8,7 @@ import useAxios from '../../hooks/useAxios';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { FaTrash, FaUserClock } from 'react-icons/fa';
 import { MdDesignServices, MdSchedule } from 'react-icons/md';
-import './Appointments.scss';
+// import './Appointments.scss';
 import IsLoading from '../../components/isLoading/IsLoading';
 import useFetch from '../../hooks/useFetch';
 import { useMutation } from 'react-query';

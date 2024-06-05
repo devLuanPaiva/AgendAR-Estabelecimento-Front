@@ -4,7 +4,7 @@ import Nav from '../../components/nav/Nav';
 import Sidebar from '../../components/sidebar/Sidebar';
 import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
-import './Schedules.scss';
+// import './Schedules.scss';
 import { MdEdit } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';

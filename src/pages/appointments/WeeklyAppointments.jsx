@@ -6,7 +6,7 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { FaTrash, FaUserClock } from "react-icons/fa";
 import { MdDesignServices, MdSchedule } from "react-icons/md";
 import { RiCalendarScheduleLine } from "react-icons/ri";
-import './Appointments.scss'
+// import './Appointments.scss'
 import { useSidebarContext } from '../../components/sidebar/SidebarProvider';
 import { AuthContext } from '../../context/AuthContext';
 import useAxios from '../../hooks/useAxios';
