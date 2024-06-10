@@ -30,13 +30,15 @@ const Authentication = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://3.233.229.141:8000/token/', {
+            const response = await axios.post('https://backend-iota-hazel.vercel.app/api/token/', {
                 username: formValues.username,
                 password: formValues.password,
+            }, {
+                withCredentials: true,
             });
             const { access, refresh } = response.data;
 
-            const establishment = await axios.get('http://3.233.229.141:8000/user-info/', {
+            const establishment = await axios.get('https://backend-iota-hazel.vercel.app/api/user-info/', {
                 headers: {
                     Authorization: `Bearer ${access}`,
                 },
@@ -47,8 +49,14 @@ const Authentication = () => {
         }
         catch (error) {
             console.error('Erro ao se autenticar:', error);
-            if(error.response.data.detail === 'No active account found with the given credentials'){
+            if(error?.response?.data?.detail === 'No active account found with the given credentials'){
                 setErrorMessage('Nenhuma conta ativa encontrada com as credenciais fornecidas');
+                setTimeout(() => {
+                    setErrorMessage('');
+                }, 5000);
+            }
+            else{
+                setErrorMessage('Servidor Indisponível');
                 setTimeout(() => {
                     setErrorMessage('');
                 }, 5000);

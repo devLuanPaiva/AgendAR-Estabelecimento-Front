@@ -41,8 +41,7 @@ const Register = () => {
             },
         };
         try {
-            const response = await axios.post('http://3.233.229.141:8000/estabelecimento/', dados);
-            console.log(response.data);
+            const response = await axios.post('https://backend-iota-hazel.vercel.app/api/estabelecimento/', dados);
             if (response.status === 201) {
                 setMessage('Registrado com sucesso!');
                 setTimeout(()=>{setMessage('')}, 5000)

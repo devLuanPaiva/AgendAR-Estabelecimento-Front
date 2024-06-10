@@ -20,6 +20,7 @@ O AgendAR é um sistema desenvolvido em React.js para agendamentos em diversos t
 - React Router DOM
 - React Query
 - Sass
+- Gulp
 
 ## Metodologia de Desenvolvimento
 
@@ -41,5 +42,11 @@ Para mais informações ou contato direto, você pode enviar um email para [devL
 
 ## Repositório Backend
 
-O backend do sistema está hospedado no seguinte repositório do GitHub: [AgendAR Backend](https://github.com/devLuanPaiva/AgendAR-backend).
+O backend do sistema está hospedado na Vercel e pode ser acessado pelo seguinte endereço: [AgendAR Backend]('https://backend-iota-hazel.vercel.app/api/').
 
+## .env
+
+ ```tsx
+        REACT_APP_GOOGLE_MAPS_API_KEY_01=
+        REACT_APP_GOOGLE_MAPS_API_KEY_02=
+    ```
